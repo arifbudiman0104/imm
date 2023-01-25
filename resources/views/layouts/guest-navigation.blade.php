@@ -90,7 +90,6 @@
                     @endif
                 </div>
                 @endguest
-                <!-- Settings Dropdown -->
                 <!-- User Dropdown -->
                 @auth
                 <div class="hidden sm:flex sm:items-center sm:ml-2">
@@ -164,6 +163,7 @@
 
         <!-- Responsive Settings Options -->
         @auth
+        {{-- User --}}
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
@@ -187,6 +187,7 @@
             </div>
         </div>
         @endauth
+        {{-- Dark Mode --}}
         <div class="pt-4 pb-4 border-t border-gray-200 dark:border-gray-600">
             <button x-on:click="darkMode = 'dark', showDropdown = false"
                 class="flex w-full py-2 pl-3 pr-4 text-base font-medium text-left text-gray-600 transition duration-150 ease-in-out border-l-4 border-transparent dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 focus:outline-none focus:text-gray-800 dark:focus:text-gray-200 focus:bg-gray-50 dark:focus:bg-gray-700 focus:border-gray-300 dark:focus:border-gray-600">
