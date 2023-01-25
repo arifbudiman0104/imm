@@ -52,6 +52,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/user', function () {
             return view('admin.user.index');
         })->name('admin.user.index');
+        Route::get('/user', function () {
+            return view('admin.user.index');
+        })->name('admin.user.index');
+        Route::get('/posts', function () {
+            return view('admin.posts.index');
+        })->name('admin.posts.index');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
