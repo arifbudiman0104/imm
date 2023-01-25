@@ -1,5 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
+    <div class="flex items-center justify-center text-gray-800 bg-indigo-50 h-9 dark:bg-indigo-500 dark:text-gray-200">Dashboard</div>
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -12,8 +13,8 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-4 sm:-my-px md:ml-4 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('dashboard.posts.index')" :active="request()->routeIs('dashboard.posts.index')">
+                        {{ __('Posts') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -91,6 +92,9 @@
                             <x-dropdown-link :href="route('home')">
                                 {{ __('Home') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin')">
+                                {{ __('Admin') }}
+                            </x-dropdown-link>
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
@@ -130,7 +134,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Posts') }}
             </x-responsive-nav-link>
         </div>
 
@@ -142,6 +146,12 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('home')">
+                    {{ __('Home') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin')">
+                    {{ __('Admin') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>

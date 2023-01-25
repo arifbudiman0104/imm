@@ -1,5 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
+    <div class="flex items-center justify-center text-gray-800 bg-red-50 h-9 dark:bg-red-500 dark:text-gray-200">Admin</div>
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -12,20 +13,13 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-4 sm:-my-px md:ml-4 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Home') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('posts')" :active="request()->routeIs('posts')">
-                        {{ __('Posts') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                        {{ __('About') }}
+                    <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
+                        {{ __('User') }}
                     </x-nav-link>
                 </div>
             </div>
 
             <div class="flex">
-
                 {{-- Dark Mode Dropdown --}}
                 <div class="hidden sm:flex sm:items-center sm:ml-2">
                     <x-dropdown align="right" width="48">
@@ -75,26 +69,7 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
-                {{-- Login & Register --}}
-                @guest
-                <div class="hidden sm:flex sm:items-center sm:ml-2 gap-x-4">
-
-                    @if (Route::has('login'))
-                    <a href="{{ route('login') }}"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-400 transition duration-150 ease-in-out bg-gray-100 border border-transparent rounded-md dark:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
-                        Login
-                    </a>
-                    @endif
-                    @if (Route::has('register'))
-                    <a href="{{ route('register') }}"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-400 transition duration-150 ease-in-out bg-gray-100 border border-transparent rounded-md dark:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
-                        Register
-                    </a>
-                    @endif
-                </div>
-                @endguest
                 <!-- User Dropdown -->
-                @auth
                 <div class="hidden sm:flex sm:items-center sm:ml-2">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -114,11 +89,11 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            <x-dropdown-link :href="route('home')">
+                                {{ __('Home') }}
+                            </x-dropdown-link>
                             <x-dropdown-link :href="route('dashboard')">
                                 {{ __('Dashboard') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('admin')">
-                                {{ __('Admin') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
@@ -136,7 +111,6 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
-                @endauth
             </div>
 
 
@@ -159,20 +133,12 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                {{ __('Home') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('posts')" :active="request()->routeIs('posts')">
-                {{ __('Posts') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                {{ __('About') }}
+            <x-responsive-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
+                {{ __('User') }}
             </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
-        @auth
-        {{-- User --}}
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
                 <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
@@ -180,11 +146,11 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('home')">
+                    {{ __('Home') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('dashboard')">
                     {{ __('Dashboard') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin')">
-                    {{ __('Admin') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
@@ -201,7 +167,6 @@
                 </form>
             </div>
         </div>
-        @endauth
         {{-- Dark Mode --}}
         <div class="pt-4 pb-4 border-t border-gray-200 dark:border-gray-600">
             <button x-on:click="darkMode = 'dark', showDropdown = false"
@@ -232,6 +197,5 @@
                 <span class="ml-2">System</span>
             </button>
         </div>
-
     </div>
 </nav>
