@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
 Route::get('/posts', function () {
     return view('posts');
 })->name('posts');
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');
@@ -45,8 +47,8 @@ Route::middleware(['auth','admin'])->group(function () {
         })->name('admin.posts.index');
     });
 });
-Route::middleware('auth')->group(function () {
 
+Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');
     })->name('dashboard');
