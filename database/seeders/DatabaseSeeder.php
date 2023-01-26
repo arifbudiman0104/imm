@@ -16,21 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        User::create(
-            [
-                'name' => 'User 1',
-                'email' => 'user1@user.com',
-                'password' => bcrypt('password'),
-                'is_admin' => false,
-                'is_verified' => true,
-            ]
-        );
         User::create(
             [
                 'name' => 'Admin',
@@ -40,5 +30,35 @@ class DatabaseSeeder extends Seeder
                 'is_verified' => true,
             ]
         );
+        User::create(
+            [
+                'name' => 'Arif Budiman Arrosyid',
+                'email' => 'arifbudimanarrosyid@admin.com',
+                'password' => bcrypt('password'),
+                'is_admin' => true,
+                'is_verified' => true,
+            ]
+        );
+        User::create(
+            [
+                'name' => 'User 1',
+                'email' => 'user1@user.com',
+                'password' => bcrypt('password'),
+                'is_admin' => false,
+                'is_verified' => false,
+            ],
+        );
+        User::create(
+            [
+                'name' => 'User 2',
+                'email' => 'user2@user.com',
+                'password' => bcrypt('password'),
+                'is_admin' => false,
+                'is_verified' => true,
+            ],
+        );
+        User::factory(10)->create();
+
+
     }
 }

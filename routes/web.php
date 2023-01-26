@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +37,10 @@ Route::middleware(['auth','admin'])->group(function () {
     })->name('admin');
 
     Route::prefix('admin')->group(function () {
-        Route::get('/users', function () {
-            return view('admin.users.index');
-        })->name('admin.users.index');
+        // Route::get('/users', function () {
+        //     return view('admin.users.index');
+        // })->name('admin.users.index');
+        Route::resource('users', AdminUserController::class, ['as' => 'admin']);
         Route::get('/posts-categories', function () {
             return view('admin.posts-categories.index');
         })->name('admin.posts-categories.index');

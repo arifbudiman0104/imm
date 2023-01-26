@@ -20,7 +20,7 @@
             display: none !important;
         }
 
-        @media (prefers-color-scheme: dark) {
+        /* @media (prefers-color-scheme: dark) {
             ::-webkit-scrollbar {
                 width: 5px;
                 background-color: #111827;
@@ -51,7 +51,7 @@
             ::-webkit-scrollbar-thumb:hover {
                 background-color: #6366d0;
             }
-        }
+        } */
     </style>
 
     <!-- Scripts -->
