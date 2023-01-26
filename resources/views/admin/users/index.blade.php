@@ -6,16 +6,6 @@
     </x-slot>
 
     <div class="w-full sm:py-12">
-        {{-- <x-section>
-            <header class="">
-                <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                    All User
-                </h2>
-                <p class="mt-1 text-sm text-red-600 dark:text-red-400">
-                    Becareful delete action is irreversible.
-                </p>
-            </header>
-        </x-section> --}}
         <x-section>
             <div class="mb-5">
                 <x-primary-button href="">
@@ -51,7 +41,7 @@
                             <div class="flex-grow">
                                 <p class="my-2 font-bold text-gray-900 whitespace-nowrap dark:text-white"> {{
                                     $user->name }}</p>
-                                <p class="font-bold"> {{ $user->email }}</p>
+                                <p class="font-medium"> {{ $user->email }}</p>
                             </div>
                         </div>
                         <div class="flex space-x-2 mt-5 sm:justify-between">
