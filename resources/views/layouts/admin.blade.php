@@ -61,7 +61,7 @@
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         @include('layouts.admin-navigation')
-        @include('layouts.admin-menu')
+        {{-- @include('layouts.admin-menu') --}}
 
         <!-- Page Heading -->
         @if (isset($header))

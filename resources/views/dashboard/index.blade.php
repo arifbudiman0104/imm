@@ -5,14 +5,14 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Welcome to Dashboard, You're logged in as") }} <span class="text-indigo-500">{{
-                        Auth::user()->name }}</span> !
-                </div>
-            </div>
-        </div>
+    <div class="w-full sm:py-12">
+        <x-section>
+            <p>{{ __("Welcome to Dashboard!") }}</p>
+            <p>
+                You're logged in as <span class="text-indigo-500">
+                    {{Auth::user()->name }}
+                </span>
+            </p>
+        </x-section>
     </div>
 </x-app-layout>

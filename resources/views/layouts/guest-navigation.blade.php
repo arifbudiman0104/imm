@@ -232,6 +232,20 @@
                 <span class="ml-2">System</span>
             </button>
         </div>
+        @guest
+            <div class="pt-4 pb-4 border-t border-gray-200 dark:border-gray-600">
+
+                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                    {{ __('Login') }}
+                </x-responsive-nav-link>
+                @if (Route::has('register'))
+                <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                    {{ __('Register') }}
+                </x-responsive-nav-link>
+                @endif
+
+            </div>
+            @endguest
 
     </div>
 </nav>
