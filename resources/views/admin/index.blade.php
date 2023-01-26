@@ -7,20 +7,23 @@
 
     <div class="w-full sm:py-12">
         <x-section>
-            <div class="flex flex-col gap-5">
-                <p>{{ __("Welcome to Admin page!") }}</p>
-                <p>
-                    You're logged in as
-                    <span class="text-indigo-500">
-                        {{Auth::user()->name }}.
-                    </span>
-                </p>
-                <p>This page can be access only by user with role Admin.</p>
-                <p class="text-red-500">
-                    Becareful, some features can't be undone.
-                </p>
-            </div>
+            <p class="text-lg font-medium text-gray-900 dark:text-gray-100">{{ __("Welcome to Admin page!") }}
+            </p>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                You're logged in as
+                <span class="text-red-500">
+                    {{Auth::user()->name }}.
+                </span>
+            </p>
         </x-section>
+        <x-section>
+            <p class="text-lg font-medium text-red-500">Important!</p>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                Please be aware that this page is only accessible to users with the Admin role, and some actions taken
+                on this page cannot be undone.
+            </p>
+        </x-section>
+
     </div>
 
 </x-admin-layout>
