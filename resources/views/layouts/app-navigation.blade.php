@@ -1,6 +1,7 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
-    <div class="flex items-center justify-center text-gray-800 bg-indigo-300 h-9 dark:bg-indigo-500 dark:text-gray-200">Dashboard</div>
+    <div class="flex items-center justify-center text-gray-800 bg-indigo-300 h-9 dark:bg-indigo-500 dark:text-gray-200">
+        Dashboard</div>
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -13,9 +14,12 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-4 sm:-my-px md:ml-4 sm:flex">
-                    <x-nav-link :href="route('dashboard.posts.index')" :active="request()->routeIs('dashboard.posts.index')">
+                    @can('verified_account')
+                    <x-nav-link :href="route('dashboard.posts.index')"
+                        :active="request()->routeIs('dashboard.posts.index')">
                         {{ __('Posts') }}
                     </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -135,9 +139,12 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard.posts.index')" :active="request()->routeIs('dashboard.posts.index')">
+            @can('verified_account')
+            <x-responsive-nav-link :href="route('dashboard.posts.index')"
+                :active="request()->routeIs('dashboard.posts.index')">
                 {{ __('Posts') }}
             </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

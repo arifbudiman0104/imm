@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
         return view('dashboard.index');
     })->name('dashboard');
 
-    Route::prefix('dashboard')->group(function () {
+    Route::prefix('dashboard')->middleware('verified_account')->group(function () {
         Route::get('/posts', function () {
             return view('dashboard.posts.index');
         })->name('dashboard.posts.index');
