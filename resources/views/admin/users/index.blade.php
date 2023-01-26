@@ -87,9 +87,6 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="mt-5">
-                    {{ $users->links() }}
-                </div>
             </div>
 
 
@@ -185,15 +182,11 @@
                             @endforeach
                         </tbody>
                     </table>
-
-                </div>
-                <div class="mt-5">
-                    {{ $users->links() }}
                 </div>
             </div>
-
-
-
+        </x-section>
+        <x-section>
+            {{ $users->links() }}
         </x-section>
     </div>
 </x-admin-layout>
