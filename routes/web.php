@@ -27,9 +27,9 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard.index');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::fallback(function () {
+    return redirect()->route('home');
+});
 
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('/admin', function () {
