@@ -20,38 +20,37 @@
             display: none !important;
         }
 
-        /* @media (prefers-color-scheme: dark) {
+        @media (prefers-color-scheme: dark) {
             ::-webkit-scrollbar {
-                width: 5px;
+                width: 10px;
                 background-color: #111827;
             }
 
             ::-webkit-scrollbar-thumb {
-                background-color: #4f46e5;
+                background-color: #fecaca;
                 border-radius: 10px;
             }
 
             ::-webkit-scrollbar-thumb:hover {
-                background-color: #6366d0;
+                background-color: #ef4444;
             }
         }
 
         @media (prefers-color-scheme: light) {
             ::-webkit-scrollbar {
                 width: 10px;
-                height: 10px;
                 background-color: #f5f5f5;
             }
 
             ::-webkit-scrollbar-thumb {
-                background-color: #4f46e5;
+                background-color: #fecaca;
                 border-radius: 10px;
             }
 
             ::-webkit-scrollbar-thumb:hover {
-                background-color: #6366d0;
+                background-color: #fca5a5;
             }
-        } */
+        }
     </style>
 
     <!-- Scripts -->

@@ -39,25 +39,25 @@ class DatabaseSeeder extends Seeder
                 'is_verified' => true,
             ]
         );
-        User::create(
-            [
-                'name' => 'User 1',
-                'email' => 'user1@user.com',
-                'password' => bcrypt('password'),
-                'is_admin' => false,
-                'is_verified' => false,
-            ],
-        );
-        User::create(
-            [
-                'name' => 'User 2',
-                'email' => 'user2@user.com',
-                'password' => bcrypt('password'),
-                'is_admin' => false,
-                'is_verified' => true,
-            ],
-        );
-        User::factory(10)->create();
+        // User::create(
+        //     [
+        //         'name' => 'User 1',
+        //         'email' => 'user1@user.com',
+        //         'password' => bcrypt('password'),
+        //         'is_admin' => false,
+        //         'is_verified' => false,
+        //     ],
+        // );
+        // User::create(
+        //     [
+        //         'name' => 'User 2',
+        //         'email' => 'user2@user.com',
+        //         'password' => bcrypt('password'),
+        //         'is_admin' => false,
+        //         'is_verified' => true,
+        //     ],
+        // );
+        User::factory(100)->create();
 
 
     }

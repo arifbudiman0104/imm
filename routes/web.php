@@ -40,7 +40,13 @@ Route::middleware(['auth','admin'])->group(function () {
         // Route::get('/users', function () {
         //     return view('admin.users.index');
         // })->name('admin.users.index');
-        Route::resource('users', AdminUserController::class, ['as' => 'admin']);
+        Route::resource('/users', AdminUserController::class, ['as' => 'admin']);
+        // make admin
+        Route::post('/users/{user}/make-admin', [AdminUserController::class, 'makeAdmin'])->name('admin.users.makeadmin');
+        Route::post('/users/{user}/remove-admin', [AdminUserController::class, 'removeAdmin'])->name('admin.users.removeadmin');
+        Route::post('/users/{user}/verify', [AdminUserController::class, 'verify'])->name('admin.users.verify');
+        Route::post('/users/{user}/unverify', [AdminUserController::class, 'unverify'])->name('admin.users.unverify');
+
         Route::get('/posts-categories', function () {
             return view('admin.posts-categories.index');
         })->name('admin.posts-categories.index');

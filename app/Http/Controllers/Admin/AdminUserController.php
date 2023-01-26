@@ -15,7 +15,10 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(9);
+        // except the current user
+        $users = User::orderBy('name')
+        ->where('id', '!=', '1')
+        ->paginate(20);
         return view('admin.users.index', compact('users'));
     }
 
@@ -26,7 +29,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -82,6 +85,38 @@ class AdminUserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return back();
+    }
+
+    public function makeAdmin(User $user)
+    {
+        $user->timestamps = false;
+        $user->is_admin = 1;
+        $user->save();
+        return back();
+    }
+    public function removeAdmin(User $user)
+    {
+        $user->timestamps = false;
+        $user->is_admin = 0;
+        $user->save();
+        return back();
+    }
+
+    public function verify(User $user)
+    {
+        $user->timestamps = false;
+        $user->is_verified = 1;
+        $user->save();
+        return back();
+    }
+    public function unverify(User $user)
+    {
+        // disable created at and updated at
+        $user->timestamps = false;
+        $user->is_verified = 0;
+        $user->save();
+        return back();
     }
 }
