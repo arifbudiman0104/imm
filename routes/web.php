@@ -49,12 +49,12 @@ Route::middleware('auth')->group(function () {
 
 
     Route::prefix('admin')->group(function () {
-        Route::get('/user', function () {
-            return view('admin.user.index');
-        })->name('admin.user.index');
-        Route::get('/user', function () {
-            return view('admin.user.index');
-        })->name('admin.user.index');
+        Route::get('/users', function () {
+            return view('admin.users.index');
+        })->name('admin.users.index');
+        Route::get('/posts-categories', function () {
+            return view('admin.posts-categories.index');
+        })->name('admin.posts-categories.index');
         Route::get('/posts', function () {
             return view('admin.posts.index');
         })->name('admin.posts.index');

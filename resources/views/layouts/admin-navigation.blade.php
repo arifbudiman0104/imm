@@ -5,7 +5,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="flex items-center shrink-0">
+                <div class="flex items-center shrink-0 sm:hidden md:flex">
                     <a href="{{ route('home') }}">
                         <x-application-logo class="block w-auto text-gray-800 fill-current h-9 dark:text-gray-200" />
                     </a>
@@ -13,8 +13,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-4 sm:-my-px md:ml-4 sm:flex">
-                    <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
+                    <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                         {{ __('User') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.index')">
+                        {{ __('Posts') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.posts-categories.index')" :active="request()->routeIs('admin.posts-categories.index')">
+                        {{ __('Posts Categories') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -133,8 +139,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
+            <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                 {{ __('User') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.index')">
+                {{ __('Posts') }}
             </x-responsive-nav-link>
         </div>
 
