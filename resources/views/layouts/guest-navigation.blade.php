@@ -117,9 +117,11 @@
                             <x-dropdown-link :href="route('dashboard')">
                                 {{ __('Dashboard') }}
                             </x-dropdown-link>
+                            @can('admin')
                             <x-dropdown-link :href="route('admin')">
                                 {{ __('Admin') }}
                             </x-dropdown-link>
+                            @endcan
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
@@ -183,9 +185,11 @@
                 <x-responsive-nav-link :href="route('dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
+                @can('admin')
                 <x-responsive-nav-link :href="route('admin')">
                     {{ __('Admin') }}
                 </x-responsive-nav-link>
+                @endcan
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>

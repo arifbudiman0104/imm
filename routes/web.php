@@ -31,22 +31,10 @@ Route::get('/about', function () {
 //     return view('dashboard.index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
-
-    Route::prefix('dashboard')->group(function () {
-        Route::get('/posts', function () {
-            return view('dashboard.posts.index');
-        })->name('dashboard.posts.index');
-    });
-
+Route::middleware(['auth','admin'])->group(function () {
     Route::get('/admin', function () {
         return view('admin.index');
     })->name('admin');
-
 
     Route::prefix('admin')->group(function () {
         Route::get('/users', function () {
@@ -58,6 +46,18 @@ Route::middleware('auth')->group(function () {
         Route::get('/posts', function () {
             return view('admin.posts.index');
         })->name('admin.posts.index');
+    });
+});
+Route::middleware('auth')->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard.index');
+    })->name('dashboard');
+
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/posts', function () {
+            return view('dashboard.posts.index');
+        })->name('dashboard.posts.index');
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
