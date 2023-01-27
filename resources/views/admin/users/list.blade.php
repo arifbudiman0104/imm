@@ -36,7 +36,7 @@
                 <x-default-button x-on:click="showModal = !showModal" x-cloak>
                     Remove Admin
                 </x-default-button>
-                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur">
+                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur-xl">
                 </div>
                 <div x-cloak x-show="showModal" x-transition
                     class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -72,7 +72,7 @@
                 <x-make-admin-button x-on:click="showModal = !showModal" x-cloak>
                     Make Admin
                 </x-make-admin-button>
-                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur">
+                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur-xl">
                 </div>
                 <div x-cloak x-show="showModal" x-transition
                     class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -115,7 +115,7 @@
                 <x-default-button x-on:click="showModal = !showModal" x-cloak>
                     Unverify
                 </x-default-button>
-                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur">
+                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur-xl">
                 </div>
                 <div x-cloak x-show="showModal" x-transition
                     class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -151,7 +151,7 @@
                 <x-verify-button x-on:click="showModal = !showModal" x-cloak>
                     Verify
                 </x-verify-button>
-                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur">
+                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur-xl">
                 </div>
                 <div x-cloak x-show="showModal" x-transition
                     class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -197,7 +197,7 @@
                 <x-delete-button x-on:click="showModal = !showModal" x-cloak>
                     Delete
                 </x-delete-button>
-                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur">
+                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur-xl">
                 </div>
                 <div x-cloak x-show="showModal" x-transition
                     class="fixed inset-0 z-50 flex items-center justify-center p-6">

@@ -78,7 +78,7 @@
                             Remove Admin
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur">
+                            class="fixed inset-0 z-50 backdrop-blur-xl">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -116,7 +116,7 @@
                             Make Admin
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur">
+                            class="fixed inset-0 z-50 backdrop-blur-xl">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -161,7 +161,7 @@
                             Unverify
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur">
+                            class="fixed inset-0 z-50 backdrop-blur-xl">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -199,7 +199,7 @@
                             Verify
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur">
+                            class="fixed inset-0 z-50 backdrop-blur-xl">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -248,7 +248,7 @@
                             Delete
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur">
+                            class="fixed inset-0 z-50 backdrop-blur-xl">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
