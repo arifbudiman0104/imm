@@ -7,7 +7,7 @@
 
     <div class="w-full sm:py-12">
         <x-section>
-            <div class="container mx-auto">
+            <div class="container py-10 mx-auto">
                 <h1 class="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">All
                     <span class="text-blue-500">Posts</span></h1>
 
@@ -15,7 +15,7 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo incidunt ex placeat modi magni quia
                     error alias, adipisci rem similique, at omnis eligendi optio eos harum.
                 </p>
-                <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+                <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-2">
                     <div>
                         <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80"
                             src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"

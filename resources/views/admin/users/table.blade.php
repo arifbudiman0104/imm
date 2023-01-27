@@ -313,7 +313,7 @@
 
                     {{-- Edit --}}
                     <td class="px-2 py-3">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="#" class="font-medium text-gray-500 dark:text-gray-400 hover:underline">Edit</a>
                     </td>
 
                     {{-- Delete --}}
