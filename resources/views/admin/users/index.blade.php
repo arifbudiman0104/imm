@@ -18,10 +18,10 @@
                     placeholder="Search by name or email here ..." />
             </div> --}}
 
-            <div class="xl:hidden grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 gap-5 xl:hidden lg:grid-cols-2">
                 @foreach ($users as $user)
-                <div class="bg-gray-50 dark:bg-gray-700 dark:border-gray-500 rounded-lg p-5">
-                    <div class="justify-between flex mb-5">
+                <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
+                    <div class="flex justify-between mb-5">
                         @if ($user->is_admin)
                         <span
                             class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">
@@ -82,19 +82,19 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="py-3 pl-6">
                                     Name
                                 </th>
                                 <th scope="col" class="px-2 py-3">
                                     Email
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="py-3 pl-6 text-center">
                                     Role
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="py-3 pl-6 text-center">
                                     Verified
                                 </th>
-                                <th scope="col" class="px-2 py-3">
+                                <th scope="col" class="py-3 pl-6">
                                     Action
                                 </th>
                                 <th scope="col" class="px-2 py-3">
@@ -108,15 +108,15 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
-                            <tr class="odd:bg-white even:bg-gray-50  odd:dark:bg-gray-800 even:dark:bg-gray-700">
+                            <tr class="odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                 <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    class="py-4 pl-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $user->name }}
                                 </th>
                                 <td class="px-2 py-4">
                                     {{ $user->email }}
                                 </td>
-                                <td class="px-6 py-4 ">
+                                <td class="py-4 pl-6 text-center">
                                     @if ($user->is_admin)
                                     <span
                                         class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">
@@ -126,7 +126,7 @@
                                     User
                                     @endif
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="py-4 pl-6 text-center">
                                     @if ($user->is_verified)
                                     <span
                                         class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
@@ -136,7 +136,7 @@
                                     Not Verify
                                     @endif
                                 </td>
-                                <td class="px-2 py-4" x-cloak x-data="{ showModal: false }"
+                                <td class="py-4 pl-6" x-cloak x-data="{ showModal: false }"
                                 x-on:keydown.window.escape="showModal = false">
                                     @if ($user->is_admin)
                                     <button x-on:click="showModal = !showModal" x-cloak
@@ -144,12 +144,12 @@
                                         Remove Admin
                                     </button>
                                     <div x-cloak x-show="showModal" x-transition.opacity
-                                        class="fixed inset-0 z-50  backdrop-blur">
+                                        class="fixed inset-0 z-50 backdrop-blur">
                                     </div>
                                     <div x-cloak x-show="showModal" x-transition
                                         class="fixed inset-0 z-50 flex items-center justify-center p-6">
                                         <div x-on:click.away="showModal = false"
-                                            class="w-screen max-w-xl mx-auto bg-gray-50 rounded-lg min-h-max dark:bg-gray-700">
+                                            class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
                                             <div class="p-5">
                                                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                                     {{ __('Are you sure you want to remove Admin this user?') }}
@@ -182,12 +182,12 @@
                                         Make Admin
                                     </button>
                                     <div x-cloak x-show="showModal" x-transition.opacity
-                                        class="fixed inset-0 z-50  backdrop-blur">
+                                        class="fixed inset-0 z-50 backdrop-blur">
                                     </div>
                                     <div x-cloak x-show="showModal" x-transition
                                         class="fixed inset-0 z-50 flex items-center justify-center p-6">
                                         <div x-on:click.away="showModal = false"
-                                            class="w-screen max-w-xl mx-auto bg-gray-50 rounded-lg min-h-max dark:bg-gray-700">
+                                            class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
                                             <div class="p-5">
                                                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                                     {{ __('Are you sure you want to verify this user?') }}
@@ -224,12 +224,12 @@
                                         Unverify
                                     </button>
                                     <div x-cloak x-show="showModal" x-transition.opacity
-                                        class="fixed inset-0 z-50  backdrop-blur">
+                                        class="fixed inset-0 z-50 backdrop-blur">
                                     </div>
                                     <div x-cloak x-show="showModal" x-transition
                                         class="fixed inset-0 z-50 flex items-center justify-center p-6">
                                         <div x-on:click.away="showModal = false"
-                                            class="w-screen max-w-xl mx-auto bg-gray-50 rounded-lg min-h-max dark:bg-gray-700">
+                                            class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
                                             <div class="p-5">
                                                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                                     {{ __('Are you sure you want to unverify this user?') }}
@@ -262,12 +262,12 @@
                                         Verify
                                     </button>
                                     <div x-cloak x-show="showModal" x-transition.opacity
-                                        class="fixed inset-0 z-50  backdrop-blur">
+                                        class="fixed inset-0 z-50 backdrop-blur">
                                     </div>
                                     <div x-cloak x-show="showModal" x-transition
                                         class="fixed inset-0 z-50 flex items-center justify-center p-6">
                                         <div x-on:click.away="showModal = false"
-                                            class="w-screen max-w-xl mx-auto bg-gray-50 rounded-lg min-h-max dark:bg-gray-700">
+                                            class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
                                             <div class="p-5">
                                                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                                     {{ __('Are you sure you want to verify this user?') }}
@@ -307,12 +307,12 @@
                                         Delete
                                     </button>
                                     <div x-cloak x-show="showModal" x-transition.opacity
-                                        class="fixed inset-0 z-50  backdrop-blur">
+                                        class="fixed inset-0 z-50 backdrop-blur">
                                     </div>
                                     <div x-cloak x-show="showModal" x-transition
                                         class="fixed inset-0 z-50 flex items-center justify-center p-6">
                                         <div x-on:click.away="showModal = false"
-                                            class="w-screen max-w-xl mx-auto bg-gray-50 rounded-lg min-h-max dark:bg-gray-700">
+                                            class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
                                             <div class="p-5">
                                                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                                                     {{ __('Are you sure you want to verify this user?') }}
