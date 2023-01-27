@@ -5,14 +5,14 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="flex items-center shrink-0 sm:hidden md:flex">
+                <div class="flex items-center shrink-0 sm:hidden lg:flex">
                     <a href="{{ route('home') }}">
                         <x-application-logo class="block w-auto text-gray-800 fill-current h-9 dark:text-gray-200" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-4 sm:-my-px md:ml-4 sm:flex">
+                <div class="hidden space-x-4 sm:-my-px lg:ml-6 sm:flex">
                     <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                         {{ __('User') }}
                     </x-nav-link>
