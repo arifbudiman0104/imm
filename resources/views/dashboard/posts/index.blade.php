@@ -9,9 +9,9 @@
 
         <x-section>
             <div class="mb-5">
-                <x-create-button href="">
+                <x-button.create href="">
                     {{ __('Create Post') }}
-                </x-create-button>
+                </x-button.create>
             </div>
             <header>
                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
