@@ -18,7 +18,6 @@
         </x-section>
         @if (Auth::user()->dob == null || Auth::user()->pob == null || Auth::user()->gender == null)
         <x-section>
-
             <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 Your profile is incomplete.
             </p>
@@ -46,6 +45,7 @@
             </p>
         </x-section>
         @endif
+
 
 
     </div>

@@ -7,15 +7,9 @@
 
     <div class="w-full sm:py-12">
         <x-section>
-            <p>{{ __("Welcome to Admin!") }}</p>
-            <p>
-                You're logged in as <span class="text-indigo-500">
-                    {{Auth::user()->name }}
-                </span>
-            </p>
-            <p>
-                This page can be access only by user with role Admin.
-            </p>
+            <x-back-button href="{{ route('admin.users.index') }}">
+                {{ __('Back') }}
+            </x-back-button>
         </x-section>
     </div>
 
