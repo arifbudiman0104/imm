@@ -96,6 +96,11 @@
                             <x-dropdown-link :href="route('home')">
                                 {{ __('Home') }}
                             </x-dropdown-link>
+                            @if (Route::currentRouteName() != 'dashboard')
+                            <x-dropdown-link :href="route('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-dropdown-link>
+                            @endif
                             @can('admin')
                             <x-dropdown-link :href="route('admin')">
                                 {{ __('Admin') }}
@@ -158,6 +163,11 @@
                 <x-responsive-nav-link :href="route('home')">
                     {{ __('Home') }}
                 </x-responsive-nav-link>
+                @if (Route::currentRouteName() != 'dashboard')
+                <x-responsive-nav-link :href="route('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                @endif
                 @can('admin')
                 <x-responsive-nav-link :href="route('admin')">
                     {{ __('Admin') }}

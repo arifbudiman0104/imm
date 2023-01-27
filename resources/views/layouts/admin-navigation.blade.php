@@ -101,6 +101,11 @@
                             <x-dropdown-link :href="route('dashboard')">
                                 {{ __('Dashboard') }}
                             </x-dropdown-link>
+                            @if (Route::currentRouteName() != 'admin')
+                            <x-dropdown-link :href="route('admin')">
+                                {{ __('Admin') }}
+                            </x-dropdown-link>
+                            @endif
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
@@ -164,6 +169,11 @@
                 <x-responsive-nav-link :href="route('dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
+                @if (Route::currentRouteName() != 'admin')
+                <x-responsive-nav-link :href="route('admin')">
+                    {{ __('Admin') }}
+                </x-responsive-nav-link>
+                @endif
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
