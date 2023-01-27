@@ -7,9 +7,9 @@
 
     <div class="w-full sm:py-12">
         <x-section>
-            <x-back-button href="{{ route('admin.users.index') }}">
+            <x-button.back href="{{ route('admin.users.index') }}">
                 {{ __('Back') }}
-            </x-back-button>
+            </x-button.back>
         </x-section>
     </div>
 

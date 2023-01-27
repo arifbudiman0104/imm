@@ -11,19 +11,16 @@
             <p class="text-lg font-medium text-indigo-500">Info!</p>
             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                 Only user with role
-                <span
-                    class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">
-                    Superadmin
-                </span>
+                <x-badge.superadmin />
                 can change user role.
             </p>
         </x-section>
         @endif
         <x-section>
             <div class="mb-5">
-                <x-create-button href="{{ route('admin.users.create') }}" class="shrink-0">
+                <x-button.create href="{{ route('admin.users.create') }}" class="shrink-0">
                     {{ __('Create User') }}
-                </x-create-button>
+                </x-button.create>
             </div>
 
             {{-- <div class="mb-5">

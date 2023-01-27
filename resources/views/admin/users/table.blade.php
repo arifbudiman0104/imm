@@ -48,15 +48,9 @@
                     {{-- Role --}}
                     <td class="px-2 py-3 ">
                         @if ($user->is_admin && !$user->is_superadmin)
-                        <span
-                            class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">
-                            Admin
-                        </span>
+                        <x-badge.admin />
                         @elseif ($user->is_admin && $user->is_superadmin)
-                        <span
-                            class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">
-                            Superadmin
-                        </span>
+                        <x-badge.superadmin />
                         @else
                         User
                         @endif
@@ -65,10 +59,7 @@
                     {{-- Verified --}}
                     <td class="px-2 py-3 ">
                         @if ($user->is_verified)
-                        <span
-                            class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
-                            Verified
-                        </span>
+                        <x-badge.verified />
                         @else
                         Not Verify
                         @endif
@@ -106,13 +97,13 @@
                                         class="inline-flex">
                                         @csrf
                                         {{-- @method('DELETE') --}}
-                                        <x-default-button type="submit">
+                                        <x-button.default type="submit">
                                             Yes, Remove Admin
-                                        </x-default-button>
+                                        </x-button.default>
                                     </form>
-                                    <x-default-button x-on:click="showModal = false">
+                                    <x-button.default x-on:click="showModal = false">
                                         Cancel (Esc)
-                                    </x-default-button>
+                                    </x-button.default>
                                 </div>
                             </div>
                         </div>
@@ -144,13 +135,13 @@
                                         class="inline-flex">
                                         @csrf
                                         {{-- @method('DELETE') --}}
-                                        <x-make-admin-button type="submit">
+                                        <x-button.make-admin type="submit">
                                             Yes, Make Superadmin
-                                        </x-make-admin-button>
+                                        </x-button.make-admin>
                                     </form>
-                                    <x-default-button x-on:click="showModal = false">
+                                    <x-button.default x-on:click="showModal = false">
                                         Cancel (Esc)
-                                    </x-default-button>
+                                    </x-button.default>
                                 </div>
                             </div>
                         </div>
@@ -186,13 +177,13 @@
                                         class="inline-flex">
                                         @csrf
                                         {{-- @method('DELETE') --}}
-                                        <x-default-button type="submit">
+                                        <x-button.default type="submit">
                                             Yes, Remove Admin
-                                        </x-default-button>
+                                        </x-button.default>
                                     </form>
-                                    <x-default-button x-on:click="showModal = false">
+                                    <x-button.default x-on:click="showModal = false">
                                         Cancel (Esc)
-                                    </x-default-button>
+                                    </x-button.default>
                                 </div>
                             </div>
                         </div>
@@ -224,13 +215,13 @@
                                         class="inline-flex">
                                         @csrf
                                         {{-- @method('DELETE') --}}
-                                        <x-make-admin-button type="submit">
+                                        <x-button.make-admin type="submit">
                                             Yes, Make Admin
-                                        </x-make-admin-button>
+                                        </x-button.make-admin>
                                     </form>
-                                    <x-default-button x-on:click="showModal = false">
+                                    <x-button.default x-on:click="showModal = false">
                                         Cancel (Esc)
-                                    </x-default-button>
+                                    </x-button.default>
                                 </div>
                             </div>
                         </div>
@@ -269,13 +260,13 @@
                                         class="inline-flex">
                                         @csrf
                                         {{-- @method('DELETE') --}}
-                                        <x-default-button type="submit">
+                                        <x-button.default type="submit">
                                             Yes, Unverify
-                                        </x-default-button>
+                                        </x-button.default>
                                     </form>
-                                    <x-default-button x-on:click="showModal = false">
+                                    <x-button.default x-on:click="showModal = false">
                                         Cancel (Esc)
-                                    </x-default-button>
+                                    </x-button.default>
                                 </div>
                             </div>
                         </div>
@@ -307,13 +298,13 @@
                                         class="inline-flex">
                                         @csrf
                                         {{-- @method('DELETE') --}}
-                                        <x-verify-button type="submit">
+                                        <x-button.verify type="submit">
                                             Yes, Verify
-                                        </x-verify-button>
+                                        </x-button.verify>
                                     </form>
-                                    <x-default-button x-on:click="showModal = false">
+                                    <x-button.default x-on:click="showModal = false">
                                         Cancel (Esc)
-                                    </x-default-button>
+                                    </x-button.default>
                                 </div>
                             </div>
                         </div>
@@ -359,13 +350,13 @@
                                         class="inline-flex">
                                         @csrf
                                         @method('DELETE')
-                                        <x-delete-button type="submit">
+                                        <x-button.delete type="submit">
                                             Yes, Delete
-                                        </x-delete-button>
+                                        </x-button.delete>
                                     </form>
-                                    <x-default-button x-on:click="showModal = false">
+                                    <x-button.default x-on:click="showModal = false">
                                         Cancel (Esc)
-                                    </x-default-button>
+                                    </x-button.default>
                                 </div>
                             </div>
                         </div>
