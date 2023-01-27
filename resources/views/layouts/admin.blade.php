@@ -22,7 +22,7 @@
 
         @media (prefers-color-scheme: dark) {
             ::-webkit-scrollbar {
-                width: 10px;
+                width: 5px;
                 background-color: #111827;
             }
 
@@ -38,7 +38,7 @@
 
         @media (prefers-color-scheme: light) {
             ::-webkit-scrollbar {
-                width: 10px;
+                width: 5px;
                 background-color: #f5f5f5;
             }
 

@@ -38,8 +38,7 @@
 
         @media (prefers-color-scheme: light) {
             ::-webkit-scrollbar {
-                width: 10px;
-                height: 10px;
+                width: 5px;
                 background-color: #f5f5f5;
             }
 
