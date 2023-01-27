@@ -82,21 +82,25 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="py-3 pl-6">
+                                <th scope="col" class="px-6 py-3">
                                     Name
                                 </th>
                                 <th scope="col" class="px-2 py-3">
                                     Email
                                 </th>
-                                <th scope="col" class="py-3 pl-6 text-center">
+                                <th scope="col" class="px-2 py-3">
                                     Role
                                 </th>
-                                <th scope="col" class="py-3 pl-6 text-center">
+                                <th scope="col" class="px-2 py-3">
                                     Verified
                                 </th>
-                                <th scope="col" class="py-3 pl-6">
+                                <th scope="col" class="px-2 py-3">
                                     Action
                                 </th>
+                                @can('superadmin')
+                                <th scope="col" class="px-2 py-3">
+                                </th>
+                                @endcan
                                 <th scope="col" class="px-2 py-3">
                                 </th>
                                 <th scope="col" class="px-2 py-3">
@@ -110,13 +114,13 @@
                             @foreach ($users as $user)
                             <tr class="odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                 <th scope="row"
-                                    class="py-4 pl-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $user->name }}
                                 </th>
                                 <td class="px-2 py-4">
                                     {{ $user->email }}
                                 </td>
-                                <td class="py-4 pl-6 text-center">
+                                <td class="px-2 py-3 ">
                                     @if ($user->is_admin)
                                     <span
                                         class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">
@@ -126,7 +130,7 @@
                                     User
                                     @endif
                                 </td>
-                                <td class="py-4 pl-6 text-center">
+                                <td class="px-2 py-3 ">
                                     @if ($user->is_verified)
                                     <span
                                         class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
@@ -136,8 +140,9 @@
                                     Not Verify
                                     @endif
                                 </td>
-                                <td class="py-4 pl-6" x-cloak x-data="{ showModal: false }"
-                                x-on:keydown.window.escape="showModal = false">
+                                @can('superadmin')
+                                <td class="px-2 py-3" x-cloak x-data="{ showModal: false }"
+                                    x-on:keydown.window.escape="showModal = false">
                                     @if ($user->is_admin)
                                     <button x-on:click="showModal = !showModal" x-cloak
                                         class="font-medium text-gray-500 dark:text-gray-400 hover:underline">
@@ -216,7 +221,8 @@
                                     </div>
                                     @endif
                                 </td>
-                                <td class="px-2 py-4" x-cloak x-data="{ showModal: false }"
+                                @endcan
+                                <td class="px-2 py-3" x-cloak x-data="{ showModal: false }"
                                     x-on:keydown.window.escape="showModal = false">
                                     @if ($user->is_verified)
                                     <button x-on:click="showModal = !showModal" x-cloak
@@ -296,11 +302,15 @@
                                     </div>
                                     @endif
                                 </td>
-                                <td class="px-2 py-4">
+                                <td class="px-2 py-3">
+                                    <a href="#"
+                                        class="font-medium text-gray-500 dark:text-gray-400 hover:underline">View</a>
+                                </td>
+                                <td class="px-2 py-3">
                                     <a href="#"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                 </td>
-                                <td class="px-2 py-4" x-cloak x-data="{ showModal: false }"
+                                <td class="px-2 py-3" x-cloak x-data="{ showModal: false }"
                                     x-on:keydown.window.escape="showModal = false">
                                     <button x-on:click="showModal = !showModal" x-cloak
                                         class="font-medium text-red-600 dark:text-red-500 hover:underline">
@@ -325,7 +335,8 @@
                                                         {{ $user->email }}
                                                     </p>
                                                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">
-                                                        This action is irreversible.
+                                                        This action is irreversible and will delete all the data related
+                                                        to this user.
                                                     </p>
                                                 </div>
                                                 <form action="{{ route('admin.users.destroy', $user->id) }}"

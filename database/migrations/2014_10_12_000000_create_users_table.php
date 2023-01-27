@@ -25,6 +25,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_verified')->default(false);
+            $table->boolean('is_superadmin')->default(false);
             $table->timestamps();
         });
     }

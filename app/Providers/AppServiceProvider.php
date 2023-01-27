@@ -31,5 +31,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('verified_account', function (User $user) {
             return $user->is_verified == 1;
         });
+        Gate::define('superadmin', function (User $user) {
+            return $user->is_superadmin == 1;
+        });
     }
 }
