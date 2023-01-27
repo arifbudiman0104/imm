@@ -26,9 +26,9 @@
                 the button below.
             </p>
             <div class="mt-4">
-                <x-create-button href="{{ route('profile.edit') }}">
+                <x-button.create href="{{ route('profile.edit') }}">
                     Complete Profile
-                </x-create-button>
+                </x-button.create>
             </div>
         </x-section>
         @endif
