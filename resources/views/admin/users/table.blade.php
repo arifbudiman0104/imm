@@ -26,21 +26,25 @@
                     </th>
                     <th scope="col" class="px-2 py-3">
                     </th>
-                    <th scope="col" class="px-2 py-3">
-                    </th>
 
                 </tr>
             </thead>
             <tbody>
                 @foreach ($users as $user)
                 <tr class="odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+
+                    {{-- Name --}}
                     <th scope="row"
                         class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $user->name }}
                     </th>
+
+                    {{-- Email --}}
                     <td class="px-2 py-4">
                         {{ $user->email }}
                     </td>
+
+                    {{-- Role --}}
                     <td class="px-2 py-3 ">
                         @if ($user->is_admin)
                         <span
@@ -51,6 +55,8 @@
                         User
                         @endif
                     </td>
+
+                    {{-- Verified --}}
                     <td class="px-2 py-3 ">
                         @if ($user->is_verified)
                         <span
@@ -61,6 +67,8 @@
                         Not Verify
                         @endif
                     </td>
+
+                    {{-- Remove Admin or Make Admin --}}
                     @can('superadmin')
                     <td class="px-2 py-3" x-cloak x-data="{ showModal: false }"
                         x-on:keydown.window.escape="showModal = false">
@@ -143,6 +151,8 @@
                         @endif
                     </td>
                     @endcan
+
+                    {{-- Verify or Unverify --}}
                     <td class="px-2 py-3" x-cloak x-data="{ showModal: false }"
                         x-on:keydown.window.escape="showModal = false">
                         @if ($user->is_verified)
@@ -223,14 +233,14 @@
                         </div>
                         @endif
                     </td>
-                    <td class="px-2 py-3">
-                        <a href="#"
-                            class="font-medium text-gray-500 dark:text-gray-400 hover:underline">View</a>
-                    </td>
+
+                    {{-- Edit --}}
                     <td class="px-2 py-3">
                         <a href="#"
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                     </td>
+
+                    {{-- Delete --}}
                     <td class="px-2 py-3" x-cloak x-data="{ showModal: false }"
                         x-on:keydown.window.escape="showModal = false">
                         <button x-on:click="showModal = !showModal" x-cloak

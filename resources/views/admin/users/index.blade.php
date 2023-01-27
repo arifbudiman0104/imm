@@ -21,15 +21,8 @@
             @include('admin.users.list')
             @include('admin.users.table')
         </x-section>
-        <div class="mx-auto sm:mb-5 max-w-7xl sm:px-6 lg:px-8">
-            <div class="overflow-visible">
-                <div class="text-gray-900 dark:text-gray-100">
-                    {{ $users->links() }}
-                </div>
-            </div>
-        </div>
-        {{-- <x-section>
+        <x-section>
             {{ $users->links() }}
-        </x-section> --}}
+        </x-section>
     </div>
 </x-admin-layout>
