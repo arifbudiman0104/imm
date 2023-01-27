@@ -51,6 +51,26 @@ class AdminUserController extends Controller
         return back();
     }
 
+    public function makeSuperAdmin(User $user)
+    {
+        Gate::authorize('superadmin');
+        $user->timestamps = false;
+        $user->is_superadmin = 1;
+        $user->is_admin = 1;
+        $user->save();
+        return back();
+    }
+
+    public function removeSuperAdmin(User $user)
+    {
+        Gate::authorize('superadmin');
+        $user->timestamps = false;
+        $user->is_superadmin = 0;
+        $user->is_admin = 1;
+        $user->save();
+        return back();
+    }
+
     public function makeAdmin(User $user)
     {
         Gate::authorize('superadmin');
@@ -64,6 +84,7 @@ class AdminUserController extends Controller
     {
         Gate::authorize('superadmin');
         $user->timestamps = false;
+        $user->is_superadmin = 0;
         $user->is_admin = 0;
         $user->save();
         return back();

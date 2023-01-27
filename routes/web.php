@@ -41,7 +41,8 @@ Route::middleware(['auth','admin'])->group(function () {
         //     return view('admin.users.index');
         // })->name('admin.users.index');
         Route::resource('/users', AdminUserController::class, ['as' => 'admin']);
-        // make admin
+        Route::post('/users/{user}/make-superadmin', [AdminUserController::class, 'makeSuperAdmin'])->name('admin.users.makesuperadmin');
+        Route::post('/users/{user}/remove-superadmin', [AdminUserController::class, 'removeSuperAdmin'])->name('admin.users.removesuperadmin');
         Route::post('/users/{user}/make-admin', [AdminUserController::class, 'makeAdmin'])->name('admin.users.makeadmin');
         Route::post('/users/{user}/remove-admin', [AdminUserController::class, 'removeAdmin'])->name('admin.users.removeadmin');
         Route::post('/users/{user}/verify', [AdminUserController::class, 'verify'])->name('admin.users.verify');

@@ -2,10 +2,16 @@
     @foreach ($users as $user)
     <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
         <div class="flex justify-between mb-5">
-            @if ($user->is_admin)
+
+            @if ($user->is_admin && !$user->is_superadmin)
             <span
                 class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">
                 Admin
+            </span>
+            @elseif ($user->is_admin && $user->is_superadmin)
+            <span
+                class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">
+                Superadmin
             </span>
             @else
             <span
@@ -13,6 +19,12 @@
                 User
             </span>
             @endif
+            {{-- @if ($user->is_superadmin)
+            <span
+                class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">
+                Superadmin
+            </span>
+            @endif --}}
             @if ($user->is_verified)
             <span
                 class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
@@ -80,7 +92,7 @@
                         class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
                         <div class="p-5">
                             <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                {{ __('Are you sure you want to verify this user?') }}
+                                {{ __('Are you sure you want to make Admin this user?') }}
                             </h2>
                             <div class="mb-5">
                                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
@@ -96,6 +108,82 @@
                                 {{-- @method('DELETE') --}}
                                 <x-make-admin-button type="submit">
                                     Yes, Make Admin
+                                </x-make-admin-button>
+                            </form>
+                            <x-default-button x-on:click="showModal = false">
+                                Cancel (Esc)
+                            </x-default-button>
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </div>
+            <div x-cloak x-data="{ showModal: false }" x-on:keydown.window.escape="showModal = false"
+                class="inline-flex">
+                @if ($user->is_superadmin)
+                <x-default-button x-on:click="showModal = !showModal" x-cloak>
+                    Remove Superadmin
+                </x-default-button>
+                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur-xl">
+                </div>
+                <div x-cloak x-show="showModal" x-transition
+                    class="fixed inset-0 z-50 flex items-center justify-center p-6">
+                    <div x-on:click.away="showModal = false"
+                        class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
+                        <div class="p-5">
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                {{ __('Are you sure you want to remove Superadmin this user?') }}
+                            </h2>
+                            <div class="mb-5">
+                                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                    {{ $user->name }}
+                                </p>
+                                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                    {{ $user->email }}
+                                </p>
+                            </div>
+                            <form action="{{ route('admin.users.removesuperadmin', $user->id) }}" method="POST"
+                                class="inline-flex">
+                                @csrf
+                                {{-- @method('DELETE') --}}
+                                <x-default-button type="submit">
+                                    Yes, Remove Admin
+                                </x-default-button>
+                            </form>
+                            <x-default-button x-on:click="showModal = false">
+                                Cancel (Esc)
+                            </x-default-button>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <x-make-admin-button x-on:click="showModal = !showModal" x-cloak>
+                    Make Superadmin
+                </x-make-admin-button>
+                <div x-cloak x-show="showModal" x-transition.opacity class="fixed inset-0 z-50 backdrop-blur-xl">
+                </div>
+                <div x-cloak x-show="showModal" x-transition
+                    class="fixed inset-0 z-50 flex items-center justify-center p-6">
+                    <div x-on:click.away="showModal = false"
+                        class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
+                        <div class="p-5">
+                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                {{ __('Are you sure you want to make Superadmin this user?') }}
+                            </h2>
+                            <div class="mb-5">
+                                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                    {{ $user->name }}
+                                </p>
+                                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                    {{ $user->email }}
+                                </p>
+                            </div>
+                            <form action="{{ route('admin.users.makesuperadmin', $user->id) }}" method="POST"
+                                class="inline-flex">
+                                @csrf
+                                {{-- @method('DELETE') --}}
+                                <x-make-admin-button type="submit">
+                                    Yes, Make Superadmin
                                 </x-make-admin-button>
                             </form>
                             <x-default-button x-on:click="showModal = false">
