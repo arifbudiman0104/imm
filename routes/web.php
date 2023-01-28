@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\PublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +16,17 @@ use App\Http\Controllers\Admin\AdminUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
 
-Route::get('/posts', function () {
-    return view('posts');
-})->name('posts');
+// Route::get('/posts', function () {
+//     return view('posts');
+// })->name('posts');
+
+
+Route::get('/home', [PublicController::class, 'home'])->name('home');
+Route::get('/posts', [PublicController::class, 'posts'])->name('posts');
 
 Route::get('/about', function () {
     return view('about');
