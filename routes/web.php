@@ -27,6 +27,7 @@ use App\Http\Controllers\PublicController;
 
 Route::get('/home', [PublicController::class, 'home'])->name('home');
 Route::get('/posts', [PublicController::class, 'posts'])->name('posts');
+Route::get('/posts/{slug}', [PublicController::class, 'post'])->name('post');
 
 Route::get('/about', function () {
     return view('about');

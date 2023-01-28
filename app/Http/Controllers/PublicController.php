@@ -27,4 +27,27 @@ class PublicController extends Controller
         // dd($posts->toArray());
         return view('posts', compact('posts'));
     }
+    public function post($slug)
+    {
+        $post = Post::where('slug', $slug)
+            ->where('is_published', true)
+            ->where('is_approve', true)
+            ->firstOrFail();
+        // dd($post);
+        $related_posts = Post::where('id', '!=', $post->id)
+            ->where('post_category_id', $post->post_category_id)
+            ->where('is_published', true)
+            ->where('is_approve', true)
+            ->orderBy('published_at', 'desc')
+            ->take(2)
+            ->get();
+        // dd($related_posts)->toArray();
+        $recommended_posts = Post::where('id', '!=', $post->id)
+            ->where('is_published', true)
+            ->where('is_approve', true)
+            ->orderBy('published_at', 'desc')
+            ->take(2)
+            ->get();
+        return view('post', compact('post', 'related_posts', 'recommended_posts'));
+    }
 }
