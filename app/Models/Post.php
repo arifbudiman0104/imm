@@ -27,6 +27,11 @@ class Post extends Model
         'published_at',
     ];
 
+    protected $hidden = [
+        'is_request',
+        'is_reject',
+    ];
+
     protected $with = [
         'user',
         'post_category',

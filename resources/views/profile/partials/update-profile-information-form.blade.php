@@ -19,30 +19,30 @@
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"
+            <x-text-input id="name" name="name" type="text" class="block w-full mt-1" :value="old('name', $user->name)"
                 required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
+            <x-text-input id="email" name="email" type="email" class="block w-full mt-1"
                 :value="old('email', $user->email)" required autocomplete="email" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
             <div>
-                <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
+                <p class="mt-2 text-sm text-gray-800 dark:text-gray-200">
                     {{ __('Your email address is unverified.') }}
 
                     <button form="send-verification"
-                        class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                        class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
                         {{ __('Click here to re-send the verification email.') }}
                     </button>
                 </p>
 
                 @if (session('status') === 'verification-link-sent')
-                <p class="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
+                <p class="mt-2 text-sm font-medium text-green-600 dark:text-green-400">
                     {{ __('A new verification link has been sent to your email address.') }}
                 </p>
                 @endif
@@ -51,24 +51,22 @@
         </div>
         <div>
             <x-input-label for="pob" :value="__('Place of Birth')" />
-            <x-text-input id="pob" name="pob" type="text" class="mt-1 block w-full" :value="old('pob', $user->pob)"
+            <x-text-input id="pob" name="pob" type="text" class="block w-full mt-1" :value="old('pob', $user->pob)"
                 required autofocus autocomplete="pob" />
             <x-input-error class="mt-2" :messages="$errors->get('pob')" />
         </div>
         <div>
             <x-input-label for="dob" :value="__('Date of Birth')" />
-            <x-text-input id="dob" name="dob" type="date" class="mt-1 block w-full" :value="old('dob', $user->dob)"
+            <x-text-input id="dob" name="dob" type="date" class="block w-full mt-1" :value="old('dob', $user->dob)"
                 required autofocus autocomplete="dob" />
             <x-input-error class="mt-2" :messages="$errors->get('dob')" />
         </div>
         <div>
             <x-input-label for="gender" :value="__('Gender')" />
-            <select id="gender" name="gender"
-                class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required>
-                <option value="male" {{ $user->gender == 'male' ? 'selected' : '' }}>Male</option>
-                <option value="female" {{ $user->gender == 'female' ? 'selected' : '' }}>Female</option>
-            </select>
+            <x-select id="gender" name="gender" class="block w-full mt-1" required>
+                <option value="male" {{ $user->gender == 'male' ? 'selected' : '' }} >Male</option>
+                <option value="female" {{ $user->gender == 'female' ? 'selected' : '' }} >Female</option>
+            </x-select>
             <x-input-error class="mt-2" :messages="$errors->get('gender')" />
         </div>
 

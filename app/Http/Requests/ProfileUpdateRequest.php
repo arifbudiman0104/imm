@@ -20,7 +20,14 @@ class ProfileUpdateRequest extends FormRequest
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'dob' => ['date', 'required'],
             'pob'=>['string', 'max:20', 'required'],
-            'gender'=>['string', 'max:6', 'required']
+            'gender'=>['string', 'max:6', 'required'],
+            'phone' => ['string', 'max:20'],
+            'address' => ['string', 'max:255'],
+            'bio' => ['string', 'max:255'],
+            'instagram' => ['string', 'max:255'],
+            'facebook' => ['string', 'max:255'],
+            'twitter' => ['string', 'max:255'],
+            'youtube' => ['string', 'max:255'],
         ];
     }
 }
