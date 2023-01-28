@@ -23,10 +23,10 @@
                 </x-button.create>
             </div>
 
-            {{-- <div class="mb-5">
+            <div class="mb-5">
                 <x-text-input id="search" name="search" type="text" class="w-full md:w-1/2 xl:w-1/4"
                     placeholder="Search by name or email here ..." />
-            </div> --}}
+            </div>
 
             @include('admin.users.list')
             @include('admin.users.table')

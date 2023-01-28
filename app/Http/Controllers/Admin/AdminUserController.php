@@ -26,7 +26,21 @@ class AdminUserController extends Controller
 
     public function store(Request $request)
     {
-        //
+        Gate::authorize('admin')||Gate::authorize('superadmin');
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+        dd($user);
+
+        return redirect()->route('admin.users.index')->with('status', 'user-created');
     }
 
     public function show(User $user)

@@ -9,7 +9,7 @@
         <x-section>
             <p class="text-lg font-medium text-gray-900 dark:text-gray-100">{{ __("Welcome to Dashboard page!") }}
             </p>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
                 You're logged in as
                 <span class="text-indigo-500">
                     {{Auth::user()->name }}.
@@ -21,32 +21,37 @@
             <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 Your profile is incomplete.
             </p>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
                 Please complete your profile to get full access to the system. You can complete your profile by clicking
                 the button below.
             </p>
-            <div class="mt-4">
-                <x-button.create href="{{ route('profile.edit') }}">
-                    Complete Profile
-                </x-button.create>
-            </div>
+            <x-button.create href="{{ route('profile.edit') }}" class="mt-4">
+                Complete Profile
+            </x-button.create>
         </x-section>
         @endif
         @if (Auth::user()->is_verified == false)
         <x-section>
             <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                Your account is not verified. <span class="text-indigo-500">
-                    Please contact the administrator.
-                </span>
+                Your account is not verified.
             </p>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <p class="mt-1 text-indigo-600 text-md dark:text-indigo-400">
+                Please contact the administrator.
+            </p>
+            <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
                 Without verification, your access to the system is limited. You can still read and comment on
                 published posts, but you cannot create new posts.
             </p>
         </x-section>
+        @else
+        <x-section>
+            <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                Your account is verified.
+            </p>
+            <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
+                You can now create new posts and comment on published posts.
+            </p>
+        </x-section>
         @endif
-
-
-
     </div>
 </x-app-layout>
