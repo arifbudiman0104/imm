@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('youtube')->nullable();
+            $table->string('website')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

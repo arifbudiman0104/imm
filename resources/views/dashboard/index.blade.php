@@ -16,7 +16,8 @@
                 </span>
             </p>
         </x-section>
-        @if (Auth::user()->dob == null || Auth::user()->pob == null || Auth::user()->gender == null)
+        @if (Auth::user()->dob == null || Auth::user()->pob == null || Auth::user()->gender == null ||
+        Auth::user()->phone == null || Auth::user()->address == null)
         <x-section>
             <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 Your profile is incomplete.
