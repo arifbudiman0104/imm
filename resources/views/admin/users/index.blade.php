@@ -17,11 +17,11 @@
         </x-section>
         @endif
         <x-section>
-            <div class="mb-5">
+            {{-- <div class="mb-5">
                 <x-button.create href="{{ route('admin.users.create') }}" class="shrink-0">
                     {{ __('Create User') }}
                 </x-button.create>
-            </div>
+            </div> --}}
 
             <div class="mb-5">
                 <x-text-input id="search" name="search" type="text" class="w-full md:w-1/2 xl:w-1/4"

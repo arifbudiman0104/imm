@@ -7,6 +7,11 @@
 
     <div class="w-full sm:py-12">
         <x-section>
+            <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                Our Team
+            </h2>
+        </x-section>
+        <x-section>
             <div class="container py-10 mx-auto">
                 <h1 class="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">Our
                     <span class="text-blue-500">Executive Team</span>

@@ -58,7 +58,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="min-h-screen bg-white sm:bg-gray-100 dark:bg-gray-800 sm:dark:bg-gray-900">
         @include('layouts.admin-navigation')
         {{-- @include('layouts.admin-menu') --}}
 
