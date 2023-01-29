@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         User::create(
             [
                 'name' => 'Arif Budiman Arrosyid',
+                'username' => 'arifbudimanarrosyid',
                 'email' => 'arifbudimanarrosyid@admin.com',
                 'password' => bcrypt('password'),
                 'is_admin' => true,

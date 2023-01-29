@@ -25,6 +25,12 @@
                         :value="old('name', $user->name)" required autofocus autocomplete="name" />
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
+                <div>
+                    <x-input-label for="username" :value="__('Username')" />
+                    <x-text-input id="username" name="username" type="text" class="block w-full mt-1"
+                        :value="old('username', $user->username)" required autofocus autocomplete="username" />
+                    <x-input-error class="mt-2" :messages="$errors->get('username')" />
+                </div>
 
                 {{-- Email --}}
                 <div>
@@ -88,7 +94,7 @@
                     <x-input-label for="address" :value="__('Address')" />
                     <textarea id="message" rows="4" name="address" type="text" maxlength="255"
                         class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
-                        placeholder="Address">{{ old('bio', $user->address )}}</textarea>
+                        placeholder="Address">{{ old('address', $user->address )}}</textarea>
                     <x-input-error class="mt-2" :messages="$errors->get('address')" />
                 </div>
                 {{-- Bio --}}
