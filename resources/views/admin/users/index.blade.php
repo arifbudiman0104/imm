@@ -9,25 +9,30 @@
         @if (Auth::user()->is_superadmin == false)
         <x-section>
             <p class="text-lg font-medium text-indigo-500">Attention!</p>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                - User with role
-                <x-badge.superadmin />
-                can do everything.
-            </p>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                - User with role
-                <x-badge.admin />
-                can only verify user with
-                <x-badge.completed /> badge.
-            </p>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                -
-                <x-badge.verified /> badge means user can create post, but need user with
-                <x-badge.admin /> role to approve the post.
-            </p>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                - Delete user will delete all post and comment from that user.
-            </p>
+            <div class="flex flex-col gap-2">
+                <li class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    User with
+                    <x-badge.superadmin /> role
+                    can do everything.
+                </li>
+                <li class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    User with
+                    <x-badge.admin /> role
+                    can only verify user with
+                    <x-badge.completed /> badge.
+                </li>
+                <li class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    User with <span class="inline-flex">
+                        <x-badge.verified />
+                    </span>
+                    it means user can create post, but need user with
+                    <x-badge.admin /> role to approve the post.
+                </li>
+                <li class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    Delete user will delete all post and comment from that user.
+                </li>
+            </div>
+
         </x-section>
         @endif
         <x-section>
