@@ -16,6 +16,55 @@
                 </span>
             </p>
         </x-section>
+        <x-section>
+            <div class="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <x-card.statistic>
+                    <x-slot name="title">
+                        {{ __('All Posts') }}
+                    </x-slot>
+                    {{ $allPosts }}
+                </x-card.statistic>
+                <x-card.statistic>
+                    <x-slot name="title">
+                        {{ __('Draft Posts') }}
+                    </x-slot>
+                    {{ $draftPosts }}
+                </x-card.statistic>
+                <x-card.statistic>
+                    <x-slot name="title">
+                        {{ __('Published Posts') }}
+                    </x-slot>
+                    {{ $publishedPosts }}
+                </x-card.statistic>
+                <x-card.statistic>
+                    <x-slot name="title">
+                        {{ __('Approved Posts') }}
+                    </x-slot>
+                    {{ $approvedPosts }}
+                </x-card.statistic>
+                <x-card.statistic>
+                    <x-slot name="title">
+                        {{ __('Published & Approved Posts') }}
+                    </x-slot>
+                    {{ $publishedApprovedPosts }}
+                </x-card.statistic>
+                <x-card.statistic>
+                    <x-slot name="title">
+                        {{ __('Rejected Posts') }}
+                    </x-slot>
+                    {{ $rejectedPosts }}
+                </x-card.statistic>
+                <x-card.statistic>
+                    <x-slot name="title">
+                        {{ __('Requested Posts') }}
+                    </x-slot>
+                    {{ $requestedPosts }}
+                </x-card.statistic>
+
+
+            </div>
+
+        </x-section>
         @if (Auth::user()->dob == null || Auth::user()->pob == null || Auth::user()->gender == null ||
         Auth::user()->phone == null || Auth::user()->address == null)
         <x-section>
@@ -23,16 +72,10 @@
                 Your profile is incomplete.
             </p>
             <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
-                Please complete your profile to get full access to the system. You can complete your profile by clicking
-                the button below.
+                To fully utilize the system, kindly update your profile with the following information:
             </p>
-            <x-button.create href="{{ route('profile.edit') }}" class="mt-4">
-                Complete Profile
-            </x-button.create>
-            <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
-                Complete your profile by providing all necessary information to facilitate verification by the
-                administrator.
-            </p>
+
+
             @if (Auth::user()->dob == null)
             <p class="mt-1 text-indigo-500 text-md">
                 - Date of Birth
@@ -58,6 +101,14 @@
                 - Address
             </p>
             @endif
+            <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
+                By providing these details, you will assist the administrator with the verification process and ensure
+                the accuracy of your profile. Your cooperation in updating your profile will greatly enhance your user
+                experience.
+            </p>
+            <x-button.create href="{{ route('profile.edit') }}" class="mt-4">
+                Complete Profile
+            </x-button.create>
         </x-section>
         @endif
         @if (Auth::user()->is_verified == false)

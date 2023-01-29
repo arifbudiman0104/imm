@@ -12,6 +12,7 @@ class PublicController extends Controller
         $featured_posts = Post::where('is_published', true)
             ->where('is_approve', true)
             ->where('is_featured', true)
+            ->where('is_reject', false)
             ->orderBy('published_at', 'desc')
             ->take(6)
             ->get();
@@ -22,6 +23,7 @@ class PublicController extends Controller
     {
         $posts = Post::where('is_published', true)
             ->where('is_approve', true)
+            ->where('is_reject', false)
             ->orderBy('published_at', 'desc')
             ->paginate(12);
         // dd($posts->toArray());

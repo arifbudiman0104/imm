@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +16,6 @@ use App\Http\Controllers\PublicController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('home');
-// })->name('home');
-
-// Route::get('/posts', function () {
-//     return view('posts');
-// })->name('posts');
-
 
 Route::get('/home', [PublicController::class, 'home'])->name('home');
 Route::get('/posts', [PublicController::class, 'posts'])->name('posts');
@@ -43,9 +35,6 @@ Route::middleware(['auth','admin'])->group(function () {
     })->name('admin');
 
     Route::prefix('admin')->group(function () {
-        // Route::get('/users', function () {
-        //     return view('admin.users.index');
-        // })->name('admin.users.index');
         Route::resource('/users', AdminUserController::class, ['as' => 'admin']);
         Route::post('/users/{user}/make-superadmin', [AdminUserController::class, 'makeSuperAdmin'])->name('admin.users.makesuperadmin');
         Route::post('/users/{user}/remove-superadmin', [AdminUserController::class, 'removeSuperAdmin'])->name('admin.users.removesuperadmin');
@@ -64,9 +53,7 @@ Route::middleware(['auth','admin'])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('dashboard')->middleware('verified_account')->group(function () {
         Route::get('/posts', function () {
