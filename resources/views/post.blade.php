@@ -207,48 +207,63 @@
                         </x-button.comment>
                     </div>
                     <div class="flex flex-col gap-5 mt-5">
-                        <div
-                            class="p-5 rounded-lg bg-gray-50 hover:bg-gray-100 hover:dark:bg-gray-600 dark:bg-gray-700 dark:border-gray-500">
-                            <div class="flex flex-row items-center gap-2">
-                                <div class="flex items-center">
-                                    <p class="text-gray-500 text-md dark:text-gray-400">
-                                        Arif Budiman
-                                    </p>
-                                    <div class="ml-1">
-                                        <x-badge.verified />
+                        <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
+                            <div x-data="{ showEdit: false }">
+                                <div class="flex justify-between ">
+                                    <div class="flex flex-row items-center gap-2">
+                                        <div class="flex items-center">
+                                            <p class="text-gray-500 text-md dark:text-gray-400">
+                                                Admin
+                                            </p>
+                                            <div class="ml-1">
+                                                <x-badge.verified />
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-2 place-items-end shrink-0">
+                                            <p class="text-xs text-gray-500 text-md dark:text-gray-400">
+                                                1 hour ago
+                                            </p>
+                                        </div>
                                     </div>
+                                    <x-dropdown>
+                                        <x-slot name="trigger">
+                                            <button
+                                                class="flex items-center justify-center w-6 h-6 text-gray-400 rounded-full hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 dark:focus:ring-indigo-600">
+                                                <span class="sr-only">Open options</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400"
+                                                    viewBox="0 0 20 20" fill="currentColor">
+                                                    <path
+                                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                </svg>
+                                            </button>
+                                        </x-slot>
+                                        <x-slot name="content">
+                                            <x-dropdown-link href="#" x-on:click.prevent="showEdit = !showEdit"
+                                                x-text="showEdit ? 'Cancel Edit' : 'Edit'">
+                                                Edit
+                                            </x-dropdown-link>
+                                            <x-dropdown-link href="#">
+                                                Delete
+                                            </x-dropdown-link>
+                                        </x-slot>
+                                    </x-dropdown>
                                 </div>
-                                <div class="flex gap-2 place-items-end shrink-0">
-                                    <p class="text-xs text-gray-500 text-md dark:text-gray-400">
-                                        2 hour ago
-                                    </p>
+                                <p class="text-gray-900 text-md dark:text-gray-100">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, molestiae?
+                                </p>
+                                <div class="mt-5" class="flex flex-col" x-cloak x-show="showEdit">
+                                    <textarea id="message" rows="4" name="excerpt" maxlength="255"
+                                        class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                                        placeholder="Write your comment here"></textarea>
+                                    <x-button.comment class="mt-5">
+                                        Save
+                                    </x-button.comment>
+                                    <x-button.default class="mt-5" x-on:click.prevent="showEdit = !showEdit">
+                                        Cancel
+                                    </x-button.default>
                                 </div>
                             </div>
-                            <p class="text-gray-900 text-md dark:text-gray-100">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus obcaecati labore libero
-                                odio aliquam voluptatibus nihil minus doloribus laudantium quas.
-                            </p>
-                        </div>
-                        <div
-                            class="p-5 rounded-lg bg-gray-50 hover:bg-gray-100 hover:dark:bg-gray-600 dark:bg-gray-700 dark:border-gray-500">
-                            <div class="flex flex-row items-center gap-2">
-                                <div class="flex items-center">
-                                    <p class="text-gray-500 text-md dark:text-gray-400">
-                                        Admin
-                                    </p>
-                                    <div class="ml-1">
-                                        <x-badge.verified />
-                                    </div>
-                                </div>
-                                <div class="flex gap-2 place-items-end shrink-0">
-                                    <p class="text-xs text-gray-500 text-md dark:text-gray-400">
-                                        1 hour ago
-                                    </p>
-                                </div>
-                            </div>
-                            <p class="text-gray-900 text-md dark:text-gray-100">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, molestiae?
-                            </p>
+
                         </div>
 
                     </div>
