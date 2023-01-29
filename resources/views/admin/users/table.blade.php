@@ -3,7 +3,7 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="py-3 pl-6">
                         Name
                     </th>
                     <th scope="col" class="px-2 py-3">
@@ -16,6 +16,9 @@
                         Verified
                     </th>
                     <th scope="col" class="px-2 py-3">
+                        Completed
+                    </th>
+                    <th scope="col" class="px-2 py-3">
                         Action
                     </th>
                     @can('superadmin')
@@ -26,7 +29,7 @@
                     @endcan
                     <th scope="col" class="px-2 py-3">
                     </th>
-                    <th scope="col" class="px-2 py-3">
+                    <th scope="col" class="py-3 pl-2 pr-6">
                     </th>
 
                 </tr>
@@ -36,7 +39,7 @@
                 <tr class="odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
 
                     {{-- Name --}}
-                    <th scope="row" class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <th scope="row" class="py-3 pl-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{ $user->name }}
                     </th>
 
@@ -62,6 +65,16 @@
                         <x-badge.verified />
                         @else
                         Not Verify
+                        @endif
+                    </td>
+
+                    {{-- Completed --}}
+                    <td class="px-2 py-3 ">
+                        @if ($user->dob !== null || $user->pob !== null || $user->gender !== null ||
+                        $user->phone !== null || $user->address !== null)
+                        <x-badge.completed />
+                        @else
+                        Not Complete
                         @endif
                     </td>
 
@@ -317,7 +330,7 @@
                     </td>
 
                     {{-- Delete --}}
-                    <td class="px-2 py-3" x-cloak x-data="{ showModal: false }"
+                    <td class="py-3 pl-2 pr-6" x-cloak x-data="{ showModal: false }"
                         x-on:keydown.window.escape="showModal = false">
                         <button x-on:click="showModal = !showModal" x-cloak
                             class="font-medium text-red-600 dark:text-red-500 hover:underline">

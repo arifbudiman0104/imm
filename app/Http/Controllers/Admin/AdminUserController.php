@@ -62,7 +62,7 @@ class AdminUserController extends Controller
     {
         Gate::authorize('admin') || Gate::authorize('superadmin');
         $user->delete();
-        return back();
+        return back()->with('status', 'user-deleted');
     }
 
     public function makeSuperAdmin(User $user)
@@ -72,7 +72,7 @@ class AdminUserController extends Controller
         $user->is_superadmin = 1;
         $user->is_admin = 1;
         $user->save();
-        return back();
+        return back()->with('status', 'user-superadmin');
     }
 
     public function removeSuperAdmin(User $user)
@@ -82,7 +82,7 @@ class AdminUserController extends Controller
         $user->is_superadmin = 0;
         $user->is_admin = 1;
         $user->save();
-        return back();
+        return back()->with('status', 'user-not-superadmin');
     }
 
     public function makeAdmin(User $user)
@@ -91,7 +91,7 @@ class AdminUserController extends Controller
         $user->timestamps = false;
         $user->is_admin = 1;
         $user->save();
-        return back();
+        return back()->with('status', 'user-admin');
     }
 
     public function removeAdmin(User $user)
@@ -101,7 +101,7 @@ class AdminUserController extends Controller
         $user->is_superadmin = 0;
         $user->is_admin = 0;
         $user->save();
-        return back();
+        return back()->with('status', 'user-not-admin');
     }
 
     public function verify(User $user)
@@ -111,15 +111,10 @@ class AdminUserController extends Controller
             $user->timestamps = false;
             $user->is_verified = 1;
             $user->save();
-            return back();
+            return back()->with('status', 'user-verified');
         } else {
-            return back()->with('error', 'User data is not complete');
+            return back()->with('status', 'user-not-verified');
         }
-
-        $user->timestamps = false;
-        $user->is_verified = 1;
-        $user->save();
-        return back();
     }
 
     public function unverify(User $user)
@@ -128,6 +123,6 @@ class AdminUserController extends Controller
         $user->timestamps = false;
         $user->is_verified = 0;
         $user->save();
-        return back();
+        return back()->with('status', 'user-unverified');
     }
 }
