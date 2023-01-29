@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class PublicController extends Controller
 {
@@ -50,6 +51,10 @@ class PublicController extends Controller
             ->orderBy('published_at', 'desc')
             ->take(2)
             ->get();
+        if (!Cookie::has('post_' . $post->slug)) {
+            $post->incrementViewCount();
+            Cookie::queue('post_' . $post->slug, 'true', 60 * 2);
+        }
         return view('post', compact('post', 'related_posts', 'recommended_posts'));
     }
 }

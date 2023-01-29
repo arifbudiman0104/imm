@@ -17,6 +17,7 @@ class DashboardController extends Controller
         $publishedApprovedPosts = Auth::user()->posts->where('is_published', 1)->where('is_approve', 1)->count();
         $rejectedPosts = Auth::user()->posts->where('is_reject', 1)->count();
         $requestedPosts = Auth::user()->posts->where('is_request', 1)->count();
+        $totalViews = Auth::user()->posts->sum('views');
 
         return view('dashboard.index', compact(
             'allPosts',
@@ -25,7 +26,8 @@ class DashboardController extends Controller
             'publishedApprovedPosts',
             'approvedPosts',
             'rejectedPosts',
-            'requestedPosts'
+            'requestedPosts',
+            'totalViews'
         ));
     }
 }

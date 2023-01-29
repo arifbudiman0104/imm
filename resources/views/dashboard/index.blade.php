@@ -62,8 +62,12 @@
                     </x-slot>
                     {{ $requestedPosts }}
                 </x-card.statistic>
-
-
+                <x-card.statistic>
+                    <x-slot name="title">
+                        {{ __('Total Views') }}
+                    </x-slot>
+                    {{ $totalViews }}
+                </x-card.statistic>
             </div>
 
         </x-section>

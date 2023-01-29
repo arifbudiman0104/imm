@@ -37,6 +37,11 @@ class Post extends Model
         'post_category',
     ];
 
+    public function incrementViewCount() {
+        $this->views++;
+        return $this->save();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
