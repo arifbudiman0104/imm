@@ -217,16 +217,84 @@
                                 class="w-full mb-5 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
                                 placeholder="Write your comment here" required>{{ old('text') }}</textarea>
                             <x-input-error :messages="$errors->get('text')" class="mt-2" />
-                            <div class="flex items-center">
-                                <x-button.comment class="" type="submit">
-                                    Send
-                                </x-button.comment>
-                                @if (session('status') === 'comment-created')
-                                <p x-data="{ show: true }" x-show="show" x-transition
-                                    x-init="setTimeout(() => show = false, 10000)"
-                                    class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment created') }}
-                                </p>
-                                @endif
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <x-button.comment class="" type="submit">
+                                        Send
+                                    </x-button.comment>
+                                    @if (session('status') === 'comment-created')
+                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                        x-init="setTimeout(() => show = false, 10000)"
+                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
+                                        created.') }}
+                                    </p>
+                                    @endif
+                                </div>
+                                <div>
+                                    @if (session('status') === 'comment-deleted')
+                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                        x-init="setTimeout(() => show = false, 10000)"
+                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
+                                        deleted.') }}
+                                    </p>
+                                    @endif
+                                    @if (session('status') === 'comment-delete-failed')
+                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                        x-init="setTimeout(() => show = false, 10000)"
+                                        class="ml-2 text-sm text-red-600 dark:text-red-400">{{ __('Comment
+                                        delete failed.') }}
+                                    </p>
+                                    @endif
+                                    @if (session('status') === 'comment-updated')
+                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                        x-init="setTimeout(() => show = false, 10000)"
+                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
+                                        updated.') }}
+                                    </p>
+                                    @endif
+                                    @if (session('status') === 'comment-updated-as-admin')
+                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                        x-init="setTimeout(() => show = false, 10000)"
+                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
+                                        updated as Admin.') }}
+                                    </p>
+                                    @endif
+                                    @if (session('status') === 'comment-update-failed')
+                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                        x-init="setTimeout(() => show = false, 10000)"
+                                        class="ml-2 text-sm text-red-600 dark:text-red-400">{{ __('Comment
+                                        update failed.') }}
+                                    </p>
+                                    @endif
+                                    @if (session('status') === 'comment-reported')
+                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                        x-init="setTimeout(() => show = false, 10000)"
+                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
+                                        reported.') }}
+                                    </p>
+                                    @endif
+                                    @if (session('status') === 'comment-report-failed')
+                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                        x-init="setTimeout(() => show = false, 10000)"
+                                        class="ml-2 text-sm text-red-600 dark:text-red-400">{{ __('Comment
+                                        report failed.') }}
+                                    </p>
+                                    @endif
+                                    @if (session('status') === 'comment-marked-not-spam')
+                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                        x-init="setTimeout(() => show = false, 10000)"
+                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
+                                        marked as not spam.') }}
+                                    </p>
+                                    @endif
+                                    @if (session('status') === 'comment-report-failed')
+                                    <p x-data="{ show: true }" x-show="show" x-transition
+                                        x-init="setTimeout(() => show = false, 10000)"
+                                        class="ml-2 text-sm text-red-600 dark:text-red-400">{{ __('Comment
+                                        mark as not spam failed.') }}
+                                    </p>
+                                    @endif
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -274,38 +342,74 @@
                                             </button>
                                         </x-slot>
                                         <x-slot name="content">
+                                            @auth
+                                            @if (Auth::user()->id === $comment->user->id || Auth::user()->is_admin)
                                             <x-dropdown-link href="#" x-on:click.prevent="showEdit = !showEdit"
                                                 x-text="showEdit ? 'Cancel Edit' : 'Edit'">
                                                 Edit
                                             </x-dropdown-link>
-                                            <x-dropdown-link href="#">
-                                                Report Spam
-                                            </x-dropdown-link>
-                                            <x-dropdown-link href="#">
-                                                Delete
-                                            </x-dropdown-link>
+                                            <form method="POST" action="{{ route('comment.destroy', $comment) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <x-dropdown-link :href="route('comment.destroy', $comment)"
+                                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                                    {{ __('Delete') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                            @endif
+                                            @endauth
+                                            @can('admin')
+                                            @if ($comment->is_spam)
+                                            <form method="POST" action="{{ route('comment.markasnotspam', $comment) }}">
+                                                @csrf
+                                                @method('patch')
+                                                <x-dropdown-link :href="route('comment.markasnotspam', $comment)"
+                                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                                    {{ __('Mark as Not Spam') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                            @endif
+                                            @endcan
+                                            @if ($comment->user_id != Auth::id() )
+                                            <form method="POST" action="{{ route('comment.report', $comment) }}">
+                                                @csrf
+                                                @method('patch')
+                                                <x-dropdown-link :href="route('comment.report', $comment)"
+                                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                                    {{ __('Report Spam') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                            @endif
                                         </x-slot>
                                     </x-dropdown>
                                 </div>
                                 <p class="text-gray-900 text-md dark:text-gray-100">
                                     {{ $comment->text }}
                                 </p>
+                                @can('admin')
                                 @if ($comment->is_spam)
                                 <p class="text-xs text-red-500 text-md dark:text-red-400">
                                     {{ $comment->spam_count }} reports
                                 </p>
                                 @endif
+                                @endcan
                                 <div class="mt-5" class="flex flex-col" x-cloak x-show="showEdit">
 
-                                    <textarea id="message" rows="4" name="excerpt" maxlength="255"
-                                        class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
-                                        placeholder="Write your comment here"></textarea>
-                                    <x-button.comment class="mt-5">
-                                        Save
-                                    </x-button.comment>
-                                    <x-button.default class="mt-5" x-on:click.prevent="showEdit = !showEdit">
-                                        Cancel
-                                    </x-button.default>
+                                    <form method="POST" action="{{ route('comment.update', $comment) }}">
+                                        @csrf
+                                        @method('patch')
+                                        <textarea id="message" rows="4" name="text" maxlength="255"
+                                            class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                                            placeholder="Write your comment here">{{ old('text', $comment->text) }}</textarea>
+                                        <x-input-error :messages="$errors->get('text')" class="mt-2" />
+                                        <x-button.comment class="mt-5" type="submit">
+                                            Save
+                                        </x-button.comment>
+                                        <x-button.default class="mt-5" x-on:click.prevent="showEdit = !showEdit">
+                                            Cancel
+                                        </x-button.default>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>

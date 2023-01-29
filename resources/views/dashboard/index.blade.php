@@ -68,6 +68,12 @@
                     </x-slot>
                     {{ $totalViews }}
                 </x-card.statistic>
+                <x-card.statistic>
+                    <x-slot name="title">
+                        {{ __('Total Comments') }}
+                    </x-slot>
+                    {{ $totalComments }}
+                </x-card.statistic>
             </div>
 
         </x-section>

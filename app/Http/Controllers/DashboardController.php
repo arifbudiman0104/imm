@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,9 @@ class DashboardController extends Controller
         $rejectedPosts = Auth::user()->posts->where('is_reject', 1)->count();
         $requestedPosts = Auth::user()->posts->where('is_request', 1)->count();
         $totalViews = Auth::user()->posts->sum('views');
+        $user = Auth::user();
+        $postIds = $user->posts->pluck('id');
+        $totalComments = Comment::whereIn('post_id', $postIds)->count();
 
         return view('dashboard.index', compact(
             'allPosts',
@@ -27,7 +31,8 @@ class DashboardController extends Controller
             'approvedPosts',
             'rejectedPosts',
             'requestedPosts',
-            'totalViews'
+            'totalViews',
+            'totalComments'
         ));
     }
 }

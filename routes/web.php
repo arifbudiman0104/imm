@@ -20,7 +20,11 @@ use App\Http\Controllers\Admin\AdminUserController;
 Route::get('/home', [PublicController::class, 'home'])->name('home');
 Route::get('/posts', [PublicController::class, 'posts'])->name('posts');
 Route::get('/posts/{slug}', [PublicController::class, 'post'])->name('post');
-Route::post('/comments-store', [PublicController::class, 'commentStore'])->name('comment.store');
+Route::post('/comments', [PublicController::class, 'commentStore'])->name('comment.store');
+Route::delete('/comments/{comment}', [PublicController::class, 'commentDestroy'])->name('comment.destroy');
+Route::patch('/comments/{comment}', [PublicController::class, 'commentUpdate'])->name('comment.update');
+Route::patch('/comments/{comment}/report', [PublicController::class, 'commentReport'])->name('comment.report');
+Route::patch('/comments/{comment}/marknotspam', [PublicController::class, 'commentMarkNotSpam'])->name('comment.markasnotspam');
 
 Route::get('/about', function () {
     return view('about');
