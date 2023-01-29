@@ -11,7 +11,7 @@ class AdminUserController extends Controller
 {
     public function index()
     {
-        Gate::authorize('admin')||Gate::authorize('superadmin');
+        Gate::authorize('admin') || Gate::authorize('superadmin');
         $users = User::orderBy('name')
             ->where('id', '!=', '1')
             ->paginate(20);
@@ -60,7 +60,7 @@ class AdminUserController extends Controller
 
     public function destroy(User $user)
     {
-        Gate::authorize('admin')||Gate::authorize('superadmin');
+        Gate::authorize('admin') || Gate::authorize('superadmin');
         $user->delete();
         return back();
     }
@@ -106,7 +106,16 @@ class AdminUserController extends Controller
 
     public function verify(User $user)
     {
-        Gate::authorize('admin')||Gate::authorize('superadmin');
+        Gate::authorize('admin') || Gate::authorize('superadmin');
+        if ($user->pob != null && $user->dob != null && $user->gender != null && $user->phone != null && $user->address != null) {
+            $user->timestamps = false;
+            $user->is_verified = 1;
+            $user->save();
+            return back();
+        } else {
+            return back()->with('error', 'User data is not complete');
+        }
+
         $user->timestamps = false;
         $user->is_verified = 1;
         $user->save();
@@ -115,7 +124,7 @@ class AdminUserController extends Controller
 
     public function unverify(User $user)
     {
-        Gate::authorize('admin')||Gate::authorize('superadmin');
+        Gate::authorize('admin') || Gate::authorize('superadmin');
         $user->timestamps = false;
         $user->is_verified = 0;
         $user->save();

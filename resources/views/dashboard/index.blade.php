@@ -29,6 +29,35 @@
             <x-button.create href="{{ route('profile.edit') }}" class="mt-4">
                 Complete Profile
             </x-button.create>
+            <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
+                Complete your profile by providing all necessary information to facilitate verification by the
+                administrator.
+            </p>
+            @if (Auth::user()->dob == null)
+            <p class="mt-1 text-indigo-500 text-md">
+                - Date of Birth
+            </p>
+            @endif
+            @if (Auth::user()->pob == null)
+            <p class="mt-1 text-indigo-500 text-md">
+                - Place of Birth
+            </p>
+            @endif
+            @if (Auth::user()->gender == null)
+            <p class="mt-1 text-indigo-500 text-md">
+                - Gender
+            </p>
+            @endif
+            @if (Auth::user()->phone == null)
+            <p class="mt-1 text-indigo-500 text-md">
+                - Phone Number
+            </p>
+            @endif
+            @if (Auth::user()->address== null)
+            <p class="mt-1 text-indigo-500 text-md">
+                - Address
+            </p>
+            @endif
         </x-section>
         @endif
         @if (Auth::user()->is_verified == false)
