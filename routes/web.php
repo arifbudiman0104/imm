@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 Route::get('/home', [PublicController::class, 'home'])->name('home');
 Route::get('/posts', [PublicController::class, 'posts'])->name('posts');
 Route::get('/posts/{slug}', [PublicController::class, 'post'])->name('post');
+Route::post('/comments-store', [PublicController::class, 'commentStore'])->name('comment.store');
 
 Route::get('/about', function () {
     return view('about');
@@ -28,6 +29,12 @@ Route::get('/about', function () {
 Route::fallback(function () {
     return redirect()->route('home');
 });
+
+// route any/any fallback to home
+// Route::any('{any}', function () {
+//     return redirect()->route('home');
+// })->where('any', '.*');
+
 
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('/admin', function () {

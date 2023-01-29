@@ -57,22 +57,23 @@
                             Related Post
                         </h2>
                         <div class="grid grid-cols-1 gap-5 mt-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1">
-                            @foreach ($related_posts as $post)
+                            @foreach ($related_posts as $related_post)
                             <x-card.post>
-                                <a href="{{ route('post', $post->slug) }}">
+                                <a href="{{ route('post', $related_post->slug) }}">
                                     <div class="flex flex-col justify-between h-full">
                                         <div class="flex flex-col">
-                                            @if ($post->post_category_id != 1 || $post->is_featured == false)
+                                            @if ($related_post->post_category_id != 1 || $related_post->is_featured ==
+                                            false)
                                             <div class="flex justify-between">
                                                 <div>
-                                                    @if ($post->post_category_id != 1)
+                                                    @if ($related_post->post_category_id != 1)
                                                     <div
                                                         class="font-medium text-indigo-600 uppercase text-md dark:text-indigo-400">
-                                                        {{ $post->post_category->title }}
+                                                        {{ $related_post->post_category->title }}
                                                     </div>
                                                     @endif
                                                 </div>
-                                                @if ($post->is_featured)
+                                                @if ($related_post->is_featured)
                                                 <x-badge.post-featured>
                                                     Featured
                                                 </x-badge.post-featured>
@@ -80,15 +81,15 @@
                                             </div>
                                             @endif
                                             <p class="text-lg font-bold text-gray-900 dark:text-gray-100">
-                                                {{ $post->title }}
+                                                {{ $related_post->title }}
                                             </p>
-                                            @if ($post->excerpt)
+                                            @if ($related_post->excerpt)
                                             <p class="mt-1 text-gray-500 text-md dark:text-gray-400">
-                                                {{ $post->excerpt }}
+                                                {{ $related_post->excerpt }}
                                             </p>
                                             @else
                                             <p class="mt-1 text-gray-500 text-md dark:text-gray-400">
-                                                {{ Str::limit(strip_tags($post->body), 100) }}
+                                                {{ Str::limit(strip_tags($related_post->body), 100) }}
                                             </p>
                                             @endif
                                         </div>
@@ -96,9 +97,9 @@
                                             <div class="flex flex-col justify-between sm:flex-row lg:flex-col">
                                                 <div class="flex items-center gap-1 mt-1">
                                                     <p class="text-gray-900 text-md dark:text-gray-100">
-                                                        {{ $post->user->name }}
+                                                        {{ $related_post->user->name }}
                                                     </p>
-                                                    @if ($post->user->is_verified)
+                                                    @if ($related_post->user->is_verified)
                                                     <div>
                                                         <x-badge.verified />
                                                     </div>
@@ -106,10 +107,10 @@
                                                 </div>
                                                 <div class="flex gap-2 place-items-end shrink-0">
                                                     <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
-                                                        {{ $post->published_at->diffForHumans() }}
+                                                        {{ $related_post->published_at->diffForHumans() }}
                                                     </p>
                                                     <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
-                                                        {{ $post->views }}
+                                                        {{ $related_post->views }}
                                                         {{ Str::plural('view', $post->views) }}
                                                     </p>
                                                 </div>
@@ -126,22 +127,23 @@
                             Recomended Post
                         </h2>
                         <div class="grid grid-cols-1 gap-5 mt-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1">
-                            @foreach ($recommended_posts as $post)
+                            @foreach ($recommended_posts as $recommended_post)
                             <x-card.post>
-                                <a href="{{ route('post', $post->slug) }}">
+                                <a href="{{ route('post', $recommended_post->slug) }}">
                                     <div class="flex flex-col justify-between h-full">
                                         <div class="flex flex-col">
-                                            @if ($post->post_category_id != 1 || $post->is_featured == false)
+                                            @if ($recommended_post->post_category_id != 1 ||
+                                            $recommended_post->is_featured == false)
                                             <div class="flex justify-between">
                                                 <div>
-                                                    @if ($post->post_category_id != 1)
+                                                    @if ($recommended_post->post_category_id != 1)
                                                     <div
                                                         class="font-medium text-indigo-600 uppercase text-md dark:text-indigo-400">
-                                                        {{ $post->post_category->title }}
+                                                        {{ $recommended_post->post_category->title }}
                                                     </div>
                                                     @endif
                                                 </div>
-                                                @if ($post->is_featured)
+                                                @if ($recommended_post->is_featured)
                                                 <x-badge.post-featured>
                                                     Featured
                                                 </x-badge.post-featured>
@@ -149,15 +151,15 @@
                                             </div>
                                             @endif
                                             <p class="text-lg font-bold text-gray-900 dark:text-gray-100">
-                                                {{ $post->title }}
+                                                {{ $recommended_post->title }}
                                             </p>
-                                            @if ($post->excerpt)
+                                            @if ($recommended_post->excerpt)
                                             <p class="mt-1 text-gray-500 text-md dark:text-gray-400">
-                                                {{ $post->excerpt }}
+                                                {{ $recommended_post->excerpt }}
                                             </p>
                                             @else
                                             <p class="mt-1 text-gray-500 text-md dark:text-gray-400">
-                                                {{ Str::limit(strip_tags($post->body), 100) }}
+                                                {{ Str::limit(strip_tags($recommended_post->body), 100) }}
                                             </p>
                                             @endif
                                         </div>
@@ -165,19 +167,19 @@
                                             <div class="flex flex-col justify-between sm:flex-row lg:flex-col">
                                                 <div class="flex items-center gap-1 mt-1">
                                                     <p class="text-gray-900 text-md dark:text-gray-100">
-                                                        {{ $post->user->name }}
+                                                        {{ $recommended_post->user->name }}
                                                     </p>
-                                                    @if ($post->user->is_verified)
+                                                    @if ($recommended_post->user->is_verified)
                                                     <x-badge.verified />
                                                     @endif
                                                 </div>
                                                 <div class="flex gap-2 place-items-end shrink-0">
                                                     <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
-                                                        {{ $post->published_at->diffForHumans() }}
+                                                        {{ $recommended_post->published_at->diffForHumans() }}
                                                     </p>
                                                     <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
-                                                        {{ $post->views }}
-                                                        {{ Str::plural('view', $post->views) }}
+                                                        {{ $recommended_post->views }}
+                                                        {{ Str::plural('view', $recommended_post->views) }}
                                                     </p>
                                                 </div>
                                             </div>
@@ -198,31 +200,65 @@
                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                         Comment
                     </h2>
+                    @guest
+                    <p class="mt-1 text-red-600 text-md dark:text-red-400">
+                        You need to login to show comment form.
+                    </p>
+                    @endguest
+                    @auth
+                    <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
+                        Comment as <span class="text-iindigo-600 dark:text-indigo-400">{{ Auth::user()->name }}</span>.
+                    </p>
                     <div class="mt-5" class="flex flex-col">
-                        <textarea id="message" rows="4" name="excerpt" maxlength="255"
-                            class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
-                            placeholder="Write your comment here"></textarea>
-                        <x-button.comment class="mt-5">
-                            Send
-                        </x-button.comment>
+                        <form method="POST" action="{{ route('comment.store') }}">
+                            @csrf
+                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+                            <textarea id="message" rows="4" name="text" maxlength="255"
+                                class="w-full mb-5 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                                placeholder="Write your comment here" required>{{ old('text') }}</textarea>
+                            <x-input-error :messages="$errors->get('text')" class="mt-2" />
+                            <div class="flex items-center">
+                                <x-button.comment class="" type="submit">
+                                    Send
+                                </x-button.comment>
+                                @if (session('status') === 'comment-created')
+                                <p x-data="{ show: true }" x-show="show" x-transition
+                                    x-init="setTimeout(() => show = false, 10000)"
+                                    class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment created') }}
+                                </p>
+                                @endif
+                            </div>
+                        </form>
                     </div>
+                    @endauth
+
                     <div class="flex flex-col gap-5 mt-5">
+                        @foreach ($comments as $comment)
                         <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
                             <div x-data="{ showEdit: false }">
                                 <div class="flex justify-between ">
                                     <div class="flex flex-row items-center gap-2">
                                         <div class="flex items-center">
                                             <p class="text-gray-500 text-md dark:text-gray-400">
-                                                Admin
+                                                {{ $comment->user->name }}
                                             </p>
+                                            @if ($comment->user->is_verified)
                                             <div class="ml-1">
                                                 <x-badge.verified />
                                             </div>
+                                            @endif
                                         </div>
                                         <div class="flex gap-2 place-items-end shrink-0">
                                             <p class="text-xs text-gray-500 text-md dark:text-gray-400">
-                                                1 hour ago
+                                                {{ $comment->created_at->diffForHumans() }}
                                             </p>
+                                            @unless ($comment->created_at->eq($comment->updated_at))
+                                            <p class="text-xs text-gray-500 text-md dark:text-gray-400">
+                                                &middot; {{
+                                                __('edited')
+                                                }}</small>
+                                            </p>
+                                            @endunless
                                         </div>
                                     </div>
                                     <x-dropdown>
@@ -243,15 +279,24 @@
                                                 Edit
                                             </x-dropdown-link>
                                             <x-dropdown-link href="#">
+                                                Report Spam
+                                            </x-dropdown-link>
+                                            <x-dropdown-link href="#">
                                                 Delete
                                             </x-dropdown-link>
                                         </x-slot>
                                     </x-dropdown>
                                 </div>
                                 <p class="text-gray-900 text-md dark:text-gray-100">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, molestiae?
+                                    {{ $comment->text }}
                                 </p>
+                                @if ($comment->is_spam)
+                                <p class="text-xs text-red-500 text-md dark:text-red-400">
+                                    {{ $comment->spam_count }} reports
+                                </p>
+                                @endif
                                 <div class="mt-5" class="flex flex-col" x-cloak x-show="showEdit">
+
                                     <textarea id="message" rows="4" name="excerpt" maxlength="255"
                                         class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
                                         placeholder="Write your comment here"></textarea>
@@ -263,9 +308,8 @@
                                     </x-button.default>
                                 </div>
                             </div>
-
                         </div>
-
+                        @endforeach
                     </div>
                 </x-section>
             </div>

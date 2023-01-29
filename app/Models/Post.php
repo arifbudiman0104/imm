@@ -35,6 +35,7 @@ class Post extends Model
     protected $with = [
         'user',
         'post_category',
+        // 'comments',
     ];
 
     public function incrementViewCount() {
@@ -50,5 +51,10 @@ class Post extends Model
     public function post_category()
     {
         return $this->belongsTo(PostCategory::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
     }
 }

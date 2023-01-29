@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
 class PublicController extends Controller
@@ -37,15 +39,17 @@ class PublicController extends Controller
             ->where('is_approve', true)
             ->firstOrFail();
         // dd($post);
-        $related_posts = Post::where('id', '!=', $post->id)
+        $related_posts = Post::with('post_category', 'user')
+            ->where('id', '!=', $post->id)
             ->where('post_category_id', $post->post_category_id)
             ->where('is_published', true)
             ->where('is_approve', true)
             ->orderBy('published_at', 'desc')
             ->take(2)
             ->get();
-        // dd($related_posts)->toArray();
-        $recommended_posts = Post::where('id', '!=', $post->id)
+
+        $recommended_posts = Post::with('post_category', 'user')
+            ->where('id', '!=', $post->id)
             ->where('is_published', true)
             ->where('is_approve', true)
             ->orderBy('published_at', 'desc')
@@ -55,6 +59,28 @@ class PublicController extends Controller
             $post->incrementViewCount();
             Cookie::queue('post_' . $post->slug, 'true', 60 * 2);
         }
-        return view('post', compact('post', 'related_posts', 'recommended_posts'));
+        $comments = $post
+            ->comments()
+            ->orderBy('created_at', 'desc')
+            ->get();
+        // dd($comments)->toArray();
+        return view('post', compact('post', 'related_posts', 'recommended_posts', 'comments'));
+    }
+
+    public function commentStore(Request $request)
+    {
+        if (Auth::check()) {
+            $request->validate([
+                'text' => 'required|string|max:255',
+            ]);
+            Comment::create([
+                'post_id' => $request->post_id,
+                'user_id' => Auth::user()->id,
+                'text' => $request->text,
+            ]);
+            // dd($request->all());
+            return back()->with('status', 'comment-created');
+        }
+        return redirect()->route('login');
     }
 }
