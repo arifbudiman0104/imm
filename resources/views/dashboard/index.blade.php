@@ -130,15 +130,6 @@
                 published posts, but you cannot create new posts.
             </p>
         </x-section>
-        @else
-        <x-section>
-            <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                Your account is verified.
-            </p>
-            <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
-                You can now create new posts and comment on published posts.
-            </p>
-        </x-section>
         @endif
     </div>
 </x-app-layout>
