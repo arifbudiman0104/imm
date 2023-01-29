@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AdminUserController extends Controller
@@ -107,13 +108,20 @@ class AdminUserController extends Controller
     public function verify(User $user)
     {
         Gate::authorize('admin') || Gate::authorize('superadmin');
-        if ($user->pob != null && $user->dob != null && $user->gender != null && $user->phone != null && $user->address != null) {
+        if (Auth::user()->is_admin == true && Auth::user()->is_superadmin == false) {
+            if ($user->pob != null && $user->dob != null && $user->gender != null && $user->phone != null && $user->address != null) {
+                $user->timestamps = false;
+                $user->is_verified = 1;
+                $user->save();
+                return back()->with('status', 'user-verified');
+            } else {
+                return back()->with('status', 'user-not-verified');
+            }
+        } else {
             $user->timestamps = false;
             $user->is_verified = 1;
             $user->save();
             return back()->with('status', 'user-verified');
-        } else {
-            return back()->with('status', 'user-not-verified');
         }
     }
 

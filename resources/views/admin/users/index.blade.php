@@ -8,20 +8,34 @@
     <div class="w-full sm:py-12">
         @if (Auth::user()->is_superadmin == false)
         <x-section>
-            <p class="text-lg font-medium text-indigo-500">Info!</p>
+            <p class="text-lg font-medium text-indigo-500">Attention!</p>
             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Only user with role
+                - User with role
                 <x-badge.superadmin />
-                can change user role.
+                can do everything.
+            </p>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                - User with role
+                <x-badge.admin />
+                can only verify user with
+                <x-badge.completed /> badge.
+            </p>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                -
+                <x-badge.verified /> badge means user can create post, but need user with
+                <x-badge.admin /> role to approve the post.
+            </p>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                - Delete user will delete all post and comment from that user.
             </p>
         </x-section>
         @endif
         <x-section>
-            {{-- <div class="mb-5">
+            <div class="mb-5">
                 <x-button.create href="{{ route('admin.users.create') }}" class="shrink-0">
                     {{ __('Create User') }}
                 </x-button.create>
-            </div> --}}
+            </div>
             <div class="flex flex-col justify-between md:flex-row">
                 <div>
                     <div class="mb-5">
