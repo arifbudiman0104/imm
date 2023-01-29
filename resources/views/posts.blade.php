@@ -86,9 +86,11 @@
                 @endforeach
             </div>
         </x-section>
+        @if ($posts->hasPages())
         <x-section>
             {{ $posts->links() }}
         </x-section>
+        @endif
 
     </div>
 </x-guest-layout>

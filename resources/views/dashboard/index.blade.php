@@ -17,7 +17,9 @@
             </p>
         </x-section>
         <x-section>
-            <div class="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <p class="text-lg font-medium text-gray-900 dark:text-gray-100">{{ __("Your Statistic") }}
+            </p>
+            <div class="grid grid-cols-2 gap-5 mt-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 <x-card.statistic>
                     <x-slot name="title">
                         {{ __('All Posts') }}
