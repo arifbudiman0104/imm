@@ -86,22 +86,17 @@
                 {{-- Address --}}
                 <div>
                     <x-input-label for="address" :value="__('Address')" />
-                    <x-textarea id="address" name="address" type="text" class="block w-full mt-1 text-md" required autofocus
-                        autocomplete="address" rows="4">
-                        {{ old('bio', $user->address )}}
-                    </x-textarea>
-                    {{-- <x-textarea id="address" name="address" type="text" class="block w-full mt-1 text-md" autofocus
-                        autocomplete="address" rows="4">
-                        {{ old('bio', $user->address )}}
-                    </x-textarea> --}}
+                    <textarea id="message" rows="4" name="address" type="text" maxlength="255"
+                        class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                        placeholder="Address">{{ old('bio', $user->address )}}</textarea>
                     <x-input-error class="mt-2" :messages="$errors->get('address')" />
                 </div>
                 {{-- Bio --}}
                 <div>
                     <x-input-label for="bio" :value="__('Bio (optional)')" />
-                    <x-textarea id="bio" name="bio" type="text" class="block w-full mt-1 text-md" autofocus autocomplete="bio" rows="4">
-                        {{ old('bio', $user->bio )}}
-                    </x-textarea>
+                    <textarea id="message" rows="4" name="bio" type="text" maxlength="255"
+                        class="w-full border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                        placeholder="Bio">{{  old('bio', $user->bio ) }}</textarea>
                     <x-input-error class="mt-2" :messages="$errors->get('bio')" />
                 </div>
             </div>
