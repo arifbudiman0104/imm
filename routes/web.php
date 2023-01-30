@@ -5,6 +5,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminSystemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/users/{user}/remove-admin', [AdminUserController::class, 'removeAdmin'])->name('admin.users.removeadmin');
         Route::post('/users/{user}/verify', [AdminUserController::class, 'verify'])->name('admin.users.verify');
         Route::post('/users/{user}/unverify', [AdminUserController::class, 'unverify'])->name('admin.users.unverify');
+        Route::get('/systems', [AdminSystemController::class, 'index'])->name('admin.systems.index');
+        Route::post('/systems/{system}/enable', [AdminSystemController::class, 'enable'])->name('admin.systems.enable');
+        Route::post('/systems/{system}/disable', [AdminSystemController::class, 'disable'])->name('admin.systems.disable');
 
         Route::get('/posts-categories', function () {
             return view('admin.posts-categories.index');

@@ -28,7 +28,7 @@
                 <div class="flex-grow">
                     <p class="my-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {{
                         $user->name }}</p>
-                    <p class=""> {{ $user->email }}</p>
+                    <p class="text-gray-700 whitespace-nowrap dark:text-gray-400"> {{ $user->email }}</p>
                 </div>
             </div>
             <div>

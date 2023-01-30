@@ -192,6 +192,11 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
+                @can('have_page')
+                <x-responsive-nav-link :href="route('user.page', Auth::user()->username)">
+                    {{ __('My Page') }}
+                </x-responsive-nav-link>
+                @endcan
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

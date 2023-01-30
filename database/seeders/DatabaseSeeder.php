@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\PostCategory;
+use App\Models\System;
 use Illuminate\Database\Seeder;
 use Database\Factories\PostFactory;
 
@@ -71,5 +72,12 @@ class DatabaseSeeder extends Seeder
         User::factory(100)->create();
         Post::factory(500)->create();
         Comment::factory(700)->create();
+        System::create(
+            [
+                'name' => 'Register',
+                'description' => 'Enable or disable register',
+                'is_active' => true,
+            ]
+        );
     }
 }

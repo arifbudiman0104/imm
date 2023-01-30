@@ -24,6 +24,10 @@
                         :active="request()->routeIs('admin.posts-categories.index')">
                         {{ __('Posts Categories') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.systems.index')"
+                        :active="request()->routeIs('admin.systems.index')">
+                        {{ __('System') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -115,6 +119,11 @@
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
+                            @can('have_page')
+                            <x-dropdown-link :href="route('user.page', Auth::user()->username)">
+                                {{ __('My Page') }}
+                            </x-dropdown-link>
+                            @endcan
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -192,10 +201,11 @@
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
                 @can('have_page')
-                <x-dropdown-link :href="route('user.page', Auth::user()->username)">
+                <x-responsive-nav-link :href="route('user.page', Auth::user()->username)">
                     {{ __('My Page') }}
-                </x-dropdown-link>
+                </x-responsive-nav-link>
                 @endcan
+
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
