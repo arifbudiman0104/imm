@@ -86,8 +86,11 @@
             <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
                 To fully utilize the system, kindly update your profile with the following information:
             </p>
-
-
+            @if (Auth::user()->username == null)
+            <p class="mt-1 text-indigo-500 text-md">
+                - Username
+            </p>
+            @endif
             @if (Auth::user()->dob == null)
             <p class="mt-1 text-indigo-500 text-md">
                 - Date of Birth
@@ -135,6 +138,19 @@
                 Without verification, your access to the system is limited. You can still read and comment on
                 published posts, but you cannot create new posts.
             </p>
+        </x-section>
+        @endif
+        @if (Auth::user()->is_verified)
+        <x-section>
+            <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                Your account is verified.
+            </p>
+            <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
+                Access your page via the navigation bar or by clicking the button.
+            </p>
+            <x-button.create href="{{route('user.page', Auth::user()->username)}}" class="mt-4">
+                My Page
+            </x-button.create>
         </x-section>
         @endif
     </div>

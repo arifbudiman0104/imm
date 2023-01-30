@@ -19,12 +19,13 @@ use App\Http\Controllers\Admin\AdminUserController;
 
 Route::get('/home', [PublicController::class, 'home'])->name('home');
 Route::get('/posts', [PublicController::class, 'posts'])->name('posts');
-Route::get('/posts/{slug}', [PublicController::class, 'post'])->name('post');
+Route::get('/post/{slug}', [PublicController::class, 'post'])->name('post');
 Route::post('/comments', [PublicController::class, 'commentStore'])->name('comment.store');
 Route::delete('/comments/{comment}', [PublicController::class, 'commentDestroy'])->name('comment.destroy');
 Route::patch('/comments/{comment}', [PublicController::class, 'commentUpdate'])->name('comment.update');
 Route::patch('/comments/{comment}/report', [PublicController::class, 'commentReport'])->name('comment.report');
 Route::patch('/comments/{comment}/marknotspam', [PublicController::class, 'commentMarkNotSpam'])->name('comment.markasnotspam');
+Route::get('/user/{username}', [PublicController::class, 'user'])->name('user.page');
 
 Route::get('/about', function () {
     return view('about');
@@ -34,13 +35,14 @@ Route::fallback(function () {
     return redirect()->route('home');
 });
 
-// route any/any fallback to home
+// route any/any fallback to home include post/{slug} and user/{username} admin routes
+
 // Route::any('{any}', function () {
 //     return redirect()->route('home');
 // })->where('any', '.*');
 
 
-Route::middleware(['auth','admin'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', function () {
         return view('admin.index');
     })->name('admin');
@@ -77,4 +79,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

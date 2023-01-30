@@ -10,7 +10,7 @@
             <div class="gap-5 lg:flex">
                 <div class="lg:w-2/3">
                     @if ($post->post_category_id != 1 || $post->is_featured == false)
-                    <div class="flex justify-between">
+                    <div class="flex justify-between mb-2">
                         <div>
                             @if ($post->post_category_id != 1)
                             <div class="font-medium text-indigo-600 uppercase text-md dark:text-indigo-400">
@@ -30,11 +30,16 @@
                     </h2>
                     <div class="flex flex-col justify-between my-5">
                         <div class="flex items-center gap-1 mt-1">
+                            @if ($post->user->is_verified)
+                            <a href="{{route('user.page', $post->user->username)}}"
+                                class="text-gray-900 text-md dark:text-gray-100">
+                                {{ $post->user->name }}
+                            </a>
+                            <x-badge.verified />
+                            @else
                             <p class="text-gray-900 text-md dark:text-gray-100">
                                 {{ $post->user->name }}
                             </p>
-                            @if ($post->user->is_verified)
-                            <x-badge.verified />
                             @endif
                         </div>
                         <div class="flex gap-2 place-items-end shrink-0">
@@ -194,6 +199,7 @@
                 </div>
             </div>
         </x-section>
+        {{-- Comment --}}
         <div class="mx-auto sm:mb-5 max-w-7xl">
             <div class="w-full lg:w-2/3">
                 <x-section>
@@ -217,6 +223,7 @@
                                 class="w-full mb-5 border-gray-300 rounded-md shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600"
                                 placeholder="Write your comment here" required>{{ old('text') }}</textarea>
                             <x-input-error :messages="$errors->get('text')" class="mt-2" />
+                            {{-- Send Comment & Notification. --}}
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
                                     <x-button.comment class="" type="submit">
@@ -307,13 +314,18 @@
                                 <div class="flex justify-between ">
                                     <div class="flex flex-row items-center gap-2">
                                         <div class="flex items-center">
-                                            <p class="text-gray-500 text-md dark:text-gray-400">
-                                                {{ $comment->user->name }}
-                                            </p>
                                             @if ($comment->user->is_verified)
+                                            <a href="{{route('user.page', $comment->user->username)}}"
+                                                class="text-gray-500 text-md dark:text-gray-400">
+                                                {{ $post->user->name }}
+                                            </a>
                                             <div class="ml-1">
                                                 <x-badge.verified />
                                             </div>
+                                            @else
+                                            <p class="text-gray-500 text-md dark:text-gray-400">
+                                                {{ $comment->user->name }}
+                                            </p>
                                             @endif
                                         </div>
                                         <div class="flex gap-2 place-items-end shrink-0">

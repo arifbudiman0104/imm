@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -123,7 +124,8 @@ class PublicController extends Controller
             $comment->save();
             return back()->with('status', 'comment-reported');
         }
-        return back()->with('status', 'comment-report-failed');
+        return redirect()->route('login');
+        // return back()->with('status', 'comment-report-failed');
     }
 
     public function commentMarkNotSpam(Comment $comment)
@@ -136,5 +138,25 @@ class PublicController extends Controller
             return back()->with('status', 'comment-marked-not-spam');
         }
         return back()->with('status', 'comment-mark-not-spam-failed');
+    }
+
+    public function user($username)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+        if ($user->is_verified == true) {
+            $user = User::where('username', $username)->firstOrFail();
+            $posts = $user
+                ->posts()
+                ->where('is_published', true)
+                ->where('is_approve', true)
+                ->orderBy('published_at', 'desc')
+                ->paginate(12);
+            return view('user', compact('user', 'posts'));
+        } else {
+            return redirect()->route('home');
+        }
+
+
+        // dd($user, $posts);
     }
 }

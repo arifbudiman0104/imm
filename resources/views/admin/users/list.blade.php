@@ -13,13 +13,14 @@
                     User
                 </span>
                 @endif
-                <div>
+                <div class="flex">
+                    @if ($user->username !== null && $user->dob !== null && $user->pob !== null && $user->gender !== null
+                    &&
+                    $user->phone !== null && $user->address !== null)
+                    <x-badge.completed />
+                    @endif
                     @if ($user->is_verified)
                     <x-badge.verified />
-                    @endif
-                    @if ($user->dob !== null || $user->pob !== null || $user->gender !== null ||
-                    $user->phone !== null || $user->address !== null)
-                    <x-badge.completed />
                     @endif
                 </div>
             </div>
