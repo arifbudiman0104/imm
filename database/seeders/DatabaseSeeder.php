@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
         System::create(
             [
                 'name' => 'Register',
-                'description' => 'Enable or disable register',
+                'description' => 'Enable this to allow user to register. Don\'t forget to disable this after you finish user registration.',
                 'is_active' => true,
             ]
         );

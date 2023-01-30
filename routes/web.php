@@ -36,13 +36,6 @@ Route::fallback(function () {
     return redirect()->route('home');
 });
 
-// route any/any fallback to home include post/{slug} and user/{username} admin routes
-
-// Route::any('{any}', function () {
-//     return redirect()->route('home');
-// })->where('any', '.*');
-
-
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', function () {
         return view('admin.index');

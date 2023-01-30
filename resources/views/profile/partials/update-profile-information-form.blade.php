@@ -58,6 +58,17 @@
                     </div>
                     @endif
                 </div>
+
+                {{-- Hide Email Togle--}}
+                <div>
+                    <x-input-label for="hide_email" :value="__('Hide Email')" />
+                    <x-select id="hide_email" name="hide_email" class="block w-full mt-1" required>
+                        <option value="0" {{ $user->hide_email == 0 ? 'selected' : '' }} >No</option>
+                        <option value="1" {{ $user->hide_email == 1 ? 'selected' : '' }} >Yes</option>
+                    </x-select>
+                    <x-input-error class="mt-2" :messages="$errors->get('hide_email')" />
+                </div>
+
                 {{-- Place of Birth --}}
                 <div>
                     <x-input-label for="pob" :value="__('Place of Birth')" />
