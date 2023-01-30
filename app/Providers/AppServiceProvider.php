@@ -34,5 +34,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('superadmin', function (User $user) {
             return $user->is_superadmin == 1;
         });
+        Gate::define('have_page', function (User $user) {
+            return $user->username != null && $user->is_verified;
+        });
     }
 }

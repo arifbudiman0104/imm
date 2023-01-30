@@ -109,7 +109,7 @@ class AdminUserController extends Controller
     {
         Gate::authorize('admin') || Gate::authorize('superadmin');
         if (Auth::user()->is_admin == true && Auth::user()->is_superadmin == false) {
-            if ($user->pob != null && $user->dob != null && $user->gender != null && $user->phone != null && $user->address != null) {
+            if ($user->pob != null && $user->dob != null && $user->gender != null && $user->phone != null && $user->address != null && $user->username != null) {
                 $user->timestamps = false;
                 $user->is_verified = 1;
                 $user->save();

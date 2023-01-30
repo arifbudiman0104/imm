@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
         User::factory(100)->create();
-        Post::factory(100)->create();
-        Comment::factory(500)->create();
+        Post::factory(500)->create();
+        Comment::factory(700)->create();
     }
 }

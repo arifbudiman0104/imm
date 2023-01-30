@@ -145,13 +145,20 @@
             <p class="text-lg font-medium text-gray-900 dark:text-gray-100">
                 Your account is verified.
             </p>
+            @if (Auth::user()->username)
             <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
                 Access your page via the navigation bar or by clicking the button.
             </p>
             <x-button.create href="{{route('user.page', Auth::user()->username)}}" class="mt-4">
                 My Page
             </x-button.create>
+            @else
+            <p class="mt-1 text-indigo-600 text-md dark:text-indigo-400">
+                Please complete your profile to access your page.
+            </p>
+            @endif
         </x-section>
+
         @endif
     </div>
 </x-app-layout>

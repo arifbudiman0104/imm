@@ -30,11 +30,16 @@
                     </h2>
                     <div class="flex flex-col justify-between my-5">
                         <div class="flex items-center gap-1 mt-1">
-                            @if ($post->user->is_verified)
+                            @if ($post->user->is_verified && $post->user->username != null)
                             <a href="{{route('user.page', $post->user->username)}}"
                                 class="text-gray-900 text-md dark:text-gray-100">
                                 {{ $post->user->name }}
                             </a>
+                            <x-badge.verified />
+                            @elseif ($post->user->is_verified && $post->user->username == null)
+                            <p class="text-gray-900 text-md dark:text-gray-100">
+                                {{ $post->user->name }}
+                            </p>
                             <x-badge.verified />
                             @else
                             <p class="text-gray-900 text-md dark:text-gray-100">
@@ -314,16 +319,23 @@
                                 <div class="flex justify-between ">
                                     <div class="flex flex-row items-center gap-2">
                                         <div class="flex items-center">
-                                            @if ($comment->user->is_verified)
+                                            @if ($comment->user->is_verified && $comment->user->username != null)
                                             <a href="{{route('user.page', $comment->user->username)}}"
-                                                class="text-gray-500 text-md dark:text-gray-400">
-                                                {{ $post->user->name }}
+                                                class="text-gray-900 text-md dark:text-gray-100">
+                                                {{ $comment->user->name }}
                                             </a>
                                             <div class="ml-1">
                                                 <x-badge.verified />
                                             </div>
+                                            @elseif ($comment->user->is_verified && $comment->user->username == null)
+                                            <p class="text-gray-900 text-md dark:text-gray-100">
+                                                {{ $comment->user->name }}
+                                            </p>
+                                            <div class="ml-1">
+                                                <x-badge.verified />
+                                            </div>
                                             @else
-                                            <p class="text-gray-500 text-md dark:text-gray-400">
+                                            <p class="text-gray-900 text-md dark:text-gray-100">
                                                 {{ $comment->user->name }}
                                             </p>
                                             @endif
