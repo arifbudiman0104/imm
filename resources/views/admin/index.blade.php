@@ -17,10 +17,9 @@
             </p>
         </x-section>
         <x-section>
-            <p class="text-lg text-red-500 font-lg">Important!</p>
+            <p class="text-lg text-red-500 font-lg">Attention!</p>
             <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
-                Please be aware that this page is only accessible to users with the Admin role, and some actions taken
-                on this page cannot be undone.
+                Please be aware that this page is only accessible to users with the Admin role, and some actions are irreversible.
             </p>
         </x-section>
 
