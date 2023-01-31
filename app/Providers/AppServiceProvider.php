@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\System;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -37,5 +39,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('have_page', function (User $user) {
             return $user->username != null && $user->is_verified;
         });
+        View::share('register', System::where('name', 'register')->first());
     }
 }

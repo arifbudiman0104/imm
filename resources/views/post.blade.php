@@ -313,7 +313,7 @@
                     @endauth
 
                     <div class="flex flex-col gap-5 mt-5">
-                        @foreach ($comments as $comment)
+                        @forelse ($comments as $comment)
                         <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
                             <div x-data="{ showEdit: false }">
                                 <div class="flex justify-between ">
@@ -437,7 +437,14 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                        @empty
+                        <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
+                            <p class="text-gray-500 text-md dark:text-gray-400">
+                                {{ __('No comments yet, be the first to comment!
+                                ') }}
+                            </p>
+                        </div>
+                        @endforelse
                     </div>
                 </x-section>
             </div>

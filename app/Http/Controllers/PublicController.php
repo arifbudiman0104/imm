@@ -155,8 +155,6 @@ class PublicController extends Controller
         } else {
             return redirect()->route('home');
         }
-
-
         // dd($user, $posts);
     }
 }
