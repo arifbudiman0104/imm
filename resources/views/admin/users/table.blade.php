@@ -29,6 +29,8 @@
                     @endcan
                     <th scope="col" class="px-2 py-3">
                     </th>
+                    <th scope="col" class="px-2 py-3">
+                    </th>
                     <th scope="col" class="py-3 pl-2 pr-6">
                     </th>
 
@@ -88,7 +90,7 @@
                             Remove Superadmin
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur-xl">
+                            class="fixed inset-0 z-50 backdrop-blur-xl bg-gray-600/30 dark:bg-gray-500/30">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -126,7 +128,7 @@
                             Make Superadmin
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur-xl">
+                            class="fixed inset-0 z-50 backdrop-blur-xl bg-gray-600/30 dark:bg-gray-500/30">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -168,7 +170,7 @@
                             Remove Admin
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur-xl">
+                            class="fixed inset-0 z-50 backdrop-blur-xl bg-gray-600/30 dark:bg-gray-500/30">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -206,7 +208,7 @@
                             Make Admin
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur-xl">
+                            class="fixed inset-0 z-50 backdrop-blur-xl bg-gray-600/30 dark:bg-gray-500/30">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -251,7 +253,7 @@
                             Unverify
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur-xl">
+                            class="fixed inset-0 z-50 backdrop-blur-xl bg-gray-600/30 dark:bg-gray-500/30">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -289,7 +291,7 @@
                             Verify
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur-xl">
+                            class="fixed inset-0 z-50 backdrop-blur-xl bg-gray-600/30 dark:bg-gray-500/30">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -329,6 +331,103 @@
                         <a href="#" class="font-medium text-gray-500 dark:text-gray-400 hover:underline">Edit</a>
                     </td>
 
+                    {{-- View --}}
+                    <td class="py-3 pl-2 pr-6" x-cloak x-data="{ showModal: false }"
+                        x-on:keydown.window.escape="showModal = false">
+                        <button x-on:click="showModal = !showModal" x-cloak
+                            class="font-medium text-gray-500 dark:text-gray-400 hover:underline">
+                            View
+                        </button>
+                        <div x-cloak x-show="showModal" x-transition.opacity
+                            class="fixed inset-0 z-50 backdrop-blur-xl bg-gray-600/30 dark:bg-gray-500/30">
+                        </div>
+                        <div x-cloak x-show="showModal" x-transition
+                            class="fixed inset-0 z-50 flex items-center justify-center p-6">
+                            <div x-on:click.away="showModal = false"
+                                class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
+                                <div class="p-5">
+                                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                        {{ $user->name }}
+                                    </h2>
+                                    <div class="mb-5">
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            Username : {{ $user->username }}
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            Email : {{ $user->email }}
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            Hiden Email : {{ $user->hide_email ? 'Yes' : 'No' }}
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            Gender :
+                                            @if ($user->gender == 'male')
+                                            Male
+                                            @elseif ($user->gender == 'female')
+                                            Female
+                                            @else
+                                            Empty
+                                            @endif
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            POB :
+                                            @if ($user->pob)
+                                            {{ $user->pob }}
+                                            @else
+                                            Empty
+                                            @endif
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            DOB :
+                                            @if ($user->dob)
+                                            {{ $user->dob }}
+                                            @else
+                                            Empty
+                                            @endif
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            Phone : @if ($user->phone)
+                                            {{ $user->phone }}
+                                            @else
+                                            Empty
+                                            @endif
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            Address : @if ($user->address)
+                                            {{ $user->address }}
+                                            @else
+                                            Empty
+                                            @endif
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            Bio : @if ($user->bio)
+                                            {{ $user->bio }}
+                                            @else
+                                            Empty
+                                            @endif
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            Verified : {{ $user->is_verified ? 'Yes' : 'No' }}
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            Admin : {{ $user->is_admin ? 'Yes' : 'No' }}
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            Superadmin : {{ $user->is_superadmin ? 'Yes' : 'No' }}
+                                        </p>
+                                    </div>
+                                    <x-button.edit href="#">
+                                        Edit
+                                    </x-button.edit>
+                                    <x-button.default x-on:click="showModal = false">
+                                        Close (Esc)
+                                    </x-button.default>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+
                     {{-- Delete --}}
                     <td class="py-3 pl-2 pr-6" x-cloak x-data="{ showModal: false }"
                         x-on:keydown.window.escape="showModal = false">
@@ -337,7 +436,7 @@
                             Delete
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
-                            class="fixed inset-0 z-50 backdrop-blur-xl">
+                            class="fixed inset-0 z-50 bg-red-600/30 dark:bg-red-500/30 backdrop-blur-xl">
                         </div>
                         <div x-cloak x-show="showModal" x-transition
                             class="fixed inset-0 z-50 flex items-center justify-center p-6">
@@ -345,7 +444,7 @@
                                 class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
                                 <div class="p-5">
                                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                        {{ __('Are you sure you want to verify this user?') }}
+                                        {{ __('Are you sure you want to delete this user?') }}
                                     </h2>
                                     <div class="mb-5">
                                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
