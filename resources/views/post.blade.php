@@ -49,7 +49,7 @@
                         </div>
                         <div class="flex gap-2 place-items-end shrink-0">
                             <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
-                                {{ $post->published_at->diffForHumans() }}
+                                Published {{ $post->published_at }}
                             </p>
                             <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
                                 {{ $post->views }}
@@ -68,7 +68,7 @@
                         </h2>
                         <div class="grid grid-cols-1 gap-5 mt-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1">
                             @foreach ($related_posts as $related_post)
-                            <x-card.post>
+                            <x-card.post-public>
                                 <a href="{{ route('post', $related_post->slug) }}">
                                     <div class="flex flex-col justify-between h-full">
                                         <div class="flex flex-col">
@@ -128,7 +128,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </x-card.post>
+                            </x-card.post-public>
                             @endforeach
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                         </h2>
                         <div class="grid grid-cols-1 gap-5 mt-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1">
                             @foreach ($recommended_posts as $recommended_post)
-                            <x-card.post>
+                            <x-card.post-public>
                                 <a href="{{ route('post', $recommended_post->slug) }}">
                                     <div class="flex flex-col justify-between h-full">
                                         <div class="flex flex-col">
@@ -196,7 +196,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </x-card.post>
+                            </x-card.post-public>
                             @endforeach
                         </div>
                     </div>

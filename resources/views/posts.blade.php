@@ -18,7 +18,7 @@
             </div>
             <div class="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3">
                 @foreach ($posts as $post)
-                <x-card.post>
+                <x-card.post-public>
                     <a href="{{ route('post', $post->slug) }}">
                         <div class="flex flex-col justify-between h-full">
                             <div class="flex flex-col">
@@ -75,7 +75,7 @@
                         </div>
                     </a>
 
-                </x-card.post>
+                </x-card.post-public>
                 @endforeach
             </div>
         </x-section>

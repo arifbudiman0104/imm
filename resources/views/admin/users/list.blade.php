@@ -1,7 +1,7 @@
 <div class="grid grid-cols-1 gap-5 xl:hidden lg:grid-cols-2">
     @foreach ($users as $user)
     {{-- <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500"> --}}
-        <x-card.user>
+        <x-card.user-admin>
             <div class="flex justify-between mb-5">
                 @if ($user->is_admin && !$user->is_superadmin)
                 <x-badge.admin />
@@ -429,6 +429,6 @@
 
                 </div>
             </div>
-        </x-card.user>
+        </x-card.user-admin>
         @endforeach
     </div>

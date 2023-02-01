@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
@@ -66,9 +67,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('dashboard')->middleware('verified_account')->group(function () {
-        Route::get('/posts', function () {
-            return view('dashboard.posts.index');
-        })->name('dashboard.posts.index');
+        // Route::get('/posts', function () {
+        //     return view('dashboard.posts.index');
+        // })->name('dashboard.posts.index');
+        Route::resource('/posts', PostController::class, ['as' => 'dashboard']);
     });
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
