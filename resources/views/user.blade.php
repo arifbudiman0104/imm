@@ -1,9 +1,9 @@
 <x-guest-layout>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
             {{ __('User') }}
         </h2>
-    </x-slot>
+    </x-slot> --}}
 
     <div class="w-full sm:py-12">
         <x-section>
@@ -47,7 +47,7 @@
                 </p>
                 @endif
             </div>
-            <div class="gap-2 space-y-2">
+            <div class="gap-2 mt-5 space-y-2">
                 @if ($user->instagram)
                 <x-social.instagram href="{{ $user->instagram }}" />
                 @endif

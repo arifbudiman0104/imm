@@ -17,8 +17,7 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => ['string', 'max:255'],
-            'username'=>['username', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
-            // 'username' => ['string', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'username' => ['string', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'hide_email' => ['boolean'],
             'dob' => ['required'],
@@ -26,6 +25,11 @@ class ProfileUpdateRequest extends FormRequest
             'gender' => ['max:6', 'required'],
             'phone' => ['max:20', 'required'],
             'address' => ['max:255', 'required'],
+            'university' => ['max:255', 'required'],
+            'faculty' => ['max:255', 'required'],
+            'program_study' => ['max:255', 'required'],
+            'sid' => ['max:255', 'required'],
+            'website' => ['string', 'max:255', 'nullable', 'url'],
             'bio' => ['string', 'max:255', 'nullable'],
             'instagram' => ['string', 'max:255', 'nullable', 'url'],
             'facebook' => ['string', 'max:255', 'nullable', 'url'],

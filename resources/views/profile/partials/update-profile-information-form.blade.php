@@ -118,7 +118,32 @@
                 </div>
             </div>
             <div class="w-full space-y-6">
-
+                {{-- Student ID Number --}}
+                <div>
+                    <x-input-label for="sid" :value="__('Student Id Number')" />
+                    <x-text-input id="sid" name="sid" type="text" class="block w-full mt-1"
+                        :value="old('sid', $user->sid)" autofocus autocomplete="sid" placeholder="20180140XXX" />
+                    <x-input-error class="mt-2" :messages="$errors->get('sid')" />
+                </div>
+                <div>
+                    <x-input-label for="university" :value="__('University')" />
+                    <x-text-input id="university" name="university" type="text" class="block w-full mt-1"
+                        :value="old('university', $user->university)" autofocus autocomplete="university"
+                        placeholder="Universitas Muhammadiyah Yogyakarta" />
+                    <x-input-error class="mt-2" :messages="$errors->get('university')" />
+                </div>
+                <div>
+                    <x-input-label for="faculty" :value="__('Faculty')" />
+                    <x-text-input id="faculty" name="faculty" type="text" class="block w-full mt-1"
+                        :value="old('faculty', $user->faculty)" autofocus autocomplete="faculty" placeholder="Fakultas Teknik"/>
+                    <x-input-error class="mt-2" :messages="$errors->get('faculty')" />
+                </div>
+                <div>
+                    <x-input-label for="program_study" :value="__('Program Study')" />
+                    <x-text-input id="program_study" name="program_study" type="text" class="block w-full mt-1"
+                        :value="old('program_study', $user->program_study)" autofocus autocomplete="program_study" placeholder="Teknologi Informasi"/>
+                    <x-input-error class="mt-2" :messages="$errors->get('program_study')" />
+                </div>
                 {{-- Instagram Link --}}
                 <div>
                     <x-input-label for="instagram" :value="__('Instagram Link (optional)')" />
