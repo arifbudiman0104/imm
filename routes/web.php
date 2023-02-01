@@ -1,12 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PublicController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Dashboard\PostController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminSystemController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\DashboardPostController;
+use App\Http\Controllers\Dashboard\DashboardProfileController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +23,15 @@ use App\Http\Controllers\Admin\AdminSystemController;
 |
 */
 
-Route::get('/home', [PublicController::class, 'home'])->name('home');
-Route::get('/posts', [PublicController::class, 'posts'])->name('posts');
-Route::get('/post/{slug}', [PublicController::class, 'post'])->name('post');
-Route::post('/comments', [PublicController::class, 'commentStore'])->name('comment.store');
-Route::delete('/comments/{comment}', [PublicController::class, 'commentDestroy'])->name('comment.destroy');
-Route::patch('/comments/{comment}', [PublicController::class, 'commentUpdate'])->name('comment.update');
-Route::patch('/comments/{comment}/report', [PublicController::class, 'commentReport'])->name('comment.report');
-Route::patch('/comments/{comment}/marknotspam', [PublicController::class, 'commentMarkNotSpam'])->name('comment.markasnotspam');
-Route::get('/user/{username}', [PublicController::class, 'user'])->name('user.page');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/post/{slug}', [PostController::class, 'post'])->name('post');
+Route::post('/comments', [CommentController::class, 'commentStore'])->name('comment.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'commentDestroy'])->name('comment.destroy');
+Route::patch('/comments/{comment}', [CommentController::class, 'commentUpdate'])->name('comment.update');
+Route::patch('/comments/{comment}/report', [CommentController::class, 'commentReport'])->name('comment.report');
+Route::patch('/comments/{comment}/marknotspam', [CommentController::class, 'commentMarkNotSpam'])->name('comment.markasnotspam');
+Route::get('/user/{username}', [UserController::class, 'user'])->name('user.page');
 
 Route::get('/about', function () {
     return view('about');
@@ -38,10 +42,7 @@ Route::fallback(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.index');
-    })->name('admin');
-
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::prefix('admin')->group(function () {
         Route::resource('/users', AdminUserController::class, ['as' => 'admin']);
         Route::post('/users/{user}/make-superadmin', [AdminUserController::class, 'makeSuperAdmin'])->name('admin.users.makesuperadmin');
@@ -67,15 +68,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('dashboard')->middleware('verified_account')->group(function () {
-        // Route::get('/posts', function () {
-        //     return view('dashboard.posts.index');
-        // })->name('dashboard.posts.index');
-        Route::resource('/posts', PostController::class, ['as' => 'dashboard']);
+        Route::resource('/posts', DashboardPostController::class, ['as' => 'dashboard']);
     });
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [DashboardProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [DashboardProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [DashboardProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';

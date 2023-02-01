@@ -49,7 +49,7 @@
                         </div>
                         <div class="flex gap-2 place-items-end shrink-0">
                             <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
-                                Published {{ $post->published_at }}
+                                Published {{ $post->published_at->format('d M Y') }}
                             </p>
                             <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
                                 {{ $post->views }}

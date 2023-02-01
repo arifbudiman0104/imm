@@ -32,7 +32,7 @@ class PostFactory extends Factory
             'is_requested' => rand(0, 1),
             'is_rejected' => rand(0, 1),
             // 'is_featured' => 0,
-            'published_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
+            'published_at' => $this->faker->date('d-m-Y', 'now'),
             'approved_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
             'views' => rand(0, 1000),
         ];
