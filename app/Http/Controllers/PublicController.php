@@ -25,12 +25,26 @@ class PublicController extends Controller
     }
     public function posts()
     {
-        $posts = Post::where('is_published', true)
-            ->where('is_approved', true)
-            ->where('is_rejected', false)
-            ->orderBy('published_at', 'desc')
-            ->paginate(12);
-        // dd($posts->toArray());
+        $search = request('search');
+        if ($search) {
+            $posts = Post::where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('excerpt', 'like', '%' . $search . '%')
+                    ->orWhere('body', 'like', '%' . $search . '%');
+            })
+                ->where('is_published', true)
+                ->where('is_approved', true)
+                ->where('is_rejected', false)
+                ->orderBy('published_at', 'desc')
+                ->paginate(12)
+                ->withQueryString();
+        } else {
+            $posts = Post::where('is_published', true)
+                ->where('is_approved', true)
+                ->where('is_rejected', false)
+                ->orderBy('published_at', 'desc')
+                ->paginate(12);
+        }
         return view('posts', compact('posts'));
     }
     public function post($slug)
@@ -51,6 +65,7 @@ class PublicController extends Controller
 
         $recommended_posts = Post::with('post_category', 'user')
             ->where('id', '!=', $post->id)
+            ->where('post_category_id', '!=', $post->post_category_id)
             ->where('is_published', true)
             ->where('is_approved', true)
             ->orderBy('published_at', 'desc')

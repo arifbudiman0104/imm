@@ -8,16 +8,27 @@
     <div class="w-full sm:py-12">
         <x-section>
             <div class="mb-5">
+                @if (request('search'))
+                <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    {{ __('Search results for: ') }} {{ request('search') }}
+                </h2>
+                @else
                 <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     All Posts
                 </h2>
+                @endif
             </div>
-            <div class="mb-5">
-                <x-text-input id="search" name="search" type="text" class="w-full md:w-1/2 xl:w-1/4"
-                    placeholder="Search by name or email here ..." />
+            <div class="mb-5 md:w-1/2 2xl:w-1/3">
+                <form class="flex items-center gap-2">
+                    <x-text-input id="search" name="search" type="text" class="w-full" placeholder="Search ..."
+                        value="{{ request('search') }}" />
+                    <x-button.search type="submit">
+                        {{ __('Search') }}
+                    </x-button.search>
+                </form>
             </div>
             <div class="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3">
-                @foreach ($posts as $post)
+                @forelse ($posts as $post)
                 <x-card.post-public>
                     <a href="{{ route('post', $post->slug) }}">
                         <div class="flex flex-col justify-between h-full">
@@ -74,9 +85,14 @@
                             </div>
                         </div>
                     </a>
-
                 </x-card.post-public>
-                @endforeach
+                @empty
+                <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
+                    <p class="text-gray-500 text-md dark:text-gray-400">
+                        {{ __('No post found!') }}
+                    </p>
+                </div>
+                @endforelse
             </div>
         </x-section>
         @if ($posts->hasPages())

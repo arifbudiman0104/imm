@@ -440,8 +440,7 @@
                         @empty
                         <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
                             <p class="text-gray-500 text-md dark:text-gray-400">
-                                {{ __('No comments yet, be the first to comment!
-                                ') }}
+                                {{ __('No comments yet, be the first to comment!') }}
                             </p>
                         </div>
                         @endforelse
