@@ -83,19 +83,19 @@
             </div>
             <div class="gap-2 mt-5 space-y-2">
                 @if ($user->instagram)
-                <x-social.instagram href="{{ $user->instagram }}" />
+                <x-social.instagram href="{{ $user->instagram }}" target="_blank" />
                 @endif
                 @if ($user->facebook)
-                <x-social.facebook href="{{ $user->facebook }}" />
+                <x-social.facebook href="{{ $user->facebook }}" target="_blank" />
                 @endif
                 @if ($user->twitter)
-                <x-social.twitter href="{{ $user->twitter }}" />
+                <x-social.twitter href="{{ $user->twitter }}" target="_blank" />
                 @endif
                 @if ($user->youtube)
-                <x-social.youtube href="{{ $user->youtube }}" />
+                <x-social.youtube href="{{ $user->youtube }}" target="_blank" />
                 @endif
                 @if ($user->website)
-                <x-social.website href="{{ $user->website }}" />
+                <x-social.website href="{{ $user->website }}" target="_blank" />
                 @endif
             </div>
 
