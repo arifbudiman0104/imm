@@ -18,7 +18,18 @@ class UserPageController extends Controller
                 ->where('is_approved', true)
                 ->orderBy('published_at', 'desc')
                 ->paginate(12);
-            return view('user', compact('user', 'posts'));
+            $organizationHistoriesActive = $user->organizationHistory()
+                ->where('is_approved', true)
+                ->where('is_active', true)
+                ->orderBy('start_year', 'desc')
+                ->get();
+            $organizationHistoriesNotActive = $user->organizationHistory()
+                ->where('is_approved', true)
+                ->where('is_active', false)
+                ->orderBy('start_year', 'desc')
+                ->get();
+            // dd($organizationHistories);
+            return view('userpage', compact('user', 'posts', 'organizationHistoriesActive', 'organizationHistoriesNotActive'));
         } else {
             return redirect()->route('home');
         }

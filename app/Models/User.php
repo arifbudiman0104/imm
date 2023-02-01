@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function organizationHistory()
+    {
+        return $this->hasMany(OrganizationHistory::class);
+    }
 }

@@ -39,10 +39,23 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Arif Budiman Arrosyid',
                 'username' => 'arifbudimanarrosyid',
                 'email' => 'arifbudimanarrosyid@admin.com',
+                'bio' => 'Ini Bio',
                 'password' => bcrypt('password'),
                 'is_admin' => true,
                 'is_verified' => true,
                 'instagram' => 'https://www.instagram.com/arifbudimanarrosyid/',
+            ]
+        );
+        User::create(
+            [
+                'name' => 'Arif',
+                'username' => 'arif',
+                'email' => 'arif@admin.com',
+                'bio' => 'Ini Bio',
+                'password' => bcrypt('password'),
+                'is_admin' => true,
+                'is_verified' => true,
+                'instagram' => 'https://www.instagram.com/arif/',
             ]
         );
         PostCategory::create(
@@ -86,13 +99,13 @@ class DatabaseSeeder extends Seeder
 
         Organization::create(
             [
-                'name' => 'Pimpinan Cabang IMM Banyumas',
+                'name' => 'PC IMM Banyumas',
                 'description' => 'IMM Banyumas',
             ]
         );
         Organization::create(
             [
-                'name' => 'Pimpinan Komisariat IMM Insan Kamil',
+                'name' => 'PK IMM Insan Kamil',
                 'description' => 'IMM Insan Kamil',
             ]
         );
@@ -108,7 +121,17 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Wakil Ketua',
             ]
         );
-
+        OrganizationHistory::create(
+            [
+                'user_id' => 2,
+                'organization_id' => 1,
+                'organization_position_id' => 2,
+                'start_year' => 2021,
+                'end_year' => 2022,
+                'is_active' => true,
+                'is_approved' => true,
+            ]
+        );
         OrganizationHistory::create(
             [
                 'user_id' => 2,
@@ -116,9 +139,22 @@ class DatabaseSeeder extends Seeder
                 'organization_position_id' => 1,
                 'start_year' => 2021,
                 'end_year' => 2022,
+                'is_active' => false,
+                'is_approved' => true,
+            ]
+        );
+
+        OrganizationHistory::create(
+            [
+                'user_id' => 3,
+                'organization_id' => 1,
+                'organization_position_id' => 2,
+                'start_year' => 2021,
+                'end_year' => 2022,
+                'is_active' => true,
+                'is_approved' => true,
             ]
         );
         OrganizationHistory::factory(100)->create();
-
     }
 }

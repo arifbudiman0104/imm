@@ -15,6 +15,40 @@
                     <x-badge.verified />
                 </span>
             </div>
+            @if ($organizationHistoriesActive->count() > 0)
+            <div>
+                <ol>
+                    @foreach ($organizationHistoriesActive as $organizationHistory)
+                    <li>
+                        <p class="text-gray-800 dark:text-gray-200 text-md">
+                            {{ $organizationHistory->organizationPosition->name }}
+                            {{ $organizationHistory->organization->name }}
+                            {{ $organizationHistory->start_year }} -
+                            {{ $organizationHistory->end_year }}
+                        </p>
+                    </li>
+                    @endforeach
+
+                </ol>
+            </div>
+            @endif
+            @if ($organizationHistoriesNotActive->count() > 0)
+            <div>
+                <ol>
+                    @foreach ($organizationHistoriesNotActive as $organizationHistory)
+                    <li>
+                        <p class="text-gray-500 text-md dark:text-gray-400">
+                            {{ $organizationHistory->organizationPosition->name }}
+                            {{ $organizationHistory->organization->name }}
+                            {{ $organizationHistory->start_year }} -
+                            {{ $organizationHistory->end_year }}
+                        </p>
+                    </li>
+                    @endforeach
+
+                </ol>
+            </div>
+            @endif
             <div>
                 @if ($user->hide_email == false)
                 {{ $user->email }}

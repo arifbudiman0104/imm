@@ -17,11 +17,13 @@ class OrganizationHistoryFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => rand(1, 100),
             'organization_id' => rand(1, 2),
             'organization_position_id' => rand(1, 2),
             'start_year' => $this->faker->year,
             'end_year' => $this->faker->year,
+            'is_active' => 1,
+            'is_approved' => 1,
         ];
     }
 }
