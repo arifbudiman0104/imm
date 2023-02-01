@@ -21,7 +21,7 @@
                     @foreach ($organizationHistoriesActive as $organizationHistory)
                     <li>
                         <p class="text-gray-800 dark:text-gray-200 text-md">
-                            {{ $organizationHistory->organizationPosition->name }}
+                            {{ $organizationHistory->organization_position->name }}
                             {{ $organizationHistory->organization->name }}
                             {{ $organizationHistory->start_year }} -
                             {{ $organizationHistory->end_year }}
@@ -38,7 +38,7 @@
                     @foreach ($organizationHistoriesNotActive as $organizationHistory)
                     <li>
                         <p class="text-gray-500 text-md dark:text-gray-400">
-                            {{ $organizationHistory->organizationPosition->name }}
+                            {{ $organizationHistory->organization_position->name }}
                             {{ $organizationHistory->organization->name }}
                             {{ $organizationHistory->start_year }} -
                             {{ $organizationHistory->end_year }}

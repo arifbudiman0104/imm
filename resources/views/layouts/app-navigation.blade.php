@@ -19,6 +19,10 @@
                         :active="request()->routeIs('dashboard.posts.index')">
                         {{ __('Posts') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('dashboard.organization-histories.index')"
+                        :active="request()->routeIs('dashboard.organization-histories.index')">
+                        {{ __('Organization Histories') }}
+                    </x-nav-link>
                     @endcan
                 </div>
             </div>
@@ -157,6 +161,10 @@
             <x-responsive-nav-link :href="route('dashboard.posts.index')"
                 :active="request()->routeIs('dashboard.posts.index')">
                 {{ __('Posts') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('dashboard.organization-histories.index')"
+                :active="request()->routeIs('dashboard.organization-histories.index')">
+                {{ __('Organization Histories') }}
             </x-responsive-nav-link>
             @endcan
         </div>

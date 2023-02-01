@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class DashboardPostController extends Controller
 {
     public function index()
     {
+        Gate::authorize('verified_account');
         $search = request('search');
         $user = auth()->user();
         if ($search) {

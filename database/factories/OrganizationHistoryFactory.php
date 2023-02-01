@@ -23,6 +23,7 @@ class OrganizationHistoryFactory extends Factory
             'start_year' => $this->faker->year,
             'end_year' => $this->faker->year,
             'is_active' => 1,
+            'is_requested' => 1,
             'is_approved' => 1,
         ];
     }

@@ -42,6 +42,11 @@ class User extends Authenticatable
         'youtube',
     ];
 
+    // protected $with = [
+    //     'posts',
+    //     'organizationHistory',
+    // ];
+
     protected $date = [
         'dob',
     ];
@@ -60,7 +65,7 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function organizationHistory()
+    public function organization_history()
     {
         return $this->hasMany(OrganizationHistory::class);
     }

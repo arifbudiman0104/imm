@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Organization;
+use App\Models\OrganizationPosition;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class OrganizationHistory extends Model
 {
@@ -18,9 +20,9 @@ class OrganizationHistory extends Model
     ];
 
     protected $with = [
-        'user',
+        // 'user',
         'organization',
-        'organizationPosition'
+        'organization_position'
     ];
 
     public function user()
@@ -33,7 +35,7 @@ class OrganizationHistory extends Model
         return $this->belongsTo(Organization::class);
     }
 
-    public function organizationPosition()
+    public function organization_position()
     {
         return $this->belongsTo(OrganizationPosition::class);
     }

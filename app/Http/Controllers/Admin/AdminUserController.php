@@ -12,7 +12,7 @@ class AdminUserController extends Controller
 {
     public function index()
     {
-        Gate::authorize('admin') || Gate::authorize('superadmin');
+        Gate::authorize('admin', 'superadmin');
         $search = request('search');
         if ($search) {
             $users = User::where(function ($query) use ($search) {
@@ -72,7 +72,7 @@ class AdminUserController extends Controller
 
     public function destroy(User $user)
     {
-        Gate::authorize('admin') || Gate::authorize('superadmin');
+        Gate::authorize('admin', 'superadmin');
         $user->delete();
         return back()->with('status', 'user-deleted');
     }
@@ -118,7 +118,7 @@ class AdminUserController extends Controller
 
     public function verify(User $user)
     {
-        Gate::authorize('admin') || Gate::authorize('superadmin');
+        Gate::authorize('admin', 'superadmin');
         if (Auth::user()->is_admin == true && Auth::user()->is_superadmin == false) {
             if ($user->pob != null && $user->dob != null && $user->gender != null && $user->phone != null && $user->address != null && $user->username != null) {
                 $user->timestamps = false;
@@ -138,7 +138,7 @@ class AdminUserController extends Controller
 
     public function unverify(User $user)
     {
-        Gate::authorize('admin') || Gate::authorize('superadmin');
+        Gate::authorize('admin', 'superadmin');
         $user->timestamps = false;
         $user->is_verified = 0;
         $user->save();

@@ -3,15 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserPageController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminSystemController;
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DashboardPostController;
 use App\Http\Controllers\Dashboard\DashboardProfileController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserPageController;
+use App\Http\Controllers\Dashboard\DashboardOrganizationHistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('dashboard')->middleware('verified_account')->group(function () {
         Route::resource('/posts', DashboardPostController::class, ['as' => 'dashboard']);
+        Route::resource('/organization-histories', DashboardOrganizationHistoryController::class, ['as' => 'dashboard']);
     });
 
     Route::get('/profile', [DashboardProfileController::class, 'edit'])->name('profile.edit');

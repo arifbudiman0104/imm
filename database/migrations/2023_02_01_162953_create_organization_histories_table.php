@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('start_year');
             $table->string('end_year');
             $table->boolean('is_active')->default(false);
+            $table->boolean('is_requested')->default(false);
             $table->boolean('is_approved')->default(false);
             $table->timestamps();
         });
