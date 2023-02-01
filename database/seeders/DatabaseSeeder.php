@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'is_admin' => true,
                 'is_verified' => true,
+                'instagram' => 'https://www.instagram.com/arifbudimanarrosyid/',
             ]
         );
         PostCategory::create(
@@ -71,7 +72,7 @@ class DatabaseSeeder extends Seeder
         );
         User::factory(100)->create();
         Post::factory(500)->create();
-        Comment::factory(700)->create();
+        Comment::factory(1000)->create();
         System::create(
             [
                 'name' => 'Register',

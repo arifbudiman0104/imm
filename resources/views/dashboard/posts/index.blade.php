@@ -34,7 +34,7 @@
             </div>
             {{-- <div class="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3"> --}}
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                    @foreach ($allUserPosts as $post)
+                    @forelse ($allUserPosts as $post)
                     <x-card.post-dashboard>
                         <div class="flex flex-col justify-between h-full">
                             <div class="flex flex-col">
@@ -105,7 +105,13 @@
                             </div>
                         </div>
                     </x-card.post-dashboard>
-                    @endforeach
+                    @empty
+                    <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
+                        <p class="text-gray-500 text-md dark:text-gray-400">
+                            {{ __('No post found!') }}
+                        </p>
+                    </div>
+                    @endforelse
                 </div>
         </x-section>
         @if ($allUserPosts->hasPages())
