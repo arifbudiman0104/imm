@@ -73,7 +73,8 @@
                     {{-- Completed --}}
                     <td class="px-2 py-3 ">
                         @if ($user->username !== null && $user->dob !== null && $user->pob !== null && $user->gender !==
-                        null && $user->phone !== null && $user->address !== null)
+                        null && $user->phone !== null && $user->address !== null && $user->sid !== null && $user->university !==
+                        null && $user->faculty !== null && $user->program_study !== null)
                         <x-badge.completed />
                         @else
                         Not Complete

@@ -117,6 +117,26 @@
                 - Address
             </p>
             @endif
+            @if (Auth::user()->sid== null)
+            <p class="mt-1 text-indigo-500 text-md">
+                - Student Id Number
+            </p>
+            @endif
+            @if (Auth::user()->university== null)
+            <p class="mt-1 text-indigo-500 text-md">
+                - University
+            </p>
+            @endif
+            @if (Auth::user()->faculty== null)
+            <p class="mt-1 text-indigo-500 text-md">
+                - Faculty
+            </p>
+            @endif
+            @if (Auth::user()->program_study== null)
+            <p class="mt-1 text-indigo-500 text-md">
+                - Program Study
+            </p>
+            @endif
             <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
                 By providing these details, you will assist the administrator with the verification process and ensure
                 the accuracy of your profile. Your cooperation in updating your profile will greatly enhance your user
@@ -148,7 +168,7 @@
             </p>
             @if (Auth::user()->username)
             <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
-                Access your page via the navigation bar or by clicking the button.
+                Access your page via the navigation bar or by clicking the button below.
             </p>
             <x-button.create href="{{route('user.page', Auth::user()->username)}}" class="mt-4">
                 My Page

@@ -14,9 +14,8 @@
             @endif
             <div class="flex">
                 @if ($user->username !== null && $user->dob !== null && $user->pob !== null && $user->gender !==
-                null
-                &&
-                $user->phone !== null && $user->address !== null)
+                null && $user->phone !== null && $user->address !== null && $user->sid !== null && $user->university !==
+                null && $user->faculty !== null && $user->program_study !== null)
                 <x-badge.completed />
                 @endif
                 @if ($user->is_verified)
