@@ -5,6 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Comment;
+use App\Models\Organization;
+use App\Models\OrganizationHistory;
+use App\Models\OrganizationPosition;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\PostCategory;
@@ -80,5 +83,42 @@ class DatabaseSeeder extends Seeder
                 'is_active' => true,
             ]
         );
+
+        Organization::create(
+            [
+                'name' => 'Pimpinan Cabang IMM Banyumas',
+                'description' => 'IMM Banyumas',
+            ]
+        );
+        Organization::create(
+            [
+                'name' => 'Pimpinan Komisariat IMM Insan Kamil',
+                'description' => 'IMM Insan Kamil',
+            ]
+        );
+
+        OrganizationPosition::create(
+            [
+                'name' => 'Ketua',
+            ]
+        );
+
+        OrganizationPosition::create(
+            [
+                'name' => 'Wakil Ketua',
+            ]
+        );
+
+        OrganizationHistory::create(
+            [
+                'user_id' => 2,
+                'organization_id' => 2,
+                'organization_position_id' => 1,
+                'start_year' => 2021,
+                'end_year' => 2022,
+            ]
+        );
+        OrganizationHistory::factory(100)->create();
+
     }
 }
