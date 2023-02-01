@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->boolean('is_published')->default(false);
             $table->boolean('is_featured')->default(false);
-            $table->boolean('is_approve')->default(false);
-            $table->boolean('is_request')->default(false);
-            $table->boolean('is_reject')->default(false);
+            $table->boolean('is_approved')->default(false);
+            $table->boolean('is_requested')->default(false);
+            $table->boolean('is_rejected')->default(false);
             $table->timestamp('published_at')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->bigInteger('views')->default(0);

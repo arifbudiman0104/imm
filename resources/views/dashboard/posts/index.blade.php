@@ -34,13 +34,13 @@
                                         @endif
                                     </div>
                                     <div class="flex gap-1">
-                                        @if ($post->is_request)
+                                        @if ($post->is_requested)
                                         <x-badge.post-requested />
                                         @endif
-                                        @if ($post->is_approve)
+                                        @if ($post->is_approved)
                                         <x-badge.post-approved />
                                         @endif
-                                        @if ($post->is_reject)
+                                        @if ($post->is_rejected)
                                         <x-badge.post-rejected />
                                         @endif
                                     </div>

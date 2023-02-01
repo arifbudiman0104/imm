@@ -14,9 +14,9 @@ class PublicController extends Controller
     public function home()
     {
         $featured_posts = Post::where('is_published', true)
-            ->where('is_approve', true)
+            ->where('is_approved', true)
             ->where('is_featured', true)
-            ->where('is_reject', false)
+            ->where('is_rejected', false)
             ->orderBy('published_at', 'desc')
             ->take(6)
             ->get();
@@ -26,8 +26,8 @@ class PublicController extends Controller
     public function posts()
     {
         $posts = Post::where('is_published', true)
-            ->where('is_approve', true)
-            ->where('is_reject', false)
+            ->where('is_approved', true)
+            ->where('is_rejected', false)
             ->orderBy('published_at', 'desc')
             ->paginate(12);
         // dd($posts->toArray());
@@ -37,14 +37,14 @@ class PublicController extends Controller
     {
         $post = Post::where('slug', $slug)
             ->where('is_published', true)
-            ->where('is_approve', true)
+            ->where('is_approved', true)
             ->firstOrFail();
         // dd($post);
         $related_posts = Post::with('post_category', 'user')
             ->where('id', '!=', $post->id)
             ->where('post_category_id', $post->post_category_id)
             ->where('is_published', true)
-            ->where('is_approve', true)
+            ->where('is_approved', true)
             ->orderBy('published_at', 'desc')
             ->take(2)
             ->get();
@@ -52,7 +52,7 @@ class PublicController extends Controller
         $recommended_posts = Post::with('post_category', 'user')
             ->where('id', '!=', $post->id)
             ->where('is_published', true)
-            ->where('is_approve', true)
+            ->where('is_approved', true)
             ->orderBy('published_at', 'desc')
             ->take(2)
             ->get();
@@ -148,7 +148,7 @@ class PublicController extends Controller
             $posts = $user
                 ->posts()
                 ->where('is_published', true)
-                ->where('is_approve', true)
+                ->where('is_approved', true)
                 ->orderBy('published_at', 'desc')
                 ->paginate(12);
             return view('user', compact('user', 'posts'));

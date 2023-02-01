@@ -14,10 +14,10 @@ class DashboardController extends Controller
         $allPosts = Auth::user()->posts->count();
         $draftPosts = Auth::user()->posts->where('is_published', 0)->count();
         $publishedPosts = Auth::user()->posts->where('is_published', 1)->count();
-        $approvedPosts = Auth::user()->posts->where('is_approve', 1)->count();
-        $publishedApprovedPosts = Auth::user()->posts->where('is_published', 1)->where('is_approve', 1)->count();
-        $rejectedPosts = Auth::user()->posts->where('is_reject', 1)->count();
-        $requestedPosts = Auth::user()->posts->where('is_request', 1)->count();
+        $approvedPosts = Auth::user()->posts->where('is_approved', 1)->count();
+        $publishedApprovedPosts = Auth::user()->posts->where('is_published', 1)->where('is_approved', 1)->count();
+        $rejectedPosts = Auth::user()->posts->where('is_rejected', 1)->count();
+        $requestedPosts = Auth::user()->posts->where('is_requested', 1)->count();
         $totalViews = Auth::user()->posts->sum('views');
         $user = Auth::user();
         $postIds = $user->posts->pluck('id');

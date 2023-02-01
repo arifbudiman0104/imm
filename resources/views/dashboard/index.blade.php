@@ -16,6 +16,7 @@
                 </span>
             </p>
         </x-section>
+        @if (Auth::user()->is_verified)
         <x-section>
             <p class="text-lg font-medium text-gray-900 dark:text-gray-100">{{ __("Your Statistic") }}
             </p>
@@ -75,8 +76,8 @@
                     {{ $totalComments }}
                 </x-card.statistic>
             </div>
-
         </x-section>
+        @endif
         @if (Auth::user()->dob == null || Auth::user()->pob == null || Auth::user()->gender == null ||
         Auth::user()->phone == null || Auth::user()->address == null)
         <x-section>

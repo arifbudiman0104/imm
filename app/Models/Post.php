@@ -28,8 +28,8 @@ class Post extends Model
     ];
 
     protected $hidden = [
-        'is_request',
-        'is_reject',
+        'is_requested',
+        'is_rejected',
     ];
 
     protected $with = [
