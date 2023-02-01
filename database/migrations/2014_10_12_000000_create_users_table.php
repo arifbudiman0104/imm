@@ -21,7 +21,11 @@ return new class extends Migration
             $table->boolean('hide_email')->default(true);
             $table->string('gender')->nullable();
             $table->string('pob')->nullable();
-            $table->date('dob')->nullable();
+            $table->dateTime('dob')->nullable();
+            $table->string('sid')->nullable();
+            $table->string('university')->nullable();
+            $table->string('faculty')->nullable();
+            $table->string('program_study')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('bio')->nullable();

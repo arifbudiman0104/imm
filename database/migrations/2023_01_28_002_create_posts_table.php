@@ -27,7 +27,7 @@ return new class extends Migration
             $table->boolean('is_approved')->default(false);
             $table->boolean('is_requested')->default(false);
             $table->boolean('is_rejected')->default(false);
-            $table->date('published_at')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->bigInteger('views')->default(0);
             $table->timestamps();

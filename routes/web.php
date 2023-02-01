@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DashboardPostController;
 use App\Http\Controllers\Dashboard\DashboardProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::delete('/comments/{comment}', [CommentController::class, 'commentDestroy'
 Route::patch('/comments/{comment}', [CommentController::class, 'commentUpdate'])->name('comment.update');
 Route::patch('/comments/{comment}/report', [CommentController::class, 'commentReport'])->name('comment.report');
 Route::patch('/comments/{comment}/marknotspam', [CommentController::class, 'commentMarkNotSpam'])->name('comment.markasnotspam');
-Route::get('/user/{username}', [UserController::class, 'user'])->name('user.page');
+Route::get('/user/{username}', [UserPageController::class, 'user'])->name('user.page');
 
 Route::get('/about', function () {
     return view('about');

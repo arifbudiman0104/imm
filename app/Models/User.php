@@ -26,8 +26,12 @@ class User extends Authenticatable
         'email',
         'hide_email',
         'password',
-        'dob',
         'pob',
+        'dob',
+        'sid',
+        'university',
+        'faculty',
+        'program_study',
         'gender',
         'phone',
         'address',
@@ -41,12 +45,6 @@ class User extends Authenticatable
     protected $date = [
         'dob',
     ];
-
-    // protected $dateFormat = 'Y-m-d';
-
-    // protected $with = [
-    //     'posts',
-    // ];
 
     protected $hidden = [
         'password',

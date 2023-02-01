@@ -17,7 +17,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => rand(1, 10),
+            'user_id' => rand(1, 100),
             'post_category_id' => rand(1, 4),
             'title' => $this->faker->sentence(mt_rand(3, 10)),
             'slug' => $this->faker->slug(),
@@ -31,8 +31,7 @@ class PostFactory extends Factory
             'is_approved' => rand(0, 1),
             'is_requested' => rand(0, 1),
             'is_rejected' => rand(0, 1),
-            // 'is_featured' => 0,
-            'published_at' => $this->faker->date('d-m-Y', 'now'),
+            'published_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
             'approved_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
             'views' => rand(0, 1000),
         ];
