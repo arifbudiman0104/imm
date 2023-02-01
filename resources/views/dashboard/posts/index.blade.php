@@ -13,8 +13,24 @@
                 </x-button.create>
             </div>
             <div class="mb-5">
-                <x-text-input id="search" name="search" type="text" class="w-full md:w-1/2 xl:w-1/4"
-                    placeholder="Search by name or email here ..." />
+                @if (request('search'))
+                <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    {{ __('Search results for: ') }} {{ request('search') }}
+                </h2>
+                @else
+                <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    All Posts
+                </h2>
+                @endif
+            </div>
+            <div class="mb-5 md:w-1/2 2xl:w-1/3">
+                <form class="flex items-center gap-2">
+                    <x-text-input id="search" name="search" type="text" class="w-full" placeholder="Search ..."
+                        value="{{ request('search') }}" />
+                    <x-button.search type="submit">
+                        {{ __('Search') }}
+                    </x-button.search>
+                </form>
             </div>
             {{-- <div class="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3"> --}}
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
@@ -80,7 +96,6 @@
                                         </p>
                                     </div>
                                     <div class="flex gap-2 place-items-end shrink-0">
-
                                         <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
                                             {{ $post->views }}
                                             {{ Str::plural('view', $post->views) }}
@@ -93,9 +108,10 @@
                     @endforeach
                 </div>
         </x-section>
+        @if ($allUserPosts->hasPages())
         <x-section>
             {{ $allUserPosts->links() }}
         </x-section>
-
+        @endif
     </div>
 </x-app-layout>
