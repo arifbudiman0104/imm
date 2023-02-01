@@ -13,9 +13,20 @@ class AdminUserController extends Controller
     public function index()
     {
         Gate::authorize('admin') || Gate::authorize('superadmin');
-        $users = User::orderBy('name')
-            ->where('id', '!=', '1')
-            ->paginate(20);
+        $search = request('search');
+        if ($search) {
+            $users = User::where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
+            })->orderBy('name')
+                ->where('id', '!=', '1')
+                ->paginate(20)
+                ->withQueryString();
+        } else {
+            $users = User::orderBy('name')
+                ->where('id', '!=', '1')
+                ->paginate(20);
+        }
         return view('admin.users.index', compact('users'));
     }
 

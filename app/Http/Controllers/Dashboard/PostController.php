@@ -19,7 +19,8 @@ class PostController extends Controller
                     ->orWhere('body', 'like', '%' . $search . '%');
             })->where('user_id', $user->id)
                 ->orderBy('created_at', 'desc')
-                ->paginate(20);
+                ->paginate(20)
+                ->withQueryString();
         } else {
             $allUserPosts = Post::where('user_id', $user->id)
                 ->orderBy('created_at', 'desc')

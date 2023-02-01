@@ -37,7 +37,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @forelse ($users as $user)
                 <tr class="odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
 
                     {{-- Name --}}
@@ -475,7 +475,15 @@
 
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                    <td colspan="6" class="py-3 pl-6 pr-2">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">
+                            No users found.
+                        </p>
+                    </td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
