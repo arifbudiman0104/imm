@@ -303,6 +303,9 @@
                                     Email : {{ $user->email }}
                                 </p>
                                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                    Verified Email : {{ $user->email_verified_at ? 'Yes' : 'No' }}
+                                </p>
+                                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                                     Hiden Email : {{ $user->hide_email ? 'Yes' : 'No' }}
                                 </p>
                                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
@@ -353,7 +356,7 @@
                                     @endif
                                 </p>
                                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                    Verified : {{ $user->is_verified ? 'Yes' : 'No' }}
+                                    Verified Account : {{ $user->is_verified ? 'Yes' : 'No' }}
                                 </p>
                                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                                     Admin : {{ $user->is_admin ? 'Yes' : 'No' }}
