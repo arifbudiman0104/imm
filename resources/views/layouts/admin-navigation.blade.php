@@ -15,7 +15,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-4 sm:-my-px lg:ml-6 sm:flex">
                     <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
-                        {{ __('User') }}
+                        {{ __('Users') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.index')">
                         {{ __('Posts') }}
@@ -26,7 +26,7 @@
                     </x-nav-link>
                     <x-nav-link :href="route('admin.systems.index')"
                         :active="request()->routeIs('admin.systems.index')">
-                        {{ __('System') }}
+                        {{ __('Systems') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -160,7 +160,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
-                {{ __('User') }}
+                {{ __('Users') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.index')">
                 {{ __('Posts') }}
@@ -168,6 +168,9 @@
             <x-responsive-nav-link :href="route('admin.posts-categories.index')"
                 :active="request()->routeIs('admin.posts-categories.index')">
                 {{ __('Posts Categories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.systems.index')" :active="request()->routeIs('admin.systems.index')">
+                {{ __('Systems') }}
             </x-responsive-nav-link>
         </div>
 
