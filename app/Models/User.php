@@ -21,6 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
     // make dob attribute to be a date with format dd mm yyyy
 
     protected $fillable = [
+        'organization_id',
         'name',
         'username',
         'email',
@@ -42,10 +43,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'youtube',
     ];
 
-    // protected $with = [
-    //     'posts',
-    //     'organizationHistory',
-    // ];
+    protected $with = [
+        // 'posts',
+        // 'organizationHistory',
+        'organization',
+    ];
 
     protected $date = [
         'dob',
@@ -68,5 +70,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function organization_history()
     {
         return $this->hasMany(OrganizationHistory::class);
+    }
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class);
     }
 }

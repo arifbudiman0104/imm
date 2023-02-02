@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\View\View;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -18,8 +19,10 @@ class DashboardProfileController extends Controller
     public function edit(Request $request): View
     {
         // dd($request->user());
+        $organizations = Organization::all();
         return view('profile.edit', [
             'user' => $request->user(),
+            'organizations' => $organizations,
         ]);
     }
 

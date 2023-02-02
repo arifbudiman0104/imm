@@ -18,6 +18,18 @@
         @method('patch')
         <div class="flex flex-col space-y-6 md:space-y-0 md:gap-5 md:flex-row">
             <div class="w-full space-y-6">
+                <div>
+                    <x-input-label for="organization_id" :value="__('Organization')" />
+                    <x-select id="organization_id" name="organization_id" class="block w-full mt-1">
+                        <option value="">Select Organization</option>
+                        @foreach ($organizations as $organization)
+                        <option value="{{ $organization->id }}" {{ $user->organization_id==$organization->id ? 'selected' : '' }}>
+                            {{ $organization->name }}
+                        </option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error class="mt-2" :messages="$errors->get('organization_id')" />
+                </div>
                 {{-- Name --}}
                 <div>
                     <x-input-label for="name" :value="__('Name')" />
@@ -88,6 +100,7 @@
                 <div>
                     <x-input-label for="gender" :value="__('Gender')" />
                     <x-select id="gender" name="gender" class="block w-full mt-1" required>
+                        <option value="">Select Gender</option>
                         <option value="male" {{ $user->gender == 'male' ? 'selected' : '' }} >Male</option>
                         <option value="female" {{ $user->gender == 'female' ? 'selected' : '' }} >Female</option>
                     </x-select>
@@ -135,13 +148,15 @@
                 <div>
                     <x-input-label for="faculty" :value="__('Faculty')" />
                     <x-text-input id="faculty" name="faculty" type="text" class="block w-full mt-1"
-                        :value="old('faculty', $user->faculty)" autofocus autocomplete="faculty" placeholder="Fakultas Teknik"/>
+                        :value="old('faculty', $user->faculty)" autofocus autocomplete="faculty"
+                        placeholder="Fakultas Teknik" />
                     <x-input-error class="mt-2" :messages="$errors->get('faculty')" />
                 </div>
                 <div>
                     <x-input-label for="program_study" :value="__('Program Study')" />
                     <x-text-input id="program_study" name="program_study" type="text" class="block w-full mt-1"
-                        :value="old('program_study', $user->program_study)" autofocus autocomplete="program_study" placeholder="Teknologi Informasi"/>
+                        :value="old('program_study', $user->program_study)" autofocus autocomplete="program_study"
+                        placeholder="Teknologi Informasi" />
                     <x-input-error class="mt-2" :messages="$errors->get('program_study')" />
                 </div>
                 {{-- Instagram Link --}}
