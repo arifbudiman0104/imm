@@ -8,11 +8,18 @@
     <div class="w-full sm:py-12">
         <x-section>
             <div class="mb-5">
-                <x-button.create href="">
-                    {{ __('Create Organization History') }}
+                <x-button.create href="{{ route('dashboard.organization-histories.create') }}">
+                    {{ __('Create') }}
                 </x-button.create>
             </div>
-
+            <div class="flex flex-col justify-end md:flex-row">
+                <div class="flex items-center">
+                    @if (session('status') === 'organization-history-created')
+                    <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)"
+                        class="py-5 text-sm text-green-600 lg:pt-0 dark:text-green-400">{{ __('Created.') }}</p>
+                    @endif
+                </div>
+            </div>
             <div>
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
                     @forelse ($organization_histories as $organization_history)
@@ -41,7 +48,8 @@
                                     {{ $organization_history->start_year }} - {{ $organization_history->end_year }}
                                 </p>
                                 <p class="text-lg font-bold text-gray-900 dark:text-gray-100">
-                                    {{ $organization_history->organization_position->name }} {{ $organization_history->organization_field->name }}
+                                    {{ $organization_history->organization_position->name }} {{
+                                    $organization_history->organization_field->name }}
                                 </p>
                                 <p class="text-lg font-bold text-gray-900 dark:text-gray-100">
                                     {{ $organization_history->organization->name }}
