@@ -15,33 +15,35 @@
                     <x-badge.verified />
                 </span>
             </div>
-            @if ($organizationHistoriesActive->count() > 0)
+            {{-- @if ($organizationHistoriesActive->count() > 0)
             <div>
                 <ol>
                     @foreach ($organizationHistoriesActive as $organizationHistory)
                     <li>
                         <p class="text-gray-800 dark:text-gray-200 text-md">
-                            {{ $organizationHistory->organization_position->name }}
-                            {{ $organizationHistory->organization->name }}
                             {{ $organizationHistory->start_year }} -
                             {{ $organizationHistory->end_year }}
+                            {{ $organizationHistory->organization_position->name }}
+                            {{ $organizationHistory->organization_field->name }}
+                            {{ $organizationHistory->organization->name }}
                         </p>
                     </li>
                     @endforeach
 
                 </ol>
             </div>
-            @endif
-            @if ($organizationHistoriesNotActive->count() > 0)
+            @endif --}}
+            @if ($organizationHistories->count() > 0)
             <div>
                 <ol>
-                    @foreach ($organizationHistoriesNotActive as $organizationHistory)
+                    @foreach ($organizationHistories as $organizationHistory)
                     <li>
                         <p class="text-gray-500 text-md dark:text-gray-400">
-                            {{ $organizationHistory->organization_position->name }}
-                            {{ $organizationHistory->organization->name }}
                             {{ $organizationHistory->start_year }} -
                             {{ $organizationHistory->end_year }}
+                            {{ $organizationHistory->organization_position->name }}
+                            {{ $organizationHistory->organization_field->name }}
+                            {{ $organizationHistory->organization->name }}
                         </p>
                     </li>
                     @endforeach
@@ -55,11 +57,11 @@
                 @endif
             </div>
             <div class="mt-2">
-                @if ($user->sid)
+                {{-- @if ($user->sid)
                 <p class="text-gray-500 text-md dark:text-gray-400">
                     {{ $user->sid }}
                 </p>
-                @endif
+                @endif --}}
                 @if ($user->program_study)
                 <p class="text-gray-500 text-md dark:text-gray-400">
                     {{ $user->program_study }}
@@ -76,7 +78,7 @@
                 </p>
                 @endif
                 @if ($user->bio)
-                <p class="max-w-lg text-gray-500 text-md dark:text-gray-400">
+                <p class="w-full text-gray-500 lg:w-1/2 text-md dark:text-gray-400">
                     {{ $user->bio }}
                 </p>
                 @endif

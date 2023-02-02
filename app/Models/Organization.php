@@ -9,16 +9,13 @@ class Organization extends Model
 {
     use HasFactory;
 
-    // fillable
     protected $fillable = [
         'name',
         'description',
     ];
 
-    public function organization()
+    public function organization_histories()
     {
         return $this->hasMany(OrganizationHistory::class);
     }
-
-
 }

@@ -41,7 +41,7 @@
                                     {{ $organization_history->start_year }} - {{ $organization_history->end_year }}
                                 </p>
                                 <p class="text-lg font-bold text-gray-900 dark:text-gray-100">
-                                    {{ $organization_history->organization_position->name }}
+                                    {{ $organization_history->organization_position->name }} {{ $organization_history->organization_field->name }}
                                 </p>
                                 <p class="text-lg font-bold text-gray-900 dark:text-gray-100">
                                     {{ $organization_history->organization->name }}

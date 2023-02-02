@@ -14,17 +14,9 @@ class UserPageController extends Controller
         $user = User::where('username', $username)->firstOrFail();
 
         if ($user->is_verified == true) {
-            $organizationHistoriesActive = OrganizationHistory::with('organization', 'organization_position')
+            $organizationHistories = OrganizationHistory::with('organization', 'organization_position')
                 ->where('user_id', $user->id)
                 ->where('is_approved', true)
-                ->where('is_active', true)
-                ->orderBy('start_year', 'desc')
-                ->get();
-
-            $organizationHistoriesNotActive = OrganizationHistory::with('organization', 'organization_position')
-                ->where('user_id', $user->id)
-                ->where('is_approved', true)
-                ->where('is_active', false)
                 ->orderBy('start_year', 'desc')
                 ->get();
 
@@ -35,7 +27,7 @@ class UserPageController extends Controller
                 ->orderBy('published_at', 'desc')
                 ->paginate(12);
 
-            return view('userpage', compact('user', 'posts', 'organizationHistoriesActive', 'organizationHistoriesNotActive'));
+            return view('userpage', compact('user', 'posts', 'organizationHistories'));
         } else {
             return redirect()->route('home');
         }

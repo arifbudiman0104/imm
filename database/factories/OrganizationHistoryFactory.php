@@ -20,6 +20,7 @@ class OrganizationHistoryFactory extends Factory
             'user_id' => rand(1, 100),
             'organization_id' => rand(1, 2),
             'organization_position_id' => rand(1, 2),
+            'organization_field_id' => rand(1, 2),
             'start_year' => $this->faker->year,
             'end_year' => $this->faker->year,
             'is_active' => 1,

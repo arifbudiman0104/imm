@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Comment;
 use App\Models\Organization;
+use App\Models\OrganizationField;
 use App\Models\OrganizationHistory;
 use App\Models\OrganizationPosition;
 use App\Models\Post;
@@ -39,11 +40,22 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Arif Budiman Arrosyid',
                 'username' => 'arifbudimanarrosyid',
                 'email' => 'arifbudimanarrosyid@admin.com',
-                'bio' => 'Ini Bio',
+                'pob' => 'Banyumas',
+                // 'dob'=> '01-04-1996',
+                'dob' => '1996-04-01',
+                'gender' => 'male',
+                'phone' => '081234567890',
+                'address' => 'Jl. Raya Banyumas No. 1',
+                'sid' => '20180140119',
+                'university' => 'Universitas Muhammadiyah Yogyakarta',
+                'faculty' => 'Falakultas Teknik',
+                'program_study' => 'Teknik Informatika',
+                'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nihil?',
                 'password' => bcrypt('password'),
                 'is_admin' => true,
                 'is_verified' => true,
                 'instagram' => 'https://www.instagram.com/arifbudimanarrosyid/',
+                'facebook' => 'https://www.instagram.com/arifbudimanarrosyid/',
             ]
         );
         User::create(
@@ -51,10 +63,10 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Arif',
                 'username' => 'arif',
                 'email' => 'arif@admin.com',
-                'bio' => 'Ini Bio',
                 'password' => bcrypt('password'),
                 'is_admin' => true,
                 'is_verified' => true,
+                'bio' => 'Ini Bio',
                 'instagram' => 'https://www.instagram.com/arif/',
             ]
         );
@@ -96,7 +108,6 @@ class DatabaseSeeder extends Seeder
                 'is_active' => true,
             ]
         );
-
         Organization::create(
             [
                 'name' => 'PC IMM Banyumas',
@@ -109,16 +120,24 @@ class DatabaseSeeder extends Seeder
                 'description' => 'IMM Insan Kamil',
             ]
         );
-
         OrganizationPosition::create(
             [
                 'name' => 'Ketua',
             ]
         );
-
         OrganizationPosition::create(
             [
                 'name' => 'Wakil Ketua',
+            ]
+        );
+        OrganizationField::create(
+            [
+                'name' => 'Bidang Kaderisasi',
+            ]
+        );
+        OrganizationField::create(
+            [
+                'name' => 'Bidang Media dan Publikasi',
             ]
         );
         OrganizationHistory::create(
@@ -126,17 +145,20 @@ class DatabaseSeeder extends Seeder
                 'user_id' => 2,
                 'organization_id' => 1,
                 'organization_position_id' => 2,
+                'organization_field_id' => 1,
                 'start_year' => 2021,
                 'end_year' => 2022,
                 'is_active' => true,
                 'is_approved' => true,
             ]
         );
+
         OrganizationHistory::create(
             [
                 'user_id' => 2,
                 'organization_id' => 2,
                 'organization_position_id' => 1,
+                'organization_field_id' => 2,
                 'start_year' => 2021,
                 'end_year' => 2022,
                 'is_active' => false,
@@ -149,12 +171,14 @@ class DatabaseSeeder extends Seeder
                 'user_id' => 3,
                 'organization_id' => 1,
                 'organization_position_id' => 2,
+                'organization_field_id' => 2,
                 'start_year' => 2021,
                 'end_year' => 2022,
                 'is_active' => true,
                 'is_approved' => true,
             ]
         );
+
         OrganizationHistory::factory(100)->create();
     }
 }
