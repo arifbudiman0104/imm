@@ -28,11 +28,6 @@ use App\Http\Controllers\Dashboard\DashboardOrganizationHistoryController;
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::get('/post/{slug}', [PostController::class, 'post'])->name('post');
-Route::post('/comments', [CommentController::class, 'commentStore'])->name('comment.store');
-Route::delete('/comments/{comment}', [CommentController::class, 'commentDestroy'])->name('comment.destroy');
-Route::patch('/comments/{comment}', [CommentController::class, 'commentUpdate'])->name('comment.update');
-Route::patch('/comments/{comment}/report', [CommentController::class, 'commentReport'])->name('comment.report');
-Route::patch('/comments/{comment}/marknotspam', [CommentController::class, 'commentMarkNotSpam'])->name('comment.markasnotspam');
 Route::get('/user/{username}', [UserPageController::class, 'user'])->name('user.page');
 
 Route::get('/about', function () {
@@ -43,7 +38,15 @@ Route::fallback(function () {
     return redirect()->route('home');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware('verified')->group(function () {
+    Route::post('/comments', [CommentController::class, 'commentStore'])->name('comment.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'commentDestroy'])->name('comment.destroy');
+    Route::patch('/comments/{comment}', [CommentController::class, 'commentUpdate'])->name('comment.update');
+    Route::patch('/comments/{comment}/report', [CommentController::class, 'commentReport'])->name('comment.report');
+    Route::patch('/comments/{comment}/marknotspam', [CommentController::class, 'commentMarkNotSpam'])->name('comment.markasnotspam');
+});
+
+Route::middleware(['auth', 'admin', 'verified'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::prefix('admin')->group(function () {
         Route::resource('/users', AdminUserController::class, ['as' => 'admin']);
@@ -66,7 +69,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'verified')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('dashboard')->middleware('verified_account')->group(function () {
