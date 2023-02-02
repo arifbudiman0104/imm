@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('password'),
+                'email_verified_at' => now(),
                 'is_admin' => true,
                 'is_superadmin' => true,
                 'is_verified' => true,
