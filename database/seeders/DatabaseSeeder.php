@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Arif Budiman Arrosyid',
                 'username' => 'arifbudimanarrosyid',
                 'email' => 'arifbudimanarrosyid@admin.com',
+                'email_verified_at' => now(),
                 'pob' => 'Banyumas',
                 // 'dob'=> '01-04-1996',
                 'dob' => '1996-04-01',
