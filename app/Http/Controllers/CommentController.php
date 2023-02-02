@@ -20,7 +20,8 @@ class CommentController extends Controller
                 'text' => $request->text,
             ]);
             // dd($request->all());
-            return back()->with('status', 'comment-created');
+            // return back()->with('status', 'comment-created');
+            return back()->with('success', 'Comment created successfully!');
         }
         return redirect()->route('login');
     }
@@ -29,9 +30,9 @@ class CommentController extends Controller
     {
         if (Auth::user()->id == $comment->user_id || Auth::user()->is_admin) {
             $comment->delete();
-            return back()->with('status', 'comment-deleted');
+            return back()->with('success', 'Comment deleted successfully!');
         }
-        return back()->with('status', 'comment-delete-failed');
+        return back()->with('warning', 'You are not authorized to delete this comment!');
     }
 
     public function commentUpdate(Request $request, Comment $comment)
@@ -42,7 +43,7 @@ class CommentController extends Controller
             ]);
             $comment->text = $request->text;
             $comment->save();
-            return back()->with('status', 'comment-updated');
+            return back()->with('success', 'Comment updated successfully!');
         } else if (Auth::user()->is_admin) {
             $request->validate([
                 'text' => 'required|string|max:255'
@@ -50,9 +51,9 @@ class CommentController extends Controller
             $comment->timestamps = false;
             $comment->text = $request->text;
             $comment->save();
-            return back()->with('status', 'comment-updated-as-admin');
+            return back()->with('success', 'As admin, comment updated successfully!');
         }
-        return back()->with('status', 'comment-update-failed');
+        return back()->with('warning', 'You are not authorized to update this comment!');
     }
 
     public function commentReport(Comment $comment)
@@ -62,7 +63,7 @@ class CommentController extends Controller
             $comment->incrementSpamCount();
             $comment->is_spam = true;
             $comment->save();
-            return back()->with('status', 'comment-reported');
+            return back()->with('success', 'Comment reported successfully!');
         }
         return redirect()->route('login');
         // return back()->with('status', 'comment-report-failed');
@@ -75,8 +76,8 @@ class CommentController extends Controller
             $comment->spam_count = 0;
             $comment->is_spam = false;
             $comment->save();
-            return back()->with('status', 'comment-marked-not-spam');
+            return back()->with('success', 'Comment marked as not spam successfully!');
         }
-        return back()->with('status', 'comment-mark-not-spam-failed');
+        return back()->with('warning', 'You are not authorized to mark this comment as not spam!');
     }
 }

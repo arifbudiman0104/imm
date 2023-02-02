@@ -40,7 +40,7 @@ class DashboardProfileController extends Controller
         $request->user()->save();
 
         // dd($request->user());
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('success', 'Profile updated successfully!');
     }
 
     /**

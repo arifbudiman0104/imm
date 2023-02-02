@@ -21,7 +21,7 @@ class AdminSystemController extends Controller
         Gate::authorize('admin');
         $system->is_active = true;
         $system->save();
-        return redirect()->route('admin.systems.index')->with('status', 'system-enabled');
+        return redirect()->route('admin.systems.index')->with('success', 'Registered system enabled successfully!');
     }
 
     public function disable(System $system)
@@ -29,6 +29,6 @@ class AdminSystemController extends Controller
         Gate::authorize('admin');
         $system->is_active = false;
         $system->save();
-        return redirect()->route('admin.systems.index')->with('status', 'system-disabled');
+        return redirect()->route('admin.systems.index')->with('success', 'Registered system disabled successfully!');
     }
 }

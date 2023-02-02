@@ -64,7 +64,8 @@ class DashboardOrganizationHistoryController extends Controller
         $organization_history->save();
 
         return redirect()->route('dashboard.organization-histories.index')
-            ->with('status', 'organization-history-created');
+            // ->with('status', 'organization-history-created');
+            ->with('success', 'Organization History Created Successfully!');
     }
 
     /**
