@@ -29,7 +29,10 @@
                             <x-input-label for="organization_id" :value="__('Organization')" />
                             <x-select id="organization_id" name="organization_id" class="block w-full mt-1">
                                 @foreach ($organizations as $organization)
-                                <option value="{{ $organization->id }}">{{ $organization->name }}</option>
+                                <option value="{{ $organization->id }}" {{ old('organization_id')==$organization->id ?
+                                    'selected' : '' }}>
+                                    {{ $organization->name }}
+                                </option>
                                 @endforeach
                             </x-select>
                             <x-input-error class="mt-2" :messages="$errors->get('organization_id')" />
@@ -39,7 +42,9 @@
                             <x-select id="organization_position_id" name="organization_position_id"
                                 class="block w-full mt-1">
                                 @foreach ($organization_positions as $organization_position)
-                                <option value="{{ $organization_position->id }}">{{ $organization_position->name }}
+                                <option value="{{ $organization_position->id }}" {{
+                                    old('organization_position_id')==$organization_position->id ? 'selected' : '' }}>
+                                    {{ $organization_position->name }}
                                 </option>
                                 @endforeach
                             </x-select>
@@ -49,7 +54,10 @@
                             <x-input-label for="organization_field_id" :value="__('Organization Field')" />
                             <x-select id="organization_field_id" name="organization_field_id" class="block w-full mt-1">
                                 @foreach ($organization_fields as $organization_field)
-                                <option value="{{ $organization_field->id }}">{{ $organization_field->name }}</option>
+                                <option value="{{ $organization_field->id }}" {{
+                                    old('organization_field_id')==$organization_field->id ? 'selected' : '' }}>
+                                    {{ $organization_field->name }}
+                                </option>
                                 @endforeach
                             </x-select>
                             <x-input-error class="mt-2" :messages="$errors->get('organization_field_id')" />
