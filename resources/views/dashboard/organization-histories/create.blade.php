@@ -28,6 +28,7 @@
                         <div>
                             <x-input-label for="organization_id" :value="__('Organization')" />
                             <x-select id="organization_id" name="organization_id" class="block w-full mt-1">
+                                <option value="">Select Organization</option>
                                 @foreach ($organizations as $organization)
                                 <option value="{{ $organization->id }}" {{ old('organization_id')==$organization->id ?
                                     'selected' : '' }}>
@@ -41,6 +42,7 @@
                             <x-input-label for="organization_position_id" :value="__('Organization Position')" />
                             <x-select id="organization_position_id" name="organization_position_id"
                                 class="block w-full mt-1">
+                                <option value="">Select Organization Position</option>
                                 @foreach ($organization_positions as $organization_position)
                                 <option value="{{ $organization_position->id }}" {{
                                     old('organization_position_id')==$organization_position->id ? 'selected' : '' }}>
@@ -53,6 +55,7 @@
                         <div>
                             <x-input-label for="organization_field_id" :value="__('Organization Field')" />
                             <x-select id="organization_field_id" name="organization_field_id" class="block w-full mt-1">
+                                <option value="">Select Organization Field</option>
                                 @foreach ($organization_fields as $organization_field)
                                 <option value="{{ $organization_field->id }}" {{
                                     old('organization_field_id')==$organization_field->id ? 'selected' : '' }}>
