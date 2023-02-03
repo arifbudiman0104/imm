@@ -21,12 +21,12 @@ class OrganizationHistory extends Model
         'end_year'
     ];
 
-    protected $with = [
-        // 'user',
-        'organization',
-        'organization_position',
-        'organization_field'
-    ];
+    // protected $with = [
+    //     // 'user',
+    //     'organization',
+    //     'organization_position',
+    //     'organization_field'
+    // ];
 
     public function user()
     {

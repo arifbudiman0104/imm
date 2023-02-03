@@ -21,7 +21,10 @@ class DashboardOrganizationHistoryController extends Controller
      */
     public function index()
     {
-        $organization_histories = OrganizationHistory::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
+        $organization_histories = OrganizationHistory::with('organization', 'organization_position', 'organization_field')
+            ->where('user_id', auth()->user()->id)
+            ->orderBy('start_year', 'desc')
+            ->get();
         return view('dashboard.organization-histories.index', compact('organization_histories'));
     }
 

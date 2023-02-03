@@ -15,16 +15,18 @@ class DashboardPostController extends Controller
         $search = request('search');
         $user = auth()->user();
         if ($search) {
-            $allUserPosts = Post::where(function ($query) use ($search) {
-                $query->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('excerpt', 'like', '%' . $search . '%')
-                    ->orWhere('body', 'like', '%' . $search . '%');
-            })->where('user_id', $user->id)
+            $allUserPosts = Post::with('post_category')
+                ->where(function ($query) use ($search) {
+                    $query->where('title', 'like', '%' . $search . '%')
+                        ->orWhere('excerpt', 'like', '%' . $search . '%')
+                        ->orWhere('body', 'like', '%' . $search . '%');
+                })->where('user_id', $user->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(20)
                 ->withQueryString();
         } else {
-            $allUserPosts = Post::where('user_id', $user->id)
+            $allUserPosts = Post::with('post_category')
+                ->where('user_id', $user->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(20);
         }

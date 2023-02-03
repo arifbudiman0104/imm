@@ -12,11 +12,12 @@ class PostController extends Controller
     {
         $search = request('search');
         if ($search) {
-            $posts = Post::where(function ($query) use ($search) {
-                $query->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('excerpt', 'like', '%' . $search . '%')
-                    ->orWhere('body', 'like', '%' . $search . '%');
-            })
+            $posts = Post::with('post_category', 'user')
+                ->where(function ($query) use ($search) {
+                    $query->where('title', 'like', '%' . $search . '%')
+                        ->orWhere('excerpt', 'like', '%' . $search . '%')
+                        ->orWhere('body', 'like', '%' . $search . '%');
+                })
                 ->where('is_published', true)
                 ->where('is_approved', true)
                 ->where('is_rejected', false)
@@ -24,7 +25,8 @@ class PostController extends Controller
                 ->paginate(12)
                 ->withQueryString();
         } else {
-            $posts = Post::where('is_published', true)
+            $posts = Post::with('post_category', 'user')
+                ->where('is_published', true)
                 ->where('is_approved', true)
                 ->where('is_rejected', false)
                 ->orderBy('published_at', 'desc')
@@ -34,11 +36,11 @@ class PostController extends Controller
     }
     public function post($slug)
     {
-        $post = Post::where('slug', $slug)
+        $post = Post::with('post_category', 'user', 'comments')
+            ->where('slug', $slug)
             ->where('is_published', true)
             ->where('is_approved', true)
             ->firstOrFail();
-        // dd($post);
         $related_posts = Post::with('post_category', 'user')
             ->where('id', '!=', $post->id)
             ->where('post_category_id', $post->post_category_id)
@@ -47,7 +49,6 @@ class PostController extends Controller
             ->orderBy('published_at', 'desc')
             ->take(2)
             ->get();
-
         $recommended_posts = Post::with('post_category', 'user')
             ->where('id', '!=', $post->id)
             ->where('post_category_id', '!=', $post->post_category_id)
@@ -62,11 +63,6 @@ class PostController extends Controller
             Cookie::queue('post_' . $post->slug, 'true', 60 * 2);
         }
 
-        $comments = $post
-            ->comments()
-            ->orderBy('created_at', 'desc')
-            ->get();
-        // dd($comments)->toArray();
-        return view('post', compact('post', 'related_posts', 'recommended_posts', 'comments'));
+        return view('post', compact('post', 'related_posts', 'recommended_posts'));
     }
 }

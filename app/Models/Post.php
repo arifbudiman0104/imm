@@ -32,11 +32,11 @@ class Post extends Model
         'is_rejected',
     ];
 
-    protected $with = [
-        'user',
-        'post_category',
-        // 'comments',
-    ];
+    // protected $with = [
+    //     'user',
+    //     'post_category',
+    //     // 'comments',
+    // ];
 
     public function incrementViewCount()
     {

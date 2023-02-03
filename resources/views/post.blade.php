@@ -313,7 +313,7 @@
                     @endauth
 
                     <div class="flex flex-col gap-5 mt-5">
-                        @forelse ($comments as $comment)
+                        @forelse ($post->comments as $comment)
                         <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
                             <div x-data="{ showEdit: false }">
                                 <div class="flex justify-between ">

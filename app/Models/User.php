@@ -46,7 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $with = [
         // 'posts',
         // 'organizationHistory',
-        'organization',
+        // 'organization',
     ];
 
     protected $date = [
