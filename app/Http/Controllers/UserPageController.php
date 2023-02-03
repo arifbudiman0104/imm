@@ -11,7 +11,9 @@ class UserPageController extends Controller
 {
     public function user($username)
     {
-        $user = User::where('username', $username)->firstOrFail();
+        $user = User::with('organization')
+            ->where('username', $username)
+            ->firstOrFail();
 
         if ($user->is_verified == true) {
             $organizationHistories = OrganizationHistory::with('organization', 'organization_position', 'organization_field')
