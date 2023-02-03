@@ -161,14 +161,14 @@
                             </div>
                             <div class="flex flex-col">
                                 <div class="flex flex-col justify-between sm:flex-row 2xl:flex-col">
-                                    <div class="flex items-center gap-1 mt-1">
+                                    {{-- <div class="flex items-center gap-1 mt-1">
                                         <p class="text-gray-900 text-md dark:text-gray-100">
                                             {{ $post->user->name }}
                                         </p>
                                         @if ($post->user->is_verified)
                                         <x-badge.verified />
                                         @endif
-                                    </div>
+                                    </div> --}}
                                     <div class="flex gap-2 place-items-end shrink-0">
                                         <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
                                             {{ $post->published_at->diffForHumans() }}

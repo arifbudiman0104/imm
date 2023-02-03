@@ -20,7 +20,7 @@ class UserPageController extends Controller
                 ->orderBy('start_year', 'desc')
                 ->get();
 
-            $posts = Post::with('post_category', 'user')
+            $posts = Post::with('post_category')
                 ->where('user_id', $user->id)
                 ->where('is_published', true)
                 ->where('is_approved', true)
