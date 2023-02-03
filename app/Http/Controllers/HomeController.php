@@ -9,7 +9,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $featured_posts = Post::where('is_published', true)
+        $featured_posts = Post::with('post_category', 'user')
+            ->where('is_published', true)
             ->where('is_approved', true)
             ->where('is_featured', true)
             ->where('is_rejected', false)
