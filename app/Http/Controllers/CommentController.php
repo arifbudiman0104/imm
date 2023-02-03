@@ -19,11 +19,9 @@ class CommentController extends Controller
                 'user_id' => Auth::user()->id,
                 'text' => $request->text,
             ]);
-            // dd($request->all());
-            // return back()->with('status', 'comment-created');
             return back()->with('success', 'Comment created successfully!');
         }
-        return redirect()->route('login');
+        return redirect()->route('login')->with('warning', 'You must be logged in to comment!');
     }
 
     public function commentDestroy(Comment $comment)
@@ -65,8 +63,7 @@ class CommentController extends Controller
             $comment->save();
             return back()->with('success', 'Comment reported successfully!');
         }
-        return redirect()->route('login');
-        // return back()->with('status', 'comment-report-failed');
+        return redirect()->route('login')->with('warning', 'You must be logged in to report a comment!');
     }
 
     public function commentMarkNotSpam(Comment $comment)
