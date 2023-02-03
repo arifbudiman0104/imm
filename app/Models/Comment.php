@@ -30,4 +30,12 @@ class Comment extends Model
         $this->spam_count++;
         return $this->save();
     }
+
+    protected $hidden = [
+        'id',
+        'post_id',
+        'user_id',
+        'is_spam',
+        'spam_count',
+    ];
 }

@@ -14,6 +14,10 @@ class Organization extends Model
         'description',
     ];
 
+    protected $hidden = [
+        'id',
+    ];
+
     public function organization_histories()
     {
         return $this->hasMany(OrganizationHistory::class);

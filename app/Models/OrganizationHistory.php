@@ -21,6 +21,17 @@ class OrganizationHistory extends Model
         'end_year'
     ];
 
+    protected $hidden = [
+        'id',
+        'is_active',
+        'is_approved',
+        'is_requested',
+        'user_id',
+        'organization_id',
+        'organization_position_id',
+        'organization_field_id',
+    ];
+
     // protected $with = [
     //     // 'user',
     //     'organization',

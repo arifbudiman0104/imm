@@ -13,4 +13,11 @@ class System extends Model
         // 'name',
         // 'description',
     ];
+
+    protected $hidden = [
+        'id',
+        'name',
+        'created_at',
+        'updated_at',
+    ];
 }

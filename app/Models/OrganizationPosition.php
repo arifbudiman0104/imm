@@ -12,6 +12,9 @@ class OrganizationPosition extends Model
     protected $fillable = [
         'name',
     ];
+    protected $hidden = [
+        'id',
+    ];
 
     public function organization_histories()
     {

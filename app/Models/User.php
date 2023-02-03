@@ -54,8 +54,33 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $hidden = [
+        'id',
+        'organization_id',
+        'organization',
+        'email',
+        'username',
+        'hide_email',
+        'email_verified_at',
+        'gender',
+        'phone',
+        'address',
+        'bio',
+        'pob',
+        'dob',
+        'sid',
+        'university',
+        'faculty',
+        'program_study',
+        'is_verified',
+        'is_admin',
+        'is_superadmin',
         'password',
         'remember_token',
+        'instagram',
+        'facebook',
+        'twitter',
+        'youtube',
+        'website',
     ];
 
     protected $casts = [

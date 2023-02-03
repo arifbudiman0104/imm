@@ -30,6 +30,13 @@ class Post extends Model
     protected $hidden = [
         'is_requested',
         'is_rejected',
+        'is_published',
+        'is_approved',
+        'is_featured',
+        'approved_at',
+        'user_id',
+        'id',
+        'post_category_id',
     ];
 
     // protected $with = [

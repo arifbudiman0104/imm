@@ -44,7 +44,6 @@ class PostController extends Controller
         $related_posts = Post::with('post_category', 'user')
             ->where('slug', '!=', $post->slug)
             ->where('post_category_id', $post->post_category_id)
-            ->inRandomOrder()
             ->where('is_published', true)
             ->where('is_approved', true)
             ->orderBy('published_at', 'desc')
