@@ -7,13 +7,22 @@
 
     <div class="w-full sm:py-12">
         <x-section>
-            <div class="flex items-center">
-                <div class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    {{ $user->name }}
+            <div class="mb-2">
+                <div class="flex items-center">
+                    <div class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                        {{ $user->name }}
+                    </div>
+                    <span class="ml-2">
+                        <x-badge.verified />
+                    </span>
                 </div>
-                <span class="ml-2">
-                    <x-badge.verified />
-                </span>
+                @if ($user->organization_id)
+                <div class="flex items-center">
+                    <div class="leading-tight text-gray-800 dark:text-gray-200">
+                        {{ $user->organization->name }}
+                    </div>
+                </div>
+                @endif
             </div>
             {{-- @if ($organizationHistoriesActive->count() > 0)
             <div>

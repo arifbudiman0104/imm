@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
                 'university' => 'Universitas Muhammadiyah Yogyakarta',
                 'faculty' => 'Falakultas Teknik',
                 'program_study' => 'Teknik Informatika',
-                'bio' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, nihil?',
+                'bio' => 'I am web developer of IMM Banyumas',
                 'password' => bcrypt('password'),
                 'is_admin' => true,
                 'is_verified' => true,
@@ -100,9 +100,6 @@ class DatabaseSeeder extends Seeder
                 'description' => 'JavaScript',
             ]
         );
-        User::factory(100)->create();
-        Post::factory(1000)->create();
-        Comment::factory(2000)->create();
         System::create(
             [
                 'name' => 'Register',
@@ -120,6 +117,18 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'PK IMM Insan Kamil',
                 'description' => 'IMM Insan Kamil',
+            ]
+        );
+        Organization::create(
+            [
+                'name' => 'PK IMM Teknik',
+                'description' => 'IMM Teknik',
+            ]
+        );
+        Organization::create(
+            [
+                'name' => 'PK IMM FAI',
+                'description' => 'IMM Teknik',
             ]
         );
         OrganizationPosition::create(
@@ -180,7 +189,9 @@ class DatabaseSeeder extends Seeder
                 'is_approved' => true,
             ]
         );
-
+        User::factory(100)->create();
+        Post::factory(1000)->create();
+        Comment::factory(2000)->create();
         OrganizationHistory::factory(100)->create();
     }
 }
