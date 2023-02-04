@@ -65,4 +65,20 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('excerpt', 'like', '%' . $search . '%')
+                    ->orWhere('body', 'like', '%' . $search . '%');
+            });
+        });
+        $query->when($filters['category'] ?? false, function ($query, $post_category) {
+            return $query->whereHas('post_category', function ($query) use ($post_category) {
+                $query->where('slug', $post_category);
+            });
+        });
+    }
 }

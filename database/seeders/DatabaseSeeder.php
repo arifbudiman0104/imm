@@ -100,6 +100,27 @@ class DatabaseSeeder extends Seeder
                 'description' => 'JavaScript',
             ]
         );
+        PostCategory::create(
+            [
+                'title' => 'Windows',
+                'slug' => 'Windows',
+                'description' => 'Windows',
+            ]
+        );
+        PostCategory::create(
+            [
+                'title' => 'Linux',
+                'slug' => 'linux',
+                'description' => 'Linux',
+            ]
+        );
+        PostCategory::create(
+            [
+                'title' => 'Samsung',
+                'slug' => 'samsung',
+                'description' => 'Samsung',
+            ]
+        );
         System::create(
             [
                 'name' => 'Register',
@@ -190,7 +211,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
         User::factory(100)->create();
-        Post::factory(2000)->create();
+        Post::factory(1000)->create();
         Comment::factory(2000)->create();
         OrganizationHistory::factory(100)->create();
     }
