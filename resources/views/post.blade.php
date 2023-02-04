@@ -234,79 +234,8 @@
                                     <x-button.comment class="" type="submit">
                                         Send
                                     </x-button.comment>
-                                    @if (session('status') === 'comment-created')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 10000)"
-                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
-                                        created.') }}
-                                    </p>
-                                    @endif
                                 </div>
-                                <div>
-                                    @if (session('status') === 'comment-deleted')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 10000)"
-                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
-                                        deleted.') }}
-                                    </p>
-                                    @endif
-                                    @if (session('status') === 'comment-delete-failed')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 10000)"
-                                        class="ml-2 text-sm text-red-600 dark:text-red-400">{{ __('Comment
-                                        delete failed.') }}
-                                    </p>
-                                    @endif
-                                    @if (session('status') === 'comment-updated')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 10000)"
-                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
-                                        updated.') }}
-                                    </p>
-                                    @endif
-                                    @if (session('status') === 'comment-updated-as-admin')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 10000)"
-                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
-                                        updated as Admin.') }}
-                                    </p>
-                                    @endif
-                                    @if (session('status') === 'comment-update-failed')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 10000)"
-                                        class="ml-2 text-sm text-red-600 dark:text-red-400">{{ __('Comment
-                                        update failed.') }}
-                                    </p>
-                                    @endif
-                                    @if (session('status') === 'comment-reported')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 10000)"
-                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
-                                        reported.') }}
-                                    </p>
-                                    @endif
-                                    @if (session('status') === 'comment-report-failed')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 10000)"
-                                        class="ml-2 text-sm text-red-600 dark:text-red-400">{{ __('Comment
-                                        report failed.') }}
-                                    </p>
-                                    @endif
-                                    @if (session('status') === 'comment-marked-not-spam')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 10000)"
-                                        class="ml-2 text-sm text-green-600 dark:text-green-400">{{ __('Comment
-                                        marked as not spam.') }}
-                                    </p>
-                                    @endif
-                                    @if (session('status') === 'comment-report-failed')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 10000)"
-                                        class="ml-2 text-sm text-red-600 dark:text-red-400">{{ __('Comment
-                                        mark as not spam failed.') }}
-                                    </p>
-                                    @endif
-                                </div>
+
                             </div>
                         </form>
                     </div>
@@ -448,10 +377,5 @@
                 </x-section>
             </div>
         </div>
-
-
-
-
-
     </div>
 </x-guest-layout>

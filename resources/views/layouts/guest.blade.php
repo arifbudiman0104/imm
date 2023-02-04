@@ -11,9 +11,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
     <!-- Styles -->
     <style>
         [x-cloak] {
@@ -76,7 +73,7 @@
                 </svg>
                 <span class="sr-only">Check icon</span>
             </div>
-            <div class="ml-3 text-sm font-normal">{{ session('success') }}</div>
+            <div class="mx-3 text-sm font-normal">{{ session('success') }}</div>
             <button type="button" x-on:click="show = false"
                 class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-700 dark:hover:bg-gray-800"
                 data-dismiss-target="#toast-success" aria-label="Close">
@@ -107,7 +104,7 @@
                 </svg>
                 <span class="sr-only">Warning icon</span>
             </div>
-            <div class="ml-3 text-sm font-normal">{{ session('warning') }}</div>
+            <div class="mx-3 text-sm font-normal">{{ session('warning') }}</div>
             <button type="button" x-on:click="show = false"
                 class="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-700 dark:hover:bg-gray-800"
                 data-dismiss-target="#toast-warning" aria-label="Close">
