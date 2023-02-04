@@ -18,7 +18,7 @@
                             @endif
                         </h2>
                         @if(request('search'))
-                        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                        <h2 class="text-lg font-medium leading-tight text-gray-800 dark:text-gray-200">
                             {{ __('Search results for: ') }} {{ request('search') }}
                         </h2>
                         @endif
@@ -38,15 +38,15 @@
                     </div>
                     {{-- Categories Small Screen --}}
                     <div class="lg:hidden">
-                        <div class="flex gap-5 pb-5 mt-5 mb-5 overflow-y-auto">
-                            <a href="{{ route('posts') }}" class="px-3 py-2 bg-gray-100 rounded-lg dark:bg-gray-700 shrink-0
+                        <div class="flex gap-5 pb-2.5 mt-5 mb-2.5 overflow-y-auto">
+                            <a href="{{ route('posts') }}" class="px-5 py-2 bg-gray-50 rounded-lg dark:bg-gray-700 shrink-0 hover:bg-gray-100 hover:dark:bg-gray-600
                             @unless (request('category')) bg-gray-200 dark:bg-gray-500 @endunless">
                                 All {{ $count_posts }}
                             </a>
                             @foreach ($post_categories as $post_category)
-                            <a href="/posts?category={{ $post_category->slug }}" class="px-3 py-2 bg-gray-100 dark:bg-gray-700
+                            <a href="/posts?category={{ $post_category->slug }}" class="px-5 py-2 rounded-lg shrink-0 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 hover:dark:bg-gray-600
                                 @if (request('category') == $post_category->slug)
-                                bg-gray-200 dark:bg-gray-500 @endif rounded-lg shrink-0">
+                                bg-gray-200 dark:bg-gray-500 @endif ">
                                 {{ $post_category->title }}
                                 {{ $post_category->posts->where('is_published', true)
                                 ->where('is_approved', true)
@@ -54,7 +54,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 gap-5 lg:grid-cols-1">
+                    <div class="grid grid-cols-1 gap-5">
                         @forelse ($posts as $post)
                         <x-card.post-public>
                             <a href="{{ route('post', $post->slug) }}">
@@ -131,10 +131,11 @@
                             Categories
                         </h2>
                         <div class="gap-5 pb-5 mt-5 space-y-5 overflow-x-auto lg:overflow-hidden lg:block">
-                            <x-card.post-category-public>
+                            <div
+                                class="overflow-hidden rounded-lg bg-gray-50 hover:bg-gray-100 hover:dark:bg-gray-600 dark:bg-gray-700 dark:border-gray-500">
                                 <a href="{{ route('posts') }}">
                                     <div
-                                        class="flex flex-row justify-between h-full px-3 py-2 lg:flex-row @unless (request('category')) bg-gray-200 dark:bg-gray-500 @endunless">
+                                        class="flex flex-row justify-between h-full px-5 py-2 lg:flex-row @unless (request('category')) bg-gray-200 dark:bg-gray-500 @endunless">
                                         <div>
                                             All
                                         </div>
@@ -143,11 +144,12 @@
                                         </div>
                                     </div>
                                 </a>
-                            </x-card.post-category-public>
+                            </div>
                             @foreach ($post_categories as $post_category)
-                            <x-card.post-category-public>
+                            <div
+                                class="overflow-hidden rounded-lg bg-gray-50 hover:bg-gray-100 hover:dark:bg-gray-600 dark:bg-gray-700 dark:border-gray-500">
                                 <a href="/posts?category={{ $post_category->slug }}">
-                                    <div class="flex flex-row justify-between h-full px-3 py-2 @if (request('category') == $post_category->slug)
+                                    <div class="flex flex-row justify-between h-full px-5 py-2 @if (request('category') == $post_category->slug)
                                         bg-gray-200 dark:bg-gray-500
                                     @endif  lg:flex-row">
                                         <h1 class="mr-2 shrink-0">
@@ -160,7 +162,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </x-card.post-category-public>
+                            </div>
                             @endforeach
                         </div>
                     </div>

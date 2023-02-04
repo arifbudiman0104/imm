@@ -218,7 +218,7 @@
                     @endguest
                     @auth
                     <p class="mt-1 text-gray-600 text-md dark:text-gray-400">
-                        Comment as <span class="text-iindigo-600 dark:text-indigo-400">{{ Auth::user()->name }}</span>.
+                        Comment as <span class="text-indigo-600 dark:text-indigo-400">{{ Auth::user()->name }}</span>.
                     </p>
                     <div class="mt-5" class="flex flex-col">
                         <form method="POST" action="{{ route('comment.store') }}">
