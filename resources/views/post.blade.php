@@ -104,7 +104,7 @@
                                             @endif
                                         </div>
                                         <div class="flex flex-col">
-                                            <div class="flex flex-col justify-between sm:flex-row lg:flex-col">
+                                            <div class="flex flex-col justify-between md:flex-col lg:flex-col">
                                                 <div class="flex items-center gap-1 mt-1">
                                                     <p class="text-gray-900 text-md dark:text-gray-100">
                                                         {{ $related_post->user->name }}
@@ -132,7 +132,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="hidden lg:block">
+                    <div class="hidden md:block">
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                             Recomended Post
                         </h2>
@@ -174,7 +174,7 @@
                                             @endif
                                         </div>
                                         <div class="flex flex-col">
-                                            <div class="flex flex-col justify-between sm:flex-row lg:flex-col">
+                                            <div class="flex flex-col justify-between md:flex-col lg:flex-col">
                                                 <div class="flex items-center gap-1 mt-1">
                                                     <p class="text-gray-900 text-md dark:text-gray-100">
                                                         {{ $recommended_post->user->name }}
