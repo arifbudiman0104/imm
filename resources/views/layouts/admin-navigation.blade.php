@@ -2,7 +2,8 @@
     <!-- Primary Navigation Menu -->
     <div class="flex items-center justify-center text-gray-800 bg-red-300 h-9 dark:bg-red-500 dark:text-gray-200">Admin
     </div>
-    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    {{-- <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8"> --}}
+    <div class="w-full px-4 mx-auto sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->

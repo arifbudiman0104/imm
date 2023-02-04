@@ -6,8 +6,8 @@
     </x-slot>
 
     <div class="w-full sm:py-12">
-        <x-section>
-            <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        <x-section-admin>
+            <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 2xl:grid-cols-3">
                 @foreach ($systems as $system)
                 <div class="p-5 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-500">
                     <div>
@@ -96,6 +96,6 @@
                 </div>
             </div>
             @endforeach
-        </x-section>
+        </x-section-admin>
     </div>
 </x-admin-layout>

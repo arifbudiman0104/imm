@@ -6,54 +6,8 @@
     </x-slot>
 
     <div class="w-full sm:py-12">
-        @if (Auth::user()->is_superadmin == false)
-        <x-section>
-            <p class="text-lg text-red-500 font-lg">Attention!</p>
-            <div class="flex flex-col gap-2">
-                <li class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    User with
-                    <x-badge.superadmin /> role
-                    can do everything.
-                </li>
-                <li class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    User with
-                    <x-badge.admin /> role
-                    can only verify user with
-                    <x-badge.completed /> badge.
-                </li>
-                <li class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    Only user with
-                    <x-badge.superadmin /> role
-                    can only force verify user without
-                    <x-badge.completed /> badge.
-                </li>
-                <li class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    User with <span class="inline-flex">
-                        <x-badge.verified />
-                    </span>
-                    it means user can create post, but need user with
-                    <x-badge.admin /> role to approve the post.
-                </li>
-                <li class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    User with
-                    <x-badge.completed />
-                    and
-                    <span class="inline-flex">
-                        <x-badge.verified />
-                    </span>
-                    will have user page. Like <a href="#"
-                        class="text-indigo-500">http://imm.test/user/arifbudimanarrosyid</a>
-                </li>
-                <li class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    Delete user will delete all data related to user. Like post, comment, etc.
-                    <span class="text-red-600 dark:text-red-400">
-                        Its not reversible.
-                    </span>
-                </li>
-            </div>
-        </x-section>
-        @endif
-        <x-section>
+
+        <x-section-admin>
             {{-- <div class="mb-5">
                 <x-button.create href="{{ route('admin.users.create') }}" class="shrink-0">
                     {{ __('Create User') }}
@@ -142,11 +96,11 @@
             </div>
             @include('admin.users.list')
             @include('admin.users.table')
-        </x-section>
+        </x-section-admin>
         @if ($users->hasPages())
-        <x-section>
+        <x-section-admin>
             {{ $users->links() }}
-        </x-section>
+        </x-section-admin>
         @endif
     </div>
 </x-admin-layout>
