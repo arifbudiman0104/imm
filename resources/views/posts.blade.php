@@ -30,7 +30,9 @@
                             @foreach ($post_categories as $post_category)
                             <x-card.post-category-public>
                                 <a href="/posts?category={{ $post_category->slug }}">
-                                    <div class="flex flex-col justify-between h-full p-5 lg:flex-row">
+                                    <div class="flex flex-col justify-between h-full p-5 @if (request('category') == $post_category->slug)
+                                        bg-gray-200 dark:bg-gray-500
+                                    @endif  lg:flex-row">
                                         <h1 class="lg:mr-2">
                                             {{ $post_category->title }}
                                         </h1>
