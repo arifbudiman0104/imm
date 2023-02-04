@@ -130,7 +130,7 @@
                 </h2>
             </div>
 
-            <div class="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3">
+            <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
                 @foreach ($featured_posts as $post)
                 <x-card.post-public>
                     <a href="{{ route('post', $post->slug) }}">
@@ -162,7 +162,7 @@
                                 @endif
                             </div>
                             <div class="flex flex-col">
-                                <div class="flex flex-col justify-between sm:flex-row 2xl:flex-col">
+                                <div class="flex flex-col justify-between sm:flex-row lg:flex-col 2xl:flex-row">
                                     <div class="flex items-center gap-1 mt-1">
                                         <p class="text-gray-900 text-md dark:text-gray-100">
                                             {{ $post->user->name }}
