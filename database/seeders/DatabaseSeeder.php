@@ -116,9 +116,9 @@ class DatabaseSeeder extends Seeder
         );
         PostCategory::create(
             [
-                'title' => 'Samsung',
-                'slug' => 'samsung',
-                'description' => 'Samsung',
+                'title' => 'Web Development',
+                'slug' => 'web-development',
+                'description' => 'Web Development',
             ]
         );
         System::create(

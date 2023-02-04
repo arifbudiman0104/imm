@@ -7,47 +7,8 @@
 
     <div class="w-full sm:py-12">
         <x-section>
-
             <div class="gap-5 lg:flex">
-                <div class="space-y-5 lg:w-1/3 lg:mt-0 lg:order-2">
-                    <div class="mb-5">
-                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            Categories
-                        </h2>
-                        <div class="flex gap-5 pb-5 mt-5 overflow-x-auto lg:overflow-hidden lg:pb-0 lg:space-y-5 lg:block">
-                            <x-card.post-category-public>
-                                <a href="{{ route('posts') }}">
-                                    <div class="flex flex-col justify-between h-full p-5 lg:flex-row">
-                                        <div>
-                                            All
-                                        </div>
-                                        <div class="lg:mr-2">
-                                            {{ $count_posts }}
-                                        </div>
-                                    </div>
-                                </a>
-                            </x-card.post-category-public>
-                            @foreach ($post_categories as $post_category)
-                            <x-card.post-category-public>
-                                <a href="/posts?category={{ $post_category->slug }}">
-                                    <div class="flex flex-col justify-between h-full p-5 @if (request('category') == $post_category->slug)
-                                        bg-gray-200 dark:bg-gray-500
-                                    @endif  lg:flex-row">
-                                        <h1 class="lg:mr-2">
-                                            {{ $post_category->title }}
-                                        </h1>
-                                        <div>
-                                            {{ $post_category->posts->where('is_published', true)
-                                            ->where('is_approved', true)
-                                            ->where('is_rejected', false)->count() }}
-                                        </div>
-                                    </div>
-                                </a>
-                            </x-card.post-category-public>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+                {{-- Posts List --}}
                 <div class="lg:w-2/3">
                     <div class="mb-5">
                         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
@@ -62,17 +23,36 @@
                         </h2>
                         @endif
                     </div>
+                    {{-- Search --}}
                     <div class="mb-5">
                         <form class="flex items-center gap-2">
                             @if (request('category'))
                             <input type="hidden" name="category" value="{{ request('category') }}">
                             @endif
-                            <x-text-input id="search" name="search" type="text" class="w-full" placeholder="Search ..."
-                                value="{{ request('search') }}" />
-                            <x-button.search type="submit">
+                            <x-text-input id="search" name="search" type="text" class="w-full"
+                                placeholder="Search by title, excerpt or body ..." value="{{ request('search') }}" />
+                            <x-primary-button type="submit">
                                 {{ __('Search') }}
-                            </x-button.search>
+                            </x-primary-button>
                         </form>
+                    </div>
+                    {{-- Categories Small Screen --}}
+                    <div class="lg:hidden">
+                        <div class="flex gap-5 pb-5 mt-5 mb-5 overflow-y-auto">
+                            <a href="{{ route('posts') }}" class="px-3 py-2 bg-gray-100 rounded-lg dark:bg-gray-700 shrink-0
+                            @unless (request('category')) bg-gray-200 dark:bg-gray-500 @endunless">
+                                All {{ $count_posts }}
+                            </a>
+                            @foreach ($post_categories as $post_category)
+                            <a href="/posts?category={{ $post_category->slug }}" class="px-3 py-2 bg-gray-100 dark:bg-gray-700
+                                @if (request('category') == $post_category->slug)
+                                bg-gray-200 dark:bg-gray-500 @endif rounded-lg shrink-0">
+                                {{ $post_category->title }}
+                                {{ $post_category->posts->where('is_published', true)
+                                ->where('is_approved', true)
+                                ->where('is_rejected', false)->count() }}</a>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-1">
                         @forelse ($posts as $post)
@@ -142,6 +122,47 @@
                             </p>
                         </div>
                         @endforelse
+                    </div>
+                </div>
+                {{-- Categories 2xl Screen --}}
+                <div class="space-y-5 lg:w-1/3 lg:mt-0">
+                    <div class="hidden mb-5 lg:block">
+                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                            Categories
+                        </h2>
+                        <div class="gap-5 pb-5 mt-5 space-y-5 overflow-x-auto lg:overflow-hidden lg:block">
+                            <x-card.post-category-public>
+                                <a href="{{ route('posts') }}">
+                                    <div
+                                        class="flex flex-row justify-between h-full px-3 py-2 lg:flex-row @unless (request('category')) bg-gray-200 dark:bg-gray-500 @endunless">
+                                        <div>
+                                            All
+                                        </div>
+                                        <div>
+                                            {{ $count_posts }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </x-card.post-category-public>
+                            @foreach ($post_categories as $post_category)
+                            <x-card.post-category-public>
+                                <a href="/posts?category={{ $post_category->slug }}">
+                                    <div class="flex flex-row justify-between h-full px-3 py-2 @if (request('category') == $post_category->slug)
+                                        bg-gray-200 dark:bg-gray-500
+                                    @endif  lg:flex-row">
+                                        <h1 class="mr-2 shrink-0">
+                                            {{ $post_category->title }}
+                                        </h1>
+                                        <div>
+                                            {{ $post_category->posts->where('is_published', true)
+                                            ->where('is_approved', true)
+                                            ->where('is_rejected', false)->count() }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </x-card.post-category-public>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 
