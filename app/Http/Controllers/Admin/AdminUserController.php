@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -32,8 +33,9 @@ class AdminUserController extends Controller
 
     public function create()
     {
-        // Gate::authorize('admin')||Gate::authorize('superadmin');
-        // return view('admin.users.create');
+        Gate::authorize('admin')||Gate::authorize('superadmin');
+        $organizations = Organization::all();
+        return view('admin.users.create', compact('organizations'));
     }
 
     public function store(Request $request)
@@ -118,7 +120,7 @@ class AdminUserController extends Controller
 
     public function verify(User $user)
     {
-        Gate::authorize('admin', 'superadmin');
+        Gate::authorize('admin');
         if (Auth::user()->is_admin == true && Auth::user()->is_superadmin == false) {
             if ($user->pob != null && $user->dob != null && $user->gender != null && $user->phone != null && $user->address != null && $user->username != null) {
                 $user->timestamps = false;
@@ -138,10 +140,18 @@ class AdminUserController extends Controller
 
     public function unverify(User $user)
     {
-        Gate::authorize('admin', 'superadmin');
+        Gate::authorize('admin');
         $user->timestamps = false;
         $user->is_verified = 0;
         $user->save();
         return back()->with('success', 'User unverified successfully!');
+    }
+
+    public function resetPassword(User $user){
+        Gate::authorize('admin');
+        $user->timestamps = false;
+        $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $user->save();
+        return back()->with('success', 'User password reset successfully!');
     }
 }

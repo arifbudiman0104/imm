@@ -1,25 +1,24 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Organization History') }}
+            {{ __('User') }}
         </h2>
     </x-slot>
 
     <div class="w-full sm:py-12">
 
-        <x-section>
+        <x-section-admin>
             <header>
                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                    {{ __('Create Organization History') }}
+                    {{ __('Create Users') }}
                 </h2>
 
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    {{ __("Please fill in the form below to create a new organization history and contact admin to
-                    approve it.") }}
+                    {{ __("Please fill in the form below to create a new user.
+                    ") }}
                 </p>
             </header>
-
-            <form action="{{ route('dashboard.organization-histories.store') }}" method="post" class="mt-6 space-y-6">
+            <form action="{{ route('admin.users.store') }}" method="post" class="mt-6 space-y-6 max-w-7xl">
                 @csrf
                 @method('post')
                 <div class="flex flex-col space-y-6 md:space-y-0 md:gap-5 md:flex-row">
@@ -37,7 +36,7 @@
                             </x-select>
                             <x-input-error class="mt-2" :messages="$errors->get('organization_id')" />
                         </div>
-                        <div>
+                        {{-- <div>
                             <x-input-label for="organization_position_id" :value="__('Organization Position')" />
                             <x-select id="organization_position_id" name="organization_position_id"
                                 class="block w-full mt-1">
@@ -50,8 +49,8 @@
                                 @endforeach
                             </x-select>
                             <x-input-error class="mt-2" :messages="$errors->get('organization_position_id')" />
-                        </div>
-                        <div>
+                        </div> --}}
+                        {{-- <div>
                             <x-input-label for="organization_field_id" :value="__('Organization Field')" />
                             <x-select id="organization_field_id" name="organization_field_id" class="block w-full mt-1">
                                 <option value="">Select Organization Field</option>
@@ -63,7 +62,7 @@
                                 @endforeach
                             </x-select>
                             <x-input-error class="mt-2" :messages="$errors->get('organization_field_id')" />
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="w-full space-y-6">
                         <div>
@@ -84,6 +83,7 @@
                     <x-primary-button>{{ __('Save') }}</x-primary-button>
                 </div>
             </form>
-        </x-section>
+
+        </x-section-admin>
     </div>
-</x-app-layout>
+</x-admin-layout>

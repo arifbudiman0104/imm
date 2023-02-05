@@ -56,6 +56,7 @@ Route::middleware(['auth', 'admin', 'verified'])->group(function () {
         Route::post('/users/{user}/remove-admin', [AdminUserController::class, 'removeAdmin'])->name('admin.users.removeadmin');
         Route::post('/users/{user}/verify', [AdminUserController::class, 'verify'])->name('admin.users.verify');
         Route::post('/users/{user}/unverify', [AdminUserController::class, 'unverify'])->name('admin.users.unverify');
+        Route::post('/users/{user}/reset-password', [AdminUserController::class, 'resetPassword'])->name('admin.users.resetpassword');
         Route::get('/systems', [AdminSystemController::class, 'index'])->name('admin.systems.index');
         Route::post('/systems/{system}/enable', [AdminSystemController::class, 'enable'])->name('admin.systems.enable');
         Route::post('/systems/{system}/disable', [AdminSystemController::class, 'disable'])->name('admin.systems.disable');

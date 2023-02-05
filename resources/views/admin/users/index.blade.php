@@ -8,11 +8,11 @@
     <div class="w-full sm:py-12">
 
         <x-section-admin>
-            {{-- <div class="mb-5">
+            <div class="mb-5">
                 <x-button.create href="{{ route('admin.users.create') }}" class="shrink-0">
                     {{ __('Create User') }}
                 </x-button.create>
-            </div> --}}
+            </div>
             <div class="mb-5">
                 @if (request('search'))
                 <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">

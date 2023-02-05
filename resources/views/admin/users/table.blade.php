@@ -31,7 +31,9 @@
                     </th>
                     <th scope="col" class="px-2 py-3">
                     </th>
-                    <th scope="col" class="py-3 pl-2 pr-6">
+                    <th scope="col" class="px-2 py-3">
+                    </th>
+                    <th scope="col" class="py-3 pr-6">
                     </th>
 
                 </tr>
@@ -46,7 +48,12 @@
                     </th>
 
                     {{-- Email --}}
-                    <td class="px-2 py-4">
+                    <td scope="row" class="flex items-center px-2 py-4 shrink-0">
+                         @if ($user->email_verified_at)
+                        <span class="inline-flex mr-1">
+                            <x-badge.verified />
+                        </span>
+                        @endif
                         {{ $user->email }}
                     </td>
 
@@ -61,7 +68,7 @@
                         @endif
                     </td>
 
-                    {{-- Verified --}}
+                    {{-- Verified Account --}}
                     <td class="px-2 py-3 ">
                         @if ($user->is_verified)
                         <x-badge.verified />
@@ -289,7 +296,7 @@
                         </div>
                         @else
                         <button x-on:click="showModal = !showModal" x-cloak
-                            class="font-medium text-green-600 dark:text-green-500 hover:underline">
+                            class="font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
                             Verify
                         </button>
                         <div x-cloak x-show="showModal" x-transition.opacity
@@ -334,7 +341,7 @@
                     </td>
 
                     {{-- View --}}
-                    <td class="py-3 pl-2 pr-6" x-cloak x-data="{ showModal: false }"
+                    <td class="px-2 py-3" x-cloak x-data="{ showModal: false }"
                         x-on:keydown.window.escape="showModal = false">
                         <button x-on:click="showModal = !showModal" x-cloak
                             class="font-medium text-gray-500 dark:text-gray-400 hover:underline">
@@ -433,8 +440,53 @@
 
                     </td>
 
+                    {{-- Reset Password --}}
+                    <td class="px-2 py-3" x-cloak x-data="{ showModal: false }"
+                        x-on:keydown.window.escape="showModal = false">
+                        <button x-on:click="showModal = !showModal" x-cloak
+                            class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                            Reset Password
+                        </button>
+                        <div x-cloak x-show="showModal" x-transition.opacity
+                            class="fixed inset-0 z-50 bg-red-600/30 dark:bg-red-500/30 backdrop-blur-xl">
+                        </div>
+                        <div x-cloak x-show="showModal" x-transition
+                            class="fixed inset-0 z-50 flex items-center justify-center p-6">
+                            <div x-on:click.away="showModal = false"
+                                class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
+                                <div class="p-5">
+                                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                        {{ __('Are you sure you want to reset password this user?') }}
+                                    </h2>
+                                    <div class="mb-5">
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            {{ $user->name }}
+                                        </p>
+                                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                                            {{ $user->email }}
+                                        </p>
+                                        <p class="mt-1 text-sm text-red-600 dark:text-red-400">
+                                            This action is irreversible and will delete all the data related
+                                            to this user.
+                                        </p>
+                                    </div>
+                                    <form action="{{ route('admin.users.resetpassword', $user->id) }}" method="POST"
+                                        class="inline-flex">
+                                        @csrf
+                                        <x-button.delete type="submit">
+                                            Yes, Reset Password
+                                        </x-button.delete>
+                                    </form>
+                                    <x-button.default x-on:click="showModal = false">
+                                        Cancel (Esc)
+                                    </x-button.default>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
                     {{-- Delete --}}
-                    <td class="py-3 pl-2 pr-6" x-cloak x-data="{ showModal: false }"
+                    <td class="py-3 pr-6" x-cloak x-data="{ showModal: false }"
                         x-on:keydown.window.escape="showModal = false">
                         <button x-on:click="showModal = !showModal" x-cloak
                             class="font-medium text-red-600 dark:text-red-500 hover:underline">
@@ -482,7 +534,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="py-3 pl-6 pr-2">
+                    <td colspan="6" class="px-2 py-3">
                         <p class="text-sm text-gray-600 dark:text-gray-400">
                             No users found.
                         </p>
