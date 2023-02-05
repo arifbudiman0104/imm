@@ -33,9 +33,9 @@ class AdminUserController extends Controller
 
     public function create()
     {
-        Gate::authorize('admin')||Gate::authorize('superadmin');
-        $organizations = Organization::all();
-        return view('admin.users.create', compact('organizations'));
+        // Gate::authorize('admin')||Gate::authorize('superadmin');
+        // $organizations = Organization::all();
+        // return view('admin.users.create', compact('organizations'));
     }
 
     public function store(Request $request)

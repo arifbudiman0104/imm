@@ -49,7 +49,7 @@ Route::middleware('verified')->group(function () {
 Route::middleware(['auth', 'admin', 'verified'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::prefix('admin')->group(function () {
-        Route::resource('/users', AdminUserController::class, ['as' => 'admin'])->except(['create']);
+        Route::resource('/users', AdminUserController::class, ['as' => 'admin'])->except(['create', 'store', 'show', 'edit', 'update']);
         Route::post('/users/{user}/make-superadmin', [AdminUserController::class, 'makeSuperAdmin'])->name('admin.users.makesuperadmin');
         Route::post('/users/{user}/remove-superadmin', [AdminUserController::class, 'removeSuperAdmin'])->name('admin.users.removesuperadmin');
         Route::post('/users/{user}/make-admin', [AdminUserController::class, 'makeAdmin'])->name('admin.users.makeadmin');
