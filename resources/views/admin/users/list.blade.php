@@ -382,6 +382,9 @@
                                     Edit
                                 </x-button.delete>
                             </form> --}}
+                            <x-button.edit href="{{ route('admin.users.show', $user) }}">
+                                Full View
+                            </x-button.edit>
                             <x-button.edit href="#">
                                 Edit
                             </x-button.edit>

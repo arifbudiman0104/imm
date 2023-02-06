@@ -35,7 +35,6 @@
                     </th>
                     <th scope="col" class="py-3 pr-6">
                     </th>
-
                 </tr>
             </thead>
             <tbody>
@@ -428,6 +427,9 @@
                                             Superadmin : {{ $user->is_superadmin ? 'Yes' : 'No' }}
                                         </p>
                                     </div>
+                                    <x-button.edit href="{{ route('admin.users.show', $user) }}">
+                                        Full View
+                                    </x-button.edit>
                                     <x-button.edit href="#">
                                         Edit
                                     </x-button.edit>

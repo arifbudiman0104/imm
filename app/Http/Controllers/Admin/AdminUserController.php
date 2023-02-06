@@ -59,7 +59,10 @@ class AdminUserController extends Controller
 
     public function show(User $user)
     {
-        //
+        Gate::authorize('admin', 'superadmin');
+        // $organization_history = $user->organization_history;
+        return view('admin.users.show', compact('user'));
+        // return $user;
     }
 
     public function edit(User $user)
