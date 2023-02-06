@@ -39,11 +39,11 @@ class Post extends Model
         'post_category_id',
     ];
 
-    // protected $with = [
-    //     'user',
-    //     'post_category',
-    //     // 'comments',
-    // ];
+    protected $with = [
+        // 'user',
+        // 'post_category',
+        // 'comments',
+    ];
 
     public function incrementViewCount()
     {

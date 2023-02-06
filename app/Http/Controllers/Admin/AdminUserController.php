@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\OrganizationHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -57,11 +58,18 @@ class AdminUserController extends Controller
         // return redirect()->route('admin.users.index')->with('status', 'user-created');
     }
 
-    public function show(User $user)
+    public function show($id)
     {
         Gate::authorize('admin', 'superadmin');
-        // $organization_history = $user->organization_history;
-        return view('admin.users.show', compact('user'));
+        $user = User::with('organization')
+            ->where('id', $id)
+            ->first();
+        $organization_histories = OrganizationHistory::with('organization', 'organization_position', 'organization_field')
+            ->where('user_id', $id)
+            ->orderBy('start_year', 'desc')
+            ->get();
+        // $posts = $user->posts;
+        return view('admin.users.show', compact('user', 'organization_histories'));
         // return $user;
     }
 
@@ -150,7 +158,8 @@ class AdminUserController extends Controller
         return back()->with('success', 'User unverified successfully!');
     }
 
-    public function resetPassword(User $user){
+    public function resetPassword(User $user)
+    {
         Gate::authorize('admin');
         $user->timestamps = false;
         $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';

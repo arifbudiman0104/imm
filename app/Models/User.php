@@ -92,7 +92,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class);
     }
 
-    public function organization_history()
+    public function organization_histories()
     {
         return $this->hasMany(OrganizationHistory::class);
     }

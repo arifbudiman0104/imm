@@ -32,12 +32,12 @@ class OrganizationHistory extends Model
         'organization_field_id',
     ];
 
-    // protected $with = [
-    //     // 'user',
-    //     'organization',
-    //     'organization_position',
-    //     'organization_field'
-    // ];
+    protected $with = [
+        // 'user',
+        'organization',
+        'organization_position',
+        'organization_field'
+    ];
 
     public function user()
     {
