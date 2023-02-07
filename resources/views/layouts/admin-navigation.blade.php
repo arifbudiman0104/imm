@@ -23,7 +23,11 @@
                     </x-nav-link>
                     <x-nav-link :href="route('admin.posts-categories.index')"
                         :active="request()->routeIs('admin.posts-categories.index')">
-                        {{ __('Posts Categories') }}
+                        {{ __('Post Categories') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.organization-histories.index')"
+                        :active="request()->routeIs('admin.organization-histories.index')">
+                        {{ __('Organization Histories') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.systems.index')"
                         :active="request()->routeIs('admin.systems.index')">
@@ -168,7 +172,11 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.posts-categories.index')"
                 :active="request()->routeIs('admin.posts-categories.index')">
-                {{ __('Posts Categories') }}
+                {{ __('Post Categories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.organization-histories.index')"
+                :active="request()->routeIs('admin.organization-histories.index')">
+                {{ __('Organization Histories') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.systems.index')" :active="request()->routeIs('admin.systems.index')">
                 {{ __('Systems') }}

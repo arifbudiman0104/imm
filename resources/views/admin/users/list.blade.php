@@ -25,7 +25,7 @@
         </div>
         <div class="flex mb-5">
             <div class="flex-grow">
-                <p class="my-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {{
+                <p class="mt-1 font-medium text-gray-900 whitespace-nowrap dark:text-white"> {{
                     $user->name }}</p>
                 <div class="flex items-center">
                     @if ($user->email_verified_at)

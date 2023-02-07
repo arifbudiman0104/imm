@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminSystemController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DashboardPostController;
 use App\Http\Controllers\Dashboard\DashboardProfileController;
+use App\Http\Controllers\Admin\AdminOrganizationHistoryController;
 use App\Http\Controllers\Dashboard\DashboardOrganizationHistoryController;
 
 /*
@@ -49,7 +50,8 @@ Route::middleware('verified')->group(function () {
 Route::middleware(['auth', 'admin', 'verified'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::prefix('admin')->group(function () {
-        Route::resource('/users', AdminUserController::class, ['as' => 'admin'])->except(['create', 'store', 'edit', 'update']);
+
+        Route::resource('/users', AdminUserController::class, ['as' => 'admin']);
         Route::post('/users/{user}/make-superadmin', [AdminUserController::class, 'makeSuperAdmin'])->name('admin.users.makesuperadmin');
         Route::post('/users/{user}/remove-superadmin', [AdminUserController::class, 'removeSuperAdmin'])->name('admin.users.removesuperadmin');
         Route::post('/users/{user}/make-admin', [AdminUserController::class, 'makeAdmin'])->name('admin.users.makeadmin');
@@ -57,9 +59,12 @@ Route::middleware(['auth', 'admin', 'verified'])->group(function () {
         Route::post('/users/{user}/verify', [AdminUserController::class, 'verify'])->name('admin.users.verify');
         Route::post('/users/{user}/unverify', [AdminUserController::class, 'unverify'])->name('admin.users.unverify');
         Route::post('/users/{user}/reset-password', [AdminUserController::class, 'resetPassword'])->name('admin.users.resetpassword');
+
         Route::get('/systems', [AdminSystemController::class, 'index'])->name('admin.systems.index');
         Route::post('/systems/{system}/enable', [AdminSystemController::class, 'enable'])->name('admin.systems.enable');
         Route::post('/systems/{system}/disable', [AdminSystemController::class, 'disable'])->name('admin.systems.disable');
+
+        Route::resource('/organization-histories', AdminOrganizationHistoryController::class, ['as' => 'admin']);
 
         Route::get('/posts-categories', function () {
             return view('admin.posts-categories.index');
