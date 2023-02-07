@@ -14,7 +14,7 @@
                         <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                             All Posts
                             @if (request('category'))
-                            {{ __('in ') }} {{ $category_title }}
+                            {{ __('in ') }} {{ $categoryTitle }}
                             @endif
                         </h2>
                         @if(request('search'))
@@ -41,14 +41,14 @@
                         <div class="flex gap-5 pb-2.5 mt-5 mb-2.5 overflow-y-auto">
                             <a href="{{ route('posts') }}" class="px-5 py-2 bg-gray-50 rounded-lg dark:bg-gray-700 shrink-0 hover:bg-gray-100 hover:dark:bg-gray-600
                             @unless (request('category')) bg-gray-200 dark:bg-gray-500 @endunless">
-                                All {{ $count_posts }}
+                                All {{ $countPosts }}
                             </a>
-                            @foreach ($post_categories as $post_category)
-                            <a href="/posts?category={{ $post_category->slug }}" class="px-5 py-2 rounded-lg shrink-0 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 hover:dark:bg-gray-600
-                                @if (request('category') == $post_category->slug)
+                            @foreach ($postsCategories as $postsCategory)
+                            <a href="/posts?category={{ $postsCategory->slug }}" class="px-5 py-2 rounded-lg shrink-0 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 hover:dark:bg-gray-600
+                                @if (request('category') == $postsCategory->slug)
                                 bg-gray-200 dark:bg-gray-500 @endif ">
-                                {{ $post_category->title }}
-                                {{ $post_category->posts->where('is_published', true)
+                                {{ $postsCategory->title }}
+                                {{ $postsCategory->posts->where('is_published', true)
                                 ->where('is_approved', true)
                                 ->where('is_rejected', false)->count() }}</a>
                             @endforeach
@@ -139,12 +139,12 @@
                                             All
                                         </div>
                                         <div>
-                                            {{ $count_posts }}
+                                            {{ $countPosts }}
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                            @foreach ($post_categories as $post_category)
+                            @foreach ($postsCategories as $post_category)
                             <div
                                 class="overflow-hidden rounded-lg bg-gray-50 hover:bg-gray-100 hover:dark:bg-gray-600 dark:bg-gray-700 dark:border-gray-500">
                                 <a href="/posts?category={{ $post_category->slug }}">

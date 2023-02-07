@@ -24,24 +24,6 @@
                 </div>
                 @endif
             </div>
-            {{-- @if ($organizationHistoriesActive->count() > 0)
-            <div>
-                <ol>
-                    @foreach ($organizationHistoriesActive as $organizationHistory)
-                    <li>
-                        <p class="text-gray-800 dark:text-gray-200 text-md">
-                            {{ $organizationHistory->start_year }} -
-                            {{ $organizationHistory->end_year }}
-                            {{ $organizationHistory->organization_position->name }}
-                            {{ $organizationHistory->organization_field->name }}
-                            {{ $organizationHistory->organization->name }}
-                        </p>
-                    </li>
-                    @endforeach
-
-                </ol>
-            </div>
-            @endif --}}
             @if ($organizationHistories->count() > 0)
             <div>
                 <ol>

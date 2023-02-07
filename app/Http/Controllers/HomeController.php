@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $featured_posts = Post::with('post_category', 'user')
+        $featuredPosts = Post::with('post_category', 'user')
             ->where('is_published', true)
             ->where('is_approved', true)
             ->where('is_featured', true)
@@ -18,6 +18,6 @@ class HomeController extends Controller
             ->take(6)
             ->get();
         // dd($featured_posts);
-        return view('home', compact('featured_posts'));
+        return view('home', compact('featuredPosts'));
     }
 }

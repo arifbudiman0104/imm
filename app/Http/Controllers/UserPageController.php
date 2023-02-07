@@ -14,21 +14,18 @@ class UserPageController extends Controller
         $user = User::with('organization')
             ->where('username', $username)
             ->firstOrFail();
-
         if ($user->is_verified == true) {
             $organizationHistories = OrganizationHistory::with('organization', 'organization_position', 'organization_field')
                 ->where('user_id', $user->id)
                 ->where('is_approved', true)
                 ->orderBy('start_year', 'desc')
                 ->get();
-
             $posts = Post::with('post_category')
                 ->where('user_id', $user->id)
                 ->where('is_published', true)
                 ->where('is_approved', true)
                 ->orderBy('published_at', 'desc')
                 ->paginate(12);
-
             return view('userpage', compact('user', 'posts', 'organizationHistories'));
         } else {
             return redirect()->route('home');

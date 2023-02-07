@@ -131,7 +131,7 @@
             </div>
 
             <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                @foreach ($featured_posts as $post)
+                @foreach ($featuredPosts as $post)
                 <x-card.post-public>
                     <a href="{{ route('post', $post->slug) }}">
                         <div class="flex flex-col justify-between h-full">

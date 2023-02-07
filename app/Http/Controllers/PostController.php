@@ -11,28 +11,6 @@ class PostController extends Controller
 {
     public function index()
     {
-        // if ($search) {
-        //     $posts = Post::with('post_category', 'user')
-        //         ->where(function ($query) use ($search) {
-        //             $query->where('title', 'like', '%' . $search . '%')
-        //                 ->orWhere('excerpt', 'like', '%' . $search . '%')
-        //                 ->orWhere('body', 'like', '%' . $search . '%');
-        //         })
-        //         ->where('is_published', true)
-        //         ->where('is_approved', true)
-        //         ->where('is_rejected', false)
-        //         ->orderBy('published_at', 'desc')
-        //         ->paginate(10)
-        //         ->withQueryString();
-        // } else {
-        //     $posts = Post::with('post_category', 'user')
-        //         ->where('is_published', true)
-        //         ->where('is_approved', true)
-        //         ->where('is_rejected', false)
-        //         ->orderBy('published_at', 'desc')
-        //         ->paginate(10);
-        // }
-        // $search = request('search');
         $posts = Post::with('post_category', 'user')
             ->latest()
             ->filter(request(['search', 'category']))
@@ -42,24 +20,23 @@ class PostController extends Controller
             ->orderBy('published_at', 'desc')
             ->simplePaginate(10)
             ->withQueryString();
-        $count_posts = Post::with('post_category', 'user')
+        $countPosts = Post::with('post_category', 'user')
             ->latest()
             ->where('is_published', true)
             ->where('is_approved', true)
             ->where('is_rejected', false)
             ->orderBy('published_at', 'desc')
             ->count();
-        $post_categories = PostCategory::with('posts')
+        $postsCategories = PostCategory::with('posts')
             ->where('id', '!=', 1)
             ->orderBy('title', 'asc')
             ->get();
-        $category_title = '';
+        $categoryTitle = '';
         if (request('category')) {
             $category = PostCategory::firstWhere('slug', request('category'));
-            $category_title = $category->title;
+            $categoryTitle = $category->title;
         }
-
-        return view('posts', compact('posts', 'post_categories', 'count_posts', 'category_title'));
+        return view('posts', compact('posts', 'postsCategories', 'countPosts', 'categoryTitle'));
     }
     public function post($slug)
     {
@@ -68,7 +45,7 @@ class PostController extends Controller
             ->where('is_published', true)
             ->where('is_approved', true)
             ->firstOrFail();
-        $related_posts = Post::with('post_category', 'user')
+        $relatedPosts = Post::with('post_category', 'user')
             ->where('slug', '!=', $post->slug)
             ->where('post_category_id', $post->post_category_id)
             ->where('is_published', true)
@@ -76,7 +53,7 @@ class PostController extends Controller
             ->orderBy('published_at', 'desc')
             ->take(2)
             ->get();
-        $recommended_posts = Post::with('post_category', 'user')
+        $recommendedPosts = Post::with('post_category', 'user')
             ->where('slug', '!=', $post->slug)
             ->where('post_category_id', '!=', $post->post_category_id)
             ->inRandomOrder()
@@ -85,12 +62,10 @@ class PostController extends Controller
             ->orderBy('published_at', 'desc')
             ->take(2)
             ->get();
-
         if (!Cookie::has('post_' . $post->slug)) {
             $post->incrementViewCount();
             Cookie::queue('post_' . $post->slug, 'true', 60 * 2);
         }
-
-        return view('post', compact('post', 'related_posts', 'recommended_posts'));
+        return view('post', compact('post', 'relatedPosts', 'recommendedPosts'));
     }
 }

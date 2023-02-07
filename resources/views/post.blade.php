@@ -67,23 +67,23 @@
                             Related Post
                         </h2>
                         <div class="grid grid-cols-1 gap-5 mt-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1">
-                            @foreach ($related_posts as $related_post)
+                            @foreach ($relatedPosts as $relatedPost)
                             <x-card.post-public>
-                                <a href="{{ route('post', $related_post->slug) }}">
+                                <a href="{{ route('post', $relatedPost->slug) }}">
                                     <div class="flex flex-col justify-between h-full">
                                         <div class="flex flex-col">
-                                            @if ($related_post->post_category_id != 1 || $related_post->is_featured ==
+                                            @if ($relatedPost->post_category_id != 1 || $relatedPost->is_featured ==
                                             false)
                                             <div class="flex justify-between">
                                                 <div>
-                                                    @if ($related_post->post_category_id != 1)
+                                                    @if ($relatedPost->post_category_id != 1)
                                                     <div
                                                         class="font-medium text-indigo-600 uppercase text-md dark:text-indigo-400">
-                                                        {{ $related_post->post_category->title }}
+                                                        {{ $relatedPost->post_category->title }}
                                                     </div>
                                                     @endif
                                                 </div>
-                                                @if ($related_post->is_featured)
+                                                @if ($relatedPost->is_featured)
                                                 <x-badge.post-featured>
                                                     Featured
                                                 </x-badge.post-featured>
@@ -91,15 +91,15 @@
                                             </div>
                                             @endif
                                             <p class="text-lg font-bold text-gray-900 dark:text-gray-100">
-                                                {{ $related_post->title }}
+                                                {{ $relatedPost->title }}
                                             </p>
-                                            @if ($related_post->excerpt)
+                                            @if ($relatedPost->excerpt)
                                             <p class="mt-1 text-gray-500 text-md dark:text-gray-400">
-                                                {{ $related_post->excerpt }}
+                                                {{ $relatedPost->excerpt }}
                                             </p>
                                             @else
                                             <p class="mt-1 text-gray-500 text-md dark:text-gray-400">
-                                                {{ Str::limit(strip_tags($related_post->body), 100) }}
+                                                {{ Str::limit(strip_tags($relatedPost->body), 100) }}
                                             </p>
                                             @endif
                                         </div>
@@ -107,9 +107,9 @@
                                             <div class="flex flex-col justify-between md:flex-col lg:flex-col">
                                                 <div class="flex items-center gap-1 mt-1">
                                                     <p class="text-gray-900 text-md dark:text-gray-100">
-                                                        {{ $related_post->user->name }}
+                                                        {{ $relatedPost->user->name }}
                                                     </p>
-                                                    @if ($related_post->user->is_verified)
+                                                    @if ($relatedPost->user->is_verified)
                                                     <div>
                                                         <x-badge.verified />
                                                     </div>
@@ -117,10 +117,10 @@
                                                 </div>
                                                 <div class="flex gap-2 place-items-end shrink-0">
                                                     <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
-                                                        {{ $related_post->published_at->diffForHumans() }}
+                                                        {{ $relatedPost->published_at->diffForHumans() }}
                                                     </p>
                                                     <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
-                                                        {{ $related_post->views }}
+                                                        {{ $relatedPost->views }}
                                                         {{ Str::plural('view', $post->views) }}
                                                     </p>
                                                 </div>
@@ -137,23 +137,23 @@
                             Recomended Post
                         </h2>
                         <div class="grid grid-cols-1 gap-5 mt-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-1">
-                            @foreach ($recommended_posts as $recommended_post)
+                            @foreach ($recommendedPosts as $recommendedPost)
                             <x-card.post-public>
-                                <a href="{{ route('post', $recommended_post->slug) }}">
+                                <a href="{{ route('post', $recommendedPost->slug) }}">
                                     <div class="flex flex-col justify-between h-full">
                                         <div class="flex flex-col">
-                                            @if ($recommended_post->post_category_id != 1 ||
-                                            $recommended_post->is_featured == false)
+                                            @if ($recommendedPost->post_category_id != 1 ||
+                                            $recommendedPost->is_featured == false)
                                             <div class="flex justify-between">
                                                 <div>
-                                                    @if ($recommended_post->post_category_id != 1)
+                                                    @if ($recommendedPost->post_category_id != 1)
                                                     <div
                                                         class="font-medium text-indigo-600 uppercase text-md dark:text-indigo-400">
-                                                        {{ $recommended_post->post_category->title }}
+                                                        {{ $recommendedPost->post_category->title }}
                                                     </div>
                                                     @endif
                                                 </div>
-                                                @if ($recommended_post->is_featured)
+                                                @if ($recommendedPost->is_featured)
                                                 <x-badge.post-featured>
                                                     Featured
                                                 </x-badge.post-featured>
@@ -161,15 +161,15 @@
                                             </div>
                                             @endif
                                             <p class="text-lg font-bold text-gray-900 dark:text-gray-100">
-                                                {{ $recommended_post->title }}
+                                                {{ $recommendedPost->title }}
                                             </p>
-                                            @if ($recommended_post->excerpt)
+                                            @if ($recommendedPost->excerpt)
                                             <p class="mt-1 text-gray-500 text-md dark:text-gray-400">
-                                                {{ $recommended_post->excerpt }}
+                                                {{ $recommendedPost->excerpt }}
                                             </p>
                                             @else
                                             <p class="mt-1 text-gray-500 text-md dark:text-gray-400">
-                                                {{ Str::limit(strip_tags($recommended_post->body), 100) }}
+                                                {{ Str::limit(strip_tags($recommendedPost->body), 100) }}
                                             </p>
                                             @endif
                                         </div>
@@ -177,19 +177,19 @@
                                             <div class="flex flex-col justify-between md:flex-col lg:flex-col">
                                                 <div class="flex items-center gap-1 mt-1">
                                                     <p class="text-gray-900 text-md dark:text-gray-100">
-                                                        {{ $recommended_post->user->name }}
+                                                        {{ $recommendedPost->user->name }}
                                                     </p>
-                                                    @if ($recommended_post->user->is_verified)
+                                                    @if ($recommendedPost->user->is_verified)
                                                     <x-badge.verified />
                                                     @endif
                                                 </div>
                                                 <div class="flex gap-2 place-items-end shrink-0">
                                                     <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
-                                                        {{ $recommended_post->published_at->diffForHumans() }}
+                                                        {{ $recommendedPost->published_at->diffForHumans() }}
                                                     </p>
                                                     <p class="mt-1 text-xs text-gray-900 dark:text-gray-100">
-                                                        {{ $recommended_post->views }}
-                                                        {{ Str::plural('view', $recommended_post->views) }}
+                                                        {{ $recommendedPost->views }}
+                                                        {{ Str::plural('view', $recommendedPost->views) }}
                                                     </p>
                                                 </div>
                                             </div>
