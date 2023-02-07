@@ -42,9 +42,6 @@
                                     @endif
                                 </div>
                             </div>
-                            {{-- <p class="mt-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $organization_history->user->name }}
-                            </p> --}}
                             <p class="text-gray-700 whitespace-nowrap dark:text-gray-400">
                                 {{ $organization_history->start_year }} - {{ $organization_history->end_year }}
                             </p>
@@ -55,6 +52,44 @@
                             <p class="text-gray-700 whitespace-nowrap dark:text-gray-400">
                                 {{ $organization_history->organization->name }}
                             </p>
+                            <div class="mt-5">
+                                <div x-cloak x-data="{ showModal: false }" x-on:keydown.window.escape="showModal = false"
+                                    class="inline-flex">
+                                    <x-button.delete x-on:click="showModal = !showModal" x-cloak>
+                                        Delete
+                                    </x-button.delete>
+                                    <div x-cloak x-show="showModal" x-transition.opacity
+                                        class="fixed inset-0 z-50 bg-red-600/30 dark:bg-red-500/30 backdrop-blur-xl">
+                                    </div>
+                                    <div x-cloak x-show="showModal" x-transition
+                                        class="fixed inset-0 z-50 flex items-center justify-center p-6">
+                                        <div x-on:click.away="showModal = false"
+                                            class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
+                                            <div class="p-5">
+                                                <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                                                    {{ __('Are you sure you want to delete this organization history?') }}
+                                                </h2>
+                                                <p class="mt-1 mb-5 text-sm text-red-600 dark:text-red-400">
+                                                    This action is irreversible and will delete all the data related
+                                                    to this user.
+                                                </p>
+                                                <form
+                                                    action="{{ route('dashboard.organization-histories.destroy', $organization_history->id) }}"
+                                                    method="POST" class="inline-flex">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <x-button.delete type="submit">
+                                                        Yes, Delete
+                                                    </x-button.delete>
+                                                </form>
+                                                <x-button.default x-on:click="showModal = false">
+                                                    Cancel (Esc)
+                                                </x-button.default>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </x-card.organization-history-dashboard>
                     @empty

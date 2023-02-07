@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\OrganizationHistory;
 use Illuminate\Http\Request;
+use App\Models\OrganizationHistory;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class AdminOrganizationHistoryController extends Controller
 {
@@ -15,6 +16,7 @@ class AdminOrganizationHistoryController extends Controller
      */
     public function index()
     {
+        Gate::authorize('admin') || Gate::authorize('superadmin');
         $organization_histories = OrganizationHistory::with('user')
         ->where('user_id', '!=', '1')
         ->orderBy('user_id', 'asc')
@@ -86,6 +88,8 @@ class AdminOrganizationHistoryController extends Controller
      */
     public function destroy(OrganizationHistory $organizationHistory)
     {
-        //
+        Gate::authorize('admin') || Gate::authorize('superadmin');
+        $organizationHistory->delete();
+        return back()->with('success', 'Organization History Deleted Successfully');
     }
 }

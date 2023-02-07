@@ -113,6 +113,14 @@ class DashboardOrganizationHistoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $organization_history = OrganizationHistory::find($id);
+        if ($organization_history->user_id == auth()->user()->id) {
+            $organization_history->delete();
+            return redirect()->route('dashboard.organization-histories.index')
+                ->with('success', 'Organization History Deleted Successfully!');
+        } else {
+            return redirect()->route('dashboard.organization-histories.index')
+                ->with('danger', 'You are not authorized to delete this organization history!');
+        }
     }
 }
