@@ -40,7 +40,7 @@ class PostController extends Controller
             ->where('is_approved', true)
             ->where('is_rejected', false)
             ->orderBy('published_at', 'desc')
-            ->paginate(10)
+            ->simplePaginate(10)
             ->withQueryString();
         $count_posts = Post::with('post_category', 'user')
             ->latest()

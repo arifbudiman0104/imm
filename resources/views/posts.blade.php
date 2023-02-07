@@ -170,9 +170,13 @@
             </div>
         </x-section>
         @if ($posts->hasPages())
-        <x-section>
-            {{ $posts->links() }}
-        </x-section>
+        <div class="mx-auto sm:mb-5 max-w-7xl">
+            <div class="w-full lg:w-2/3">
+                <x-section>
+                    {{ $posts->links() }}
+                </x-section>
+            </div>
+        </div>
         @endif
 
     </div>
