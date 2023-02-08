@@ -14,7 +14,7 @@
                 </x-button.create>
             </div> --}}
             <div class="mb-5">
-                {{-- @if (request('search'))
+                @if (request('search'))
                 <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     {{ __('Search results for: ') }} {{ request('search') }}
                 </h2>
@@ -22,10 +22,7 @@
                 <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                     All Organization Histories
                 </h2>
-                @endif --}}
-                <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    All Organization Histories
-                </h2>
+                @endif
             </div>
             <div class="mb-5 md:w-1/2 2xl:w-1/3">
                 <form class="flex items-center gap-2">
@@ -98,8 +95,7 @@
                                                         history?') }}
                                                     </h2>
                                                     <p class="mt-1 mb-5 text-sm text-red-600 dark:text-red-400">
-                                                        This action is irreversible and will delete all the data related
-                                                        to this user.
+                                                        This action is irreversible.
                                                     </p>
                                                     <form
                                                         action="{{ route('admin.organization-histories.destroy', $organization_history->id) }}"

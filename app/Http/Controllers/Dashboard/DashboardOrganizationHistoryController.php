@@ -34,8 +34,8 @@ class DashboardOrganizationHistoryController extends Controller
             'organization_id' => 'required',
             'organization_position_id' => 'required',
             'organization_field_id' => 'required',
-            'start_year' => 'required',
-            'end_year' => 'required'
+            'start_year' => 'digits:4|required',
+            'end_year' => 'digits:4|required'
         ]);
 
         $organization_history = new OrganizationHistory();
@@ -77,8 +77,8 @@ class DashboardOrganizationHistoryController extends Controller
             'organization_id' => 'required',
             'organization_position_id' => 'required',
             'organization_field_id' => 'required',
-            'start_year' => 'required',
-            'end_year' => 'required'
+            'start_year' => 'digits:4|required',
+            'end_year' => 'digits:4|required'
         ]);
 
         $organization_history = OrganizationHistory::find($id);

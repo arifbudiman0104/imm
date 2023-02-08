@@ -21,7 +21,8 @@ class AdminOrganizationHistoryController extends Controller
         if ($search) {
             $organization_histories = OrganizationHistory::with('user')
                 ->whereHas('user', function ($query) use ($search) {
-                    $query->where('name', 'like', '%' . $search . '%');
+                    $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('username', 'like', '%' . $search . '%');
                 })
                 ->where('user_id', '!=', '1')
                 ->orderBy('user_id', 'asc')
@@ -78,8 +79,8 @@ class AdminOrganizationHistoryController extends Controller
             'organization_id' => 'required',
             'organization_position_id' => 'required',
             'organization_field_id' => 'required',
-            'start_year' => 'required',
-            'end_year' => 'required'
+            'start_year' => 'digits:4|required',
+            'end_year' => 'digits:4|required'
         ]);
 
         $organization_history = OrganizationHistory::find($id);
@@ -90,7 +91,7 @@ class AdminOrganizationHistoryController extends Controller
         $organization_history->end_year = $request->end_year;
         $organization_history->save();
 
-        return redirect()->route('dashboard.organization-histories.index')
+        return redirect()->route('admin.organization-histories.index')
             ->with('success', 'Organization History Updated Successfully!');
     }
 

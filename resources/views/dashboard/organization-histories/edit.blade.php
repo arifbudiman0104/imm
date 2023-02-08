@@ -69,14 +69,14 @@
                     <div class="w-full space-y-6">
                         <div>
                             <x-input-label for="start_year" :value="__('Start Year')" />
-                            <x-text-input id="start_year" name="start_year" type="text" class="block w-full mt-1"
+                            <x-text-input id="start_year" name="start_year" type="number" class="block w-full mt-1"
                                 :value="old('start_year', $organization_history->start_year)" autofocus
                                 autocomplete="start_year" placeholder="2018" />
                             <x-input-error class="mt-2" :messages="$errors->get('start_year')" />
                         </div>
                         <div>
                             <x-input-label for="end_year" :value="__('End Year')" />
-                            <x-text-input id="end_year" name="end_year" type="text" class="block w-full mt-1"
+                            <x-text-input id="end_year" name="end_year" type="number" class="block w-full mt-1"
                                 :value="old('end_year', $organization_history->end_year)" autofocus
                                 autocomplete="end_year" placeholder="2019" />
                             <x-input-error class="mt-2" :messages="$errors->get('end_year')" />

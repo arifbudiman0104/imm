@@ -77,8 +77,7 @@
                                                     }}
                                                 </h2>
                                                 <p class="mt-1 mb-5 text-sm text-red-600 dark:text-red-400">
-                                                    This action is irreversible and will delete all the data related
-                                                    to this user.
+                                                    This action is irreversible.
                                                 </p>
                                                 <form
                                                     action="{{ route('dashboard.organization-histories.destroy', $organization_history->id) }}"

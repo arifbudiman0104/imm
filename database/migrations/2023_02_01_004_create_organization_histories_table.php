@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreignId('organization_id')->constrained()->cascadeOnDelete();
             $table->foreignId('organization_position_id')->constrained()->cascadeOnDelete();
             $table->foreignId('organization_field_id')->constrained()->cascadeOnDelete();
-            $table->string('start_year');
-            $table->string('end_year');
+            $table->year('start_year')->year();
+            $table->year('end_year')->year();
             $table->boolean('is_active')->default(false);
             $table->boolean('is_requested')->default(false);
             $table->boolean('is_approved')->default(false);
