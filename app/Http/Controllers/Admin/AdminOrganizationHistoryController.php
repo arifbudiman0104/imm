@@ -15,10 +15,28 @@ class AdminOrganizationHistoryController extends Controller
     public function index()
     {
         Gate::authorize('admin') || Gate::authorize('superadmin');
-        $organization_histories = OrganizationHistory::with('user')
-            ->where('user_id', '!=', '1')
-            ->orderBy('user_id', 'asc')
-            ->paginate(21);
+        $search = request('search');
+
+        // search Organization History by user_id->name
+        if ($search) {
+            $organization_histories = OrganizationHistory::with('user')
+                ->whereHas('user', function ($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%');
+                })
+                ->where('user_id', '!=', '1')
+                ->orderBy('user_id', 'asc')
+                ->paginate(21)
+                ->withQueryString();
+        } else {
+            $organization_histories = OrganizationHistory::with('user')
+                ->where('user_id', '!=', '1')
+                ->orderBy('user_id', 'asc')
+                ->paginate(21);
+        }
+        // $organization_histories = OrganizationHistory::with('user')
+        //     ->where('user_id', '!=', '1')
+        //     ->orderBy('user_id', 'asc')
+        //     ->paginate(21);
         return view('admin.organization-histories.index', compact('organization_histories'));
         // return $organization_histories;
     }

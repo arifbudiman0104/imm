@@ -27,6 +27,15 @@
                     All Organization Histories
                 </h2>
             </div>
+            <div class="mb-5 md:w-1/2 2xl:w-1/3">
+                <form class="flex items-center gap-2">
+                    <x-text-input id="search" name="search" type="text" class="w-full" placeholder="Search by name ..."
+                        value="{{ request('search') }}" />
+                    <x-button.search type="submit">
+                        {{ __('Search') }}
+                    </x-button.search>
+                </form>
+            </div>
             <div>
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 2xl:grid-cols-3">
                     @forelse ($organization_histories as $organization_history)
