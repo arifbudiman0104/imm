@@ -53,8 +53,14 @@
                                 {{ $organization_history->organization->name }}
                             </p>
                             <div class="mt-5">
-                                <div x-cloak x-data="{ showModal: false }" x-on:keydown.window.escape="showModal = false"
-                                    class="inline-flex">
+                                {{-- Edit --}}
+                                <x-button.edit
+                                    href="{{ route('dashboard.organization-histories.edit', $organization_history->id) }}">
+                                    {{ __('Edit') }}
+                                </x-button.edit>
+                                {{-- Delete --}}
+                                <div x-cloak x-data="{ showModal: false }"
+                                    x-on:keydown.window.escape="showModal = false" class="inline-flex">
                                     <x-button.delete x-on:click="showModal = !showModal" x-cloak>
                                         Delete
                                     </x-button.delete>
@@ -67,7 +73,8 @@
                                             class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
                                             <div class="p-5">
                                                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                                    {{ __('Are you sure you want to delete this organization history?') }}
+                                                    {{ __('Are you sure you want to delete this organization history?')
+                                                    }}
                                                 </h2>
                                                 <p class="mt-1 mb-5 text-sm text-red-600 dark:text-red-400">
                                                     This action is irreversible and will delete all the data related

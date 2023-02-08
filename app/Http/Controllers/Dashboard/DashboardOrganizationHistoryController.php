@@ -88,9 +88,20 @@ class DashboardOrganizationHistoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(OrganizationHistory $organization_history)
     {
-        //
+        $organizations = Organization::all();
+        $organization_positions = OrganizationPosition::all();
+        $organization_fields = OrganizationField::all();
+        return view(
+            'dashboard.organization-histories.edit',
+            compact(
+                'organization_history',
+                'organizations',
+                'organization_positions',
+                'organization_fields'
+            )
+        );
     }
 
     /**
@@ -102,7 +113,24 @@ class DashboardOrganizationHistoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'organization_id' => 'required',
+            'organization_position_id' => 'required',
+            'organization_field_id' => 'required',
+            'start_year' => 'required',
+            'end_year' => 'required'
+        ]);
+
+        $organization_history = OrganizationHistory::find($id);
+        $organization_history->organization_id = $request->organization_id;
+        $organization_history->organization_position_id = $request->organization_position_id;
+        $organization_history->organization_field_id = $request->organization_field_id;
+        $organization_history->start_year = $request->start_year;
+        $organization_history->end_year = $request->end_year;
+        $organization_history->save();
+
+        return redirect()->route('dashboard.organization-histories.index')
+            ->with('success', 'Organization History Updated Successfully!');
     }
 
     /**
