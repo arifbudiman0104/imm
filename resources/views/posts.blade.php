@@ -39,14 +39,15 @@
                     {{-- Categories Small Screen --}}
                     <div class="lg:hidden">
                         <div class="flex gap-5 pb-2.5 mt-5 mb-2.5 overflow-y-auto">
-                            <a href="{{ route('posts') }}" class="px-5 py-2 bg-gray-50 rounded-lg dark:bg-gray-700 shrink-0 hover:bg-gray-100 hover:dark:bg-gray-600
-                            @unless (request('category')) bg-gray-200 dark:bg-gray-500 @endunless">
+                            <a href="{{ route('posts') }}"
+                                class="px-5 py-2  rounded-lg  shrink-0 hover:bg-gray-100 hover:dark:bg-gray-600
+                            {{ request('category') ? 'bg-gray-50 dark:bg-gray-700' : 'bg-gray-200 dark:bg-gray-500' }}">
                                 All {{ $countPosts }}
                             </a>
                             @foreach ($postsCategories as $postsCategory)
-                            <a href="/posts?category={{ $postsCategory->slug }}" class="px-5 py-2 rounded-lg shrink-0 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 hover:dark:bg-gray-600
-                                @if (request('category') == $postsCategory->slug)
-                                bg-gray-200 dark:bg-gray-500 @endif ">
+                            <a href="/posts?category={{ $postsCategory->slug }}"
+                                class="px-5 py-2 rounded-lg shrink-0 hover:bg-gray-100 hover:dark:bg-gray-600
+                                {{ request('category') == $postsCategory->slug ? 'bg-gray-200 dark:bg-gray-500' : 'bg-gray-50 dark:bg-gray-700' }}">
                                 {{ $postsCategory->title }}
                                 {{ $postsCategory->posts->where('is_published', true)
                                 ->where('is_approved', true)
