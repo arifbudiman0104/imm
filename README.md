@@ -28,6 +28,7 @@ Kode ini dibuat dengan bahasa inggris, jadi jika Anda ingin berkontribusi, silak
     - [ ] Single Activity
       - [ ] Related Activity
   - [ ] Leaderships
+  - [ ] Albums
   - [ ] Dokuments
     - [ ] List
     - [ ] Download
@@ -132,6 +133,11 @@ Kode ini dibuat dengan bahasa inggris, jadi jika Anda ingin berkontribusi, silak
     - [ ] Edit
     - [ ] Delete
   - [ ] Documents
+    - [ ] Create    
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+  - [ ] Albums
     - [ ] Create    
     - [ ] List
     - [ ] Edit
