@@ -141,6 +141,9 @@ Kode ini dibuat dengan bahasa inggris, jadi jika Anda ingin berkontribusi, silak
 - Laravel 9.x
 - MySQL 5.x
 
+## Database Relations
+Akan dipublikasikan segera atau bisa dilihat di file migration.
+
 ## Package Tambahan
 - Laravel Debugbar
 - Laravel Breeze Blade
