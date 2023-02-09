@@ -11,8 +11,8 @@ Kode ini dibuat dengan bahasa inggris, jadi jika Anda ingin berkontribusi, silak
 ## Screenshots
 ![Public Post](screenshots/post.png)
 ![Dashboard](screenshots/dashboard.png)
-![Admin - Org His](screenshots/admin%20-%20org%20his.png)
-![Admin - Systems](screenshots/admin%20-%20systems.png)
+![Admin Org His](screenshots/admin-orghis.png)
+![Admin Systems](screenshots/admin-systems.png)
 
 ## Fitur
 - [x] Login
