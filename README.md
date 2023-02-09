@@ -1,66 +1,144 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistem Informasi Ikatan Mahasiswa Muhammadiyah
+Sistem Informasi Ikatan Mahasiswa Muhammadiyah adalah aplikasi web yang digunakan untuk mengelola data-data IMM, mulai dari user, pimpinan, post, aktivitas, perkaderan, organisasi, riwayat organisasi, dokumen dan masih banyak lagi. Aplikasi ini dapat membantu mempermudah pengelolaan data IMM dan memastikan data yang tersimpan akurat dan teratur. 
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Kontribusi
+Saya pribadi mengundang semua kader IMM untuk berkontribusi dalam proyek ini demi mewujudkan IMM tertib organisasi. Anda dapat membuat pull request ke repository ini. Kami sangat menyambut kontribusi dari semua pengembang.
 
-## About Laravel
+## Fitur
+- [ ] Public
+  - [ ] Home
+    - [ ] Welcome
+    - [x] Featured Post
+    - [ ] Latest Activities
+    - [ ] Feature List
+  - [ ] Posts
+    - [x] Search
+    - [x] List
+    - [x] Category
+    - [x] Single Post
+      - [x] Comment
+      - [x] Related Post
+      - [x] Recommended Post
+  - [ ] Activities
+    - [ ] List, Category
+    - [ ] Single Activity
+      - [ ] Related Activity
+  - [ ] Leaderships
+  - [ ] Dokuments
+  - [ ] About
+  - [x] Userpage
+    - [x] User Profile (Public Information Only)
+    - [ ] User Organization History (Approved Organization History Only)
+    - [ ] User Perkaderan History (Approved Perkaderan History Only)
+    - [ ] User Post by User (Approved Post Only)
+- [ ] Dashboard - Auth
+  - [ ] Profile - Auth & Verified Email
+    - [ ] Edit
+    - [ ] Update Password
+    - [ ] Delete Account
+  - [ ] Post - Auth, Verified Email, Verified Account (Need Admin to Approve)
+    - [x] Search
+    - [x] List
+    - [ ] Create
+    - [ ] Edit
+    - [ ] Delete
+    - [ ] Request Approval
+  - [ ] Organization History - Auth & Verified Email (Need Admin to Approve)
+    - [x] List
+    - [x] Create
+    - [x] Edit
+    - [x] Delete 
+    - [ ] Request Approval
+  - [ ] Perkaderan History - Auth & Verified Email (Need Admin to Approve)
+    - [ ] List
+    - [ ] Create
+    - [ ] Edit
+    - [ ] Delete
+    - [ ] Request Approval
+- [ ] Admin
+  - [ ] Users
+    - [x] Search
+    - [ ] Edit
+    - [x] Verify
+    - [x] View
+    - [x] Reset Password
+    - [x] Delete
+  - [ ] All User Posts
+    - [ ] Create
+    - [ ] List
+    - [ ] View
+    - [ ] Edit
+    - [ ] Delete
+    - [ ] Approve
+  - [ ] Post Categories
+    - [ ] Create
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+  - [ ] Organizations
+    - [ ] Create
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+  - [ ] Organization Fields
+    - [ ] Create
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+  - [ ] Organization Positions
+    - [ ] Create    
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+  - [ ] User Organization Histories
+    - [ ] Create
+    - [x] List
+    - [x] Edit
+    - [x] Delete
+    - [ ] Approve
+  - [ ] User Perkaderan Histories
+    - [ ] Create
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+    - [ ] Approve
+  - [ ] Perkaderan Fields
+    - [ ] Create    
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+  - [ ] System Settings    
+    - [ ] List
+    - [ ] Edit
+  - [ ] Activities
+    - [ ] Create    
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+  - [ ] Activity Categories
+    - [ ] Create  
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+  - [ ] Leaderships
+    - [ ] Create    
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+  - [ ] Documents
+    - [ ] Create    
+    - [ ] List
+    - [ ] Edit
+    - [ ] Delete
+ 
+## Teknologi yang Digunakan
+- Laravel 9.x
+- MySQL 5.x
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Package Tambahan
+- Laravel Debugbar
+- Laravel Breeze Blade
+- Tailwind CSS
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Kredit
+Proyek ini dibuat oleh Arif Budiman Arrosyid. Jika Anda memiliki pertanyaan atau saran, silakan buka issue pada repository ini atau kontak saya melalui [Telegram](https://t.me/arifbudimanarrosyid).
