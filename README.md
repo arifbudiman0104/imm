@@ -1,8 +1,12 @@
 # Sistem Informasi Ikatan Mahasiswa Muhammadiyah
 Sistem Informasi Ikatan Mahasiswa Muhammadiyah adalah aplikasi web yang digunakan untuk mengelola data-data IMM, mulai dari user, pimpinan, post, aktivitas, perkaderan, organisasi, riwayat organisasi, dokumen dan masih banyak lagi. Aplikasi ini dapat membantu mempermudah pengelolaan data IMM dan memastikan data yang tersimpan akurat dan teratur. 
 
+Proyek ini bermula dari pikiran saya "someone needs to do it, right? why not just start?" dan saya memutuskan untuk membuat proyek ini. Saya berharap proyek ini dapat membantu IMM dalam mengelola data IMM.
+
 ## Kontribusi
-Saya pribadi mengundang semua kader IMM untuk berkontribusi dalam proyek ini demi mewujudkan IMM tertib organisasi. Anda dapat membuat pull request ke repository ini. Kami sangat menyambut kontribusi dari semua pengembang.
+Saya pribadi mengundang semua kader IMM untuk berkontribusi dalam proyek ini. Anda dapat membuat pull request ke repository ini. Kami sangat menyambut kontribusi dari semua pengembang.
+
+Kode ini dibuat dengan bahasa inggris, jadi jika Anda ingin berkontribusi, silakan gunakan bahasa inggris untuk kode Anda. Penerjemahan bahasa Indonesia untuk UI akan dilakukan seiring berjalan.
 
 ## Fitur
 - [ ] Public
@@ -25,6 +29,8 @@ Saya pribadi mengundang semua kader IMM untuk berkontribusi dalam proyek ini dem
       - [ ] Related Activity
   - [ ] Leaderships
   - [ ] Dokuments
+    - [ ] List
+    - [ ] Download
   - [ ] About
   - [x] Userpage
     - [x] User Profile (Public Information Only)
