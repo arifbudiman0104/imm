@@ -8,6 +8,11 @@ Saya pribadi mengundang semua kader IMM untuk berkontribusi dalam proyek ini. An
 
 Kode ini dibuat dengan bahasa inggris, jadi jika Anda ingin berkontribusi, silakan gunakan bahasa inggris untuk kode Anda. Penerjemahan bahasa Indonesia untuk UI akan dilakukan seiring berjalan.
 
+## Screenshots
+![Public Post](screenshots/post.png)
+![Dashboard](screenshots/dashboard.png)
+![Admin - Org His](screenshots/admin%20-%20org%20his.png)
+![Admin - Systems](screenshots/admin%20-%20systems.png)
 ## Fitur
 - [ ] Public
   - [ ] Home
