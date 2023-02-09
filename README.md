@@ -13,7 +13,13 @@ Kode ini dibuat dengan bahasa inggris, jadi jika Anda ingin berkontribusi, silak
 ![Dashboard](screenshots/dashboard.png)
 ![Admin - Org His](screenshots/admin%20-%20org%20his.png)
 ![Admin - Systems](screenshots/admin%20-%20systems.png)
+
 ## Fitur
+- [x] Login
+- [x] Register
+- [x] Forget Password
+- [x] Verify Email
+- [x] Dark Mode, Light Mode, System Preference Mode
 - [ ] Public
   - [ ] Home
     - [ ] Welcome
