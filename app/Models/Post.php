@@ -21,10 +21,11 @@ class Post extends Model
         'post_category_id',
     ];
 
-    protected $dates = [
+    protected $casts = [
         'created_at',
         'updated_at',
-        'published_at',
+        'published_at' => 'datetime',
+        'approved_at' => 'datetime',
     ];
 
     protected $hidden = [
