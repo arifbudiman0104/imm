@@ -211,7 +211,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
         User::factory(100)->create();
-        Post::factory(1000)->create();
+        Post::factory(500)->create();
         Comment::factory(2000)->create();
         OrganizationHistory::factory(100)->create();
     }
