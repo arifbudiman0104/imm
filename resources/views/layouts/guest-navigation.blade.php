@@ -85,12 +85,12 @@
                         Login
                     </a>
                     @endif
-                    @if ($register->is_active)
+                    {{-- @if ($register->is_active)
                     <a href="{{ route('register') }}"
                         class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-400 transition duration-150 ease-in-out bg-gray-100 border border-transparent rounded-md dark:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none">
                         Register
                     </a>
-                    @endif
+                    @endif --}}
                 </div>
                 @endguest
                 <!-- User Dropdown -->
@@ -262,11 +262,11 @@
             <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
                 {{ __('Login') }}
             </x-responsive-nav-link>
-            @if ($register->is_active)
+            {{-- @if ($register->is_active)
             <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
                 {{ __('Register') }}
             </x-responsive-nav-link>
-            @endif
+            @endif --}}
         </div>
         @endguest
 
