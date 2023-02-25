@@ -10,7 +10,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminSystemController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\AdminPostCategoryController;
 use App\Http\Controllers\Dashboard\DashboardPostController;
+use App\Http\Controllers\Admin\AdminPostsCategoryController;
 use App\Http\Controllers\Dashboard\DashboardProfileController;
 use App\Http\Controllers\Admin\AdminOrganizationHistoryController;
 use App\Http\Controllers\Dashboard\DashboardOrganizationHistoryController;
@@ -26,7 +28,7 @@ use App\Http\Controllers\Dashboard\DashboardOrganizationHistoryController;
 |
 */
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::get('/post/{slug}', [PostController::class, 'post'])->name('post');
 Route::get('/user/{username}', [UserPageController::class, 'user'])->name('user.page');
@@ -66,9 +68,8 @@ Route::middleware(['auth', 'admin', 'verified'])->group(function () {
 
         Route::resource('/organization-histories', AdminOrganizationHistoryController::class, ['as' => 'admin']);
 
-        Route::get('/posts-categories', function () {
-            return view('admin.posts-categories.index');
-        })->name('admin.posts-categories.index');
+        Route::resource('/post-categories', AdminPostCategoryController::class, ['as' => 'admin']);
+
         Route::get('/posts', function () {
             return view('admin.posts.index');
         })->name('admin.posts.index');

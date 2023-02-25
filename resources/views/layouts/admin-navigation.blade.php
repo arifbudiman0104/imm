@@ -21,8 +21,8 @@
                     <x-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.index')">
                         {{ __('Posts') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.posts-categories.index')"
-                        :active="request()->routeIs('admin.posts-categories.index')">
+                    <x-nav-link :href="route('admin.post-categories.index')"
+                        :active="request()->routeIs('admin.post-categories.index')">
                         {{ __('Post Categories') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.organization-histories.index')"
@@ -170,8 +170,8 @@
             <x-responsive-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.index')">
                 {{ __('Posts') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.posts-categories.index')"
-                :active="request()->routeIs('admin.posts-categories.index')">
+            <x-responsive-nav-link :href="route('admin.post-categories.index')"
+                :active="request()->routeIs('admin.post-categories.index')">
                 {{ __('Post Categories') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.organization-histories.index')"
