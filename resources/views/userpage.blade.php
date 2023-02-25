@@ -29,7 +29,7 @@
                 <ol>
                     @foreach ($organizationHistories as $organizationHistory)
                     <li>
-                        <p class="text-gray-500 text-md dark:text-gray-400">
+                        <p class="text-gray-500 dark:text-gray-400">
                             {{ $organizationHistory->start_year }} -
                             {{ $organizationHistory->end_year }}
                             {{ $organizationHistory->organization_position->name }}

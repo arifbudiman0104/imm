@@ -25,7 +25,7 @@
                 {{ $user->organization->name }}
             </p>
             @endif
-            <div class="pb-2 overflow-x-auto font-medium sm:pb-0">
+            <div class="pb-2 overflow-x-auto font-medium sm:pb-0 space-y-2">
                 <div class="flex flex-col sm:flex-row sm:mb-0">
                     <div class="flex mr-2">
                         <p
@@ -198,10 +198,36 @@
                 </span>
             </p> --}}
         </x-section-admin>
-        <x-section-admin>
+        {{-- <x-section-admin>
             <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                 Cadre Histories
             </h2>
+        </x-section-admin> --}}
+        <x-section-admin>
+            <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                Organization Histories
+            </h2>
+            <div class="mt-2">
+                <div>
+                    <ol class="space-y-2">
+                        @foreach ($organization_histories as $organization_history)
+                        <li>
+                            <p
+                                class="{{ $organization_history->is_approved ? 'text-gray-600 dark:text-gray-400' : 'text-gray-300 dark:text-gray-600' }} ">
+                                {{ $organization_history->start_year }} -
+                                {{ $organization_history->end_year }}
+                                {{ $organization_history->organization_position->name }}
+                                {{ $organization_history->organization_field->name }}
+                                {{ $organization_history->organization->name }}
+                            </p>
+                        </li>
+                        @endforeach
+                    </ol>
+                </div>
+            </div>
+            {{-- <p class=" text-gray-600 dark:text-gray-400">
+                {{ $organization_history->organization_position->name }}
+            </p> --}}
         </x-section-admin>
 
     </div>
