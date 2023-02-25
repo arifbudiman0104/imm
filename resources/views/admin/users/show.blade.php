@@ -103,7 +103,7 @@
                     <div class="flex mr-2">
                         <p
                             class=" text-gray-400 w-44 sm:text-gray-600 shrink-0 dark:text-gray-500 sm:dark:text-gray-400">
-                            POB</p>
+                            DOB</p>
                         <div class="hidden sm:block">:</div>
                     </div>
                     <p class=" text-gray-600 dark:text-gray-400 shrink-0">
