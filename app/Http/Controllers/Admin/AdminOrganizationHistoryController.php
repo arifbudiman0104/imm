@@ -22,16 +22,18 @@ class AdminOrganizationHistoryController extends Controller
             $organization_histories = OrganizationHistory::with('user')
                 ->whereHas('user', function ($query) use ($search) {
                     $query->where('name', 'like', '%' . $search . '%')
-                    ->orWhere('username', 'like', '%' . $search . '%');
+                        ->orWhere('username', 'like', '%' . $search . '%');
                 })
                 ->where('user_id', '!=', '1')
                 ->orderBy('user_id', 'asc')
+                ->orderBy('start_year', 'asc')
                 ->paginate(21)
                 ->withQueryString();
         } else {
             $organization_histories = OrganizationHistory::with('user')
                 ->where('user_id', '!=', '1')
                 ->orderBy('user_id', 'asc')
+                ->orderBy('start_year', 'asc')
                 ->paginate(21);
         }
         // $organization_histories = OrganizationHistory::with('user')
@@ -100,5 +102,23 @@ class AdminOrganizationHistoryController extends Controller
         Gate::authorize('admin') || Gate::authorize('superadmin');
         $organizationHistory->delete();
         return back()->with('success', 'Organization History Deleted Successfully');
+    }
+
+    public function approve(OrganizationHistory $organization_history)
+    {
+        Gate::authorize('admin') || Gate::authorize('superadmin');
+        $organization_history->is_requested = false;
+        $organization_history->is_approved = true;
+        $organization_history->save();
+        return back()->with('success', 'Organization History Set Unactive Successfully!');
+    }
+
+    public function unapprove(OrganizationHistory $organization_history)
+    {
+        Gate::authorize('admin') || Gate::authorize('superadmin');
+        $organization_history->is_requested = false;
+        $organization_history->is_approved = false;
+        $organization_history->save();
+        return back()->with('success', 'Organization History Set Unactive Successfully!');
     }
 }

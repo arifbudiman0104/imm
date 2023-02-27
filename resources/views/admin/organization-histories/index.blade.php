@@ -75,6 +75,85 @@
                                     href="{{ route('admin.organization-histories.edit', $organization_history->id) }}">
                                     {{ __('Edit') }}
                                 </x-button.edit>
+                                @if ($organization_history->is_requested == true && $organization_history->is_approved == false)
+                                {{-- Approve --}}
+                                <div x-cloak x-data="{ showModal: false }"
+                                    x-on:keydown.window.escape="showModal = false" class="inline-flex">
+                                    <x-button.approve x-on:click="showModal = !showModal" x-cloak>
+                                        Approve
+                                    </x-button.approve>
+                                    <div x-cloak x-show="showModal" x-transition.opacity
+                                        class="fixed inset-0 z-50 bg-red-600/30 dark:bg-red-500/30 backdrop-blur-xl">
+                                    </div>
+                                    <div x-cloak x-show="showModal" x-transition
+                                        class="fixed inset-0 z-50 flex items-center justify-center p-6">
+                                        <div x-on:click.away="showModal = false"
+                                            class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
+                                            <div class="p-5">
+                                                <h2 class="text-lg font-medium text-gray-900 mb-5 dark:text-gray-100">
+                                                    {{ __('Are you sure you want to approve to this
+                                                    organization history?')
+                                                    }}
+                                                </h2>
+                                                {{-- <p class="mt-1 mb-5 text-sm text-red-600 dark:text-red-400">
+                                                    This action is irreversible.
+                                                </p> --}}
+                                                <form
+                                                    action="{{ route('admin.organization_histories.approve', $organization_history->id) }}"
+                                                    method="POST" class="inline-flex">
+                                                    @csrf
+                                                    @method('POST')
+                                                    <x-button.approve type="submit">
+                                                        Yes, Approve
+                                                    </x-button.approve>
+                                                </form>
+                                                <x-button.default x-on:click="showModal = false">
+                                                    Cancel (Esc)
+                                                </x-button.default>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @elseif ($organization_history->is_requested == true || $organization_history->is_approved == true)
+                                {{-- Unaprove --}}
+                                <div x-cloak x-data="{ showModal: false }"
+                                    x-on:keydown.window.escape="showModal = false" class="inline-flex">
+                                    <x-button.default x-on:click="showModal = !showModal" x-cloak>
+                                        Unapprove
+                                    </x-button.default>
+                                    <div x-cloak x-show="showModal" x-transition.opacity
+                                        class="fixed inset-0 z-50 bg-red-600/30 dark:bg-red-500/30 backdrop-blur-xl">
+                                    </div>
+                                    <div x-cloak x-show="showModal" x-transition
+                                        class="fixed inset-0 z-50 flex items-center justify-center p-6">
+                                        <div x-on:click.away="showModal = false"
+                                            class="w-screen max-w-xl mx-auto rounded-lg bg-gray-50 min-h-max dark:bg-gray-700">
+                                            <div class="p-5">
+                                                <h2 class="text-lg font-medium text-gray-900 mb-5 dark:text-gray-100">
+                                                    {{ __('Are you sure you want to approve to this
+                                                    organization history?')
+                                                    }}
+                                                </h2>
+                                                {{-- <p class="mt-1 mb-5 text-sm text-red-600 dark:text-red-400">
+                                                    This action is irreversible.
+                                                </p> --}}
+                                                <form
+                                                    action="{{ route('admin.organization_histories.unapprove', $organization_history->id) }}"
+                                                    method="POST" class="inline-flex">
+                                                    @csrf
+                                                    @method('POST')
+                                                    <x-button.default type="submit">
+                                                        Yes, Unapprove
+                                                    </x-button.default>
+                                                </form>
+                                                <x-button.default x-on:click="showModal = false">
+                                                    Cancel (Esc)
+                                                </x-button.default>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
                                 {{-- Delete --}}
                                 <div x-cloak x-data="{ showModal: false }"
                                     x-on:keydown.window.escape="showModal = false" class="inline-flex">

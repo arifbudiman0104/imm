@@ -15,7 +15,7 @@ class DashboardOrganizationHistoryController extends Controller
     {
         $organization_histories = OrganizationHistory::with('organization', 'organization_position', 'organization_field')
             ->where('user_id', auth()->user()->id)
-            ->orderBy('start_year', 'desc')
+            ->orderBy('start_year', 'asc')
             ->get();
         return view('dashboard.organization-histories.index', compact('organization_histories'));
     }
@@ -93,9 +93,8 @@ class DashboardOrganizationHistoryController extends Controller
             ->with('success', 'Organization History Updated Successfully!');
     }
 
-    public function destroy($id)
+    public function destroy(OrganizationHistory $organization_history)
     {
-        $organization_history = OrganizationHistory::find($id);
         if ($organization_history->user_id == auth()->user()->id) {
             $organization_history->delete();
             return redirect()->route('dashboard.organization-histories.index')
@@ -105,4 +104,42 @@ class DashboardOrganizationHistoryController extends Controller
                 ->with('warning', 'You are not authorized to delete this organization history!');
         }
     }
+
+    public function request(OrganizationHistory $organization_history)
+    {
+        if ($organization_history->user_id == auth()->user()->id) {
+            $organization_history->is_requested = true;
+            $organization_history->save();
+            return redirect()->route('dashboard.organization-histories.index')
+                ->with('success', 'Organization History Request Approval Successfully!');
+        } else {
+            return redirect()->route('dashboard.organization-histories.index')
+                ->with('warning', 'You are not authorized to request this organization history!');
+        }
+    }
+    public function active(OrganizationHistory $organization_history)
+    {
+        if ($organization_history->user_id == auth()->user()->id && $organization_history->is_approved) {
+            $organization_history->is_active = true;
+            $organization_history->save();
+            return redirect()->route('dashboard.organization-histories.index')
+                ->with('success', 'Organization History Set Active Successfully!');
+        } else {
+            return redirect()->route('dashboard.organization-histories.index')
+                ->with('warning', 'You are not authorized to set active this organization history, wait admin to approve!');
+        }
+    }
+    public function unactive(OrganizationHistory $organization_history)
+    {
+        if ($organization_history->user_id == auth()->user()->id && $organization_history->is_approved) {
+            $organization_history->is_active = false;
+            $organization_history->save();
+            return redirect()->route('dashboard.organization-histories.index')
+                ->with('success', 'Organization History Set Unactive Successfully!');
+        } else {
+            return redirect()->route('dashboard.organization-histories.index')
+                ->with('warning', 'You are not authorized to set unactive this organization history, wait admin to approve!');
+        }
+    }
+
 }

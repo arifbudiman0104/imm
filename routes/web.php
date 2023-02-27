@@ -67,6 +67,10 @@ Route::middleware(['auth', 'admin', 'verified'])->group(function () {
         Route::post('/systems/{system}/disable', [AdminSystemController::class, 'disable'])->name('admin.systems.disable');
 
         Route::resource('/organization-histories', AdminOrganizationHistoryController::class, ['as' => 'admin']);
+        Route::post('/organization-histories/{organization_history}/approve', [AdminOrganizationHistoryController::class, 'approve'])
+            ->name('admin.organization_histories.approve');
+        Route::post('/organization-histories/{organization_history}/unapprove', [AdminOrganizationHistoryController::class, 'unapprove'])
+            ->name('admin.organization_histories.unapprove');
 
         Route::resource('/post-categories', AdminPostCategoryController::class, ['as' => 'admin']);
 
@@ -82,6 +86,12 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::prefix('dashboard')->middleware('verified_account')->group(function () {
         Route::resource('/posts', DashboardPostController::class, ['as' => 'dashboard']);
         Route::resource('/organization-histories', DashboardOrganizationHistoryController::class, ['as' => 'dashboard']);
+        Route::post('/organization-histories/{organization_history}/request', [DashboardOrganizationHistoryController::class, 'request'])
+            ->name('dashboard.organization_histories.request');
+        Route::post('/organization-histories/{organization_history}/active', [DashboardOrganizationHistoryController::class, 'active'])
+            ->name('dashboard.organization_histories.active');
+        Route::post('/organization-histories/{organization_history}/unactive', [DashboardOrganizationHistoryController::class, 'unactive'])
+            ->name('dashboard.organization_histories.unactive');
     });
 
     Route::get('/profile', [DashboardProfileController::class, 'edit'])->name('profile.edit');
