@@ -7,46 +7,26 @@
 
     <div class="w-full sm:py-12">
         <x-section>
-            <div class="mb-2">
-                <div class="flex items-center">
-                    <div class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                        {{ $user->name }}
-                    </div>
-                    <span class="ml-2">
-                        <x-badge.verified />
-                    </span>
+            <div class="flex items-center">
+                <div class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    {{ $user->name }}
                 </div>
-                @if ($user->organization_id)
-                <div class="flex items-center">
-                    <div class="leading-tight text-gray-800 dark:text-gray-200">
-                        {{ $user->organization->name }}
-                    </div>
-                </div>
-                @endif
+                <span class="ml-2">
+                    <x-badge.verified />
+                </span>
             </div>
-            @if ($organizationHistories->count() > 0)
+            @if ($user->hide_email == false)
             <div>
-                <ol>
-                    @foreach ($organizationHistories as $organizationHistory)
-                    <li>
-                        <p class="text-gray-500 dark:text-gray-400">
-                            {{ $organizationHistory->start_year }} -
-                            {{ $organizationHistory->end_year }}
-                            {{ $organizationHistory->organization_position->name }}
-                            {{ $organizationHistory->organization_field->name }}
-                            {{ $organizationHistory->organization->name }}
-                        </p>
-                    </li>
-                    @endforeach
-
-                </ol>
+                {{ $user->email }}
             </div>
             @endif
-            <div>
-                @if ($user->hide_email == false)
-                {{ $user->email }}
-                @endif
+            @if ($user->organization_id)
+            <div class="flex items-center">
+                <div class="leading-tight text-gray-800 dark:text-gray-200">
+                    {{ $user->organization->name }}
+                </div>
             </div>
+            @endif
             <div class="mt-2">
                 {{-- @if ($user->sid)
                 <p class="text-gray-500 text-md dark:text-gray-400">
@@ -74,7 +54,30 @@
                 </p>
                 @endif
             </div>
-            <div class="gap-2 mt-5 space-y-2">
+            <div>
+                @if ($organizationHistories->count() > 0)
+                <div class="text-base my-2 font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                    Organization History
+                </div>
+                <div>
+                    <ol>
+                        @foreach ($organizationHistories as $organizationHistory)
+                        <li>
+                            <p class="text-gray-500 dark:text-gray-400">
+                                {{ $organizationHistory->start_year }} -
+                                {{ $organizationHistory->end_year }}
+                                {{ $organizationHistory->organization_position->name }}
+                                {{ $organizationHistory->organization_field->name }}
+                                {{ $organizationHistory->organization->name }}
+                            </p>
+                        </li>
+                        @endforeach
+
+                    </ol>
+                </div>
+                @endif
+            </div>
+            <div class="gap-2 space-y-2">
                 @if ($user->instagram)
                 <x-social.instagram href="{{ $user->instagram }}" target="_blank" />
                 @endif
@@ -91,9 +94,6 @@
                 <x-social.website href="{{ $user->website }}" target="_blank" />
                 @endif
             </div>
-
-
-
         </x-section>
         @if ($posts->count() > 0)
         <x-section>
@@ -102,10 +102,6 @@
                     Posted by {{ $user->name }}
                 </h2>
             </div>
-            {{-- <div class="mb-5">
-                <x-text-input id="search" name="search" type="text" class="w-full md:w-1/2 xl:w-1/4"
-                    placeholder="Search by name or email here ..." />
-            </div> --}}
             <div class="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3">
                 @foreach ($posts as $post)
                 <x-card.post-public>
