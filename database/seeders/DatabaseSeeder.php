@@ -130,25 +130,25 @@ class DatabaseSeeder extends Seeder
         );
         Organization::create(
             [
-                'name' => 'PC IMM Banyumas',
-                'description' => 'IMM Banyumas',
+                'name' => 'IMM Cabang Banyumas',
+                'description' => 'IMM Cabang Banyumas',
             ]
         );
         Organization::create(
             [
-                'name' => 'PK IMM Insan Kamil',
+                'name' => 'IMM Komisariat Insan Kamil',
                 'description' => 'IMM Insan Kamil',
             ]
         );
         Organization::create(
             [
-                'name' => 'PK IMM Teknik',
+                'name' => 'IMM Komisariat Teknik',
                 'description' => 'IMM Teknik',
             ]
         );
         Organization::create(
             [
-                'name' => 'PK IMM FAI',
+                'name' => 'IMM Komisariat FAI',
                 'description' => 'IMM Teknik',
             ]
         );

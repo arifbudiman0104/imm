@@ -18,6 +18,7 @@ class UserPageController extends Controller
             $organizationHistories = OrganizationHistory::with('organization', 'organization_position', 'organization_field')
                 ->where('user_id', $user->id)
                 ->where('is_approved', true)
+                ->orderBy('is_active', 'desc')
                 ->orderBy('start_year', 'desc')
                 ->get();
             $posts = Post::with('post_category')

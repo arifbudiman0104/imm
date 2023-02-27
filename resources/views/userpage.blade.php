@@ -56,14 +56,14 @@
             </div>
             <div>
                 @if ($organizationHistories->count() > 0)
-                <div class="text-base my-2 font-semibold leading-tight text-gray-800 dark:text-gray-200">
+                <div class="my-2 font-semibold text-gray-800 dark:text-gray-200">
                     Organization History
                 </div>
                 <div>
                     <ol>
                         @foreach ($organizationHistories as $organizationHistory)
                         <li>
-                            <p class="text-gray-500 dark:text-gray-400">
+                            <p class="text-gray-500 dark:text-gray-400 {{ $organizationHistory->is_active ? 'font-semibold' : 'font-normal' }}">
                                 {{ $organizationHistory->start_year }} -
                                 {{ $organizationHistory->end_year }}
                                 {{ $organizationHistory->organization_position->name }}
@@ -72,12 +72,11 @@
                             </p>
                         </li>
                         @endforeach
-
                     </ol>
                 </div>
                 @endif
             </div>
-            <div class="gap-2 space-y-2">
+            <div class="space-y-2 mt-2">
                 @if ($user->instagram)
                 <x-social.instagram href="{{ $user->instagram }}" target="_blank" />
                 @endif
