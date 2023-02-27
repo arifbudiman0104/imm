@@ -11,7 +11,7 @@
                 Our Team
             </h2>
         </x-section>
-        <x-section>
+        {{-- <x-section>
             <div class="container py-10 mx-auto">
                 <h1 class="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">Our
                     <span class="text-blue-500">Executive Team</span>
@@ -252,6 +252,6 @@
                     </div>
                 </div>
             </div>
-        </x-section>
+        </x-section> --}}
     </div>
 </x-guest-layout>

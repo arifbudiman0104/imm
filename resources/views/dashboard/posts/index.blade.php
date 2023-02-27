@@ -9,7 +9,7 @@
         <x-section>
             <div class="mb-5">
                 <x-button.create href="">
-                    {{ __('Create Post') }}
+                    {{ __('Create') }}
                 </x-button.create>
             </div>
             <div class="mb-5">
