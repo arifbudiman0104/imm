@@ -13,10 +13,10 @@
                     {{ __('Edit Organization History') }} {{ $organization_history->user->name }}
                 </h2>
 
-                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                {{-- <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                     {{ __("Please fill in the form below to edit an organization history and contact admin to
                     approve it.") }}
-                </p>
+                </p> --}}
             </header>
 
             <form action="{{ route('admin.organization-histories.update', $organization_history->id)}}"

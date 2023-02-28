@@ -33,7 +33,7 @@
                     </x-button.search>
                 </form>
             </div>
-            <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 2xl:grid-cols-3">
+            <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                 @forelse ($organization_histories as $organization_history)
                 <x-card.organization-history-dashboard>
                     <div class="flex flex-col justify-between h-full">

@@ -6,7 +6,6 @@
     </x-slot>
 
     <div class="w-full sm:py-12">
-
         <x-section-admin>
             {{-- <div class="mb-5">
                 <x-button.create href="{{ route('admin.users.create') }}" class="shrink-0">
