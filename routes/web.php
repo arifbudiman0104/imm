@@ -31,7 +31,7 @@ use App\Http\Controllers\Dashboard\DashboardOrganizationHistoryController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::get('/post/{slug}', [PostController::class, 'post'])->name('post');
-Route::get('/user/{username}', [UserPageController::class, 'user'])->name('user.page');
+Route::get('/@{username}', [UserPageController::class, 'user'])->name('user.page');
 
 Route::get('/about', function () {
     return view('about');

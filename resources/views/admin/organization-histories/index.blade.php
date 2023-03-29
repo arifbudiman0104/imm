@@ -75,7 +75,7 @@
                                     href="{{ route('admin.organization-histories.edit', $organization_history->id) }}">
                                     {{ __('Edit') }}
                                 </x-button.edit>
-                                @if ($organization_history->is_requested == true && $organization_history->is_approved == false)
+                                @if ($organization_history->is_requested == true || $organization_history->is_approved == false)
                                 {{-- Approve --}}
                                 <div x-cloak x-data="{ showModal: false }"
                                     x-on:keydown.window.escape="showModal = false" class="inline-flex">
@@ -114,7 +114,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @elseif ($organization_history->is_requested == true || $organization_history->is_approved == true)
+                                @else
                                 {{-- Unaprove --}}
                                 <div x-cloak x-data="{ showModal: false }"
                                     x-on:keydown.window.escape="showModal = false" class="inline-flex">

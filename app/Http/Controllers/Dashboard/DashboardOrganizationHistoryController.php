@@ -15,7 +15,7 @@ class DashboardOrganizationHistoryController extends Controller
     {
         $organization_histories = OrganizationHistory::with('organization', 'organization_position', 'organization_field')
             ->where('user_id', auth()->user()->id)
-            ->orderBy('start_year', 'asc')
+            ->orderBy('start_year', 'desc')
             ->get();
         return view('dashboard.organization-histories.index', compact('organization_histories'));
     }
@@ -58,7 +58,7 @@ class DashboardOrganizationHistoryController extends Controller
 
     public function edit(OrganizationHistory $organization_history)
     {
-        if ($organization_history->user_id == auth()->user()->id) {
+        if ($organization_history->user_id == auth()->user()->id && $organization_history->is_approved == false) {
             $organizations = Organization::all();
             $organization_positions = OrganizationPosition::all();
             $organization_fields = OrganizationField::all();
@@ -95,7 +95,7 @@ class DashboardOrganizationHistoryController extends Controller
 
     public function destroy(OrganizationHistory $organization_history)
     {
-        if ($organization_history->user_id == auth()->user()->id) {
+        if ($organization_history->user_id == auth()->user()->id && $organization_history->is_approved == false) {
             $organization_history->delete();
             return redirect()->route('dashboard.organization-histories.index')
                 ->with('success', 'Organization History Deleted Successfully!');

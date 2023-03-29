@@ -54,10 +54,13 @@
                             </p>
                             <div class="mt-5">
                                 {{-- Edit --}}
+                                @if ($organization_history->is_approved == false)
                                 <x-button.edit
                                     href="{{ route('dashboard.organization-histories.edit', $organization_history->id) }}">
                                     {{ __('Edit') }}
                                 </x-button.edit>
+                                @endif
+
                                 @if ($organization_history->is_approved && $organization_history->is_active)
                                 {{-- Unactive --}}
                                 <div x-cloak x-data="{ showModal: false }"
@@ -180,6 +183,7 @@
                                 @endif
 
                                 {{-- Delete --}}
+                                @if ($organization_history->is_approved == false)
                                 <div x-cloak x-data="{ showModal: false }"
                                     x-on:keydown.window.escape="showModal = false" class="inline-flex">
                                     <x-button.delete x-on:click="showModal = !showModal" x-cloak>
@@ -216,6 +220,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
+
                             </div>
                         </div>
                     </x-card.organization-history-dashboard>

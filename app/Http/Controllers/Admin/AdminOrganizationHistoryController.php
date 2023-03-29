@@ -26,14 +26,14 @@ class AdminOrganizationHistoryController extends Controller
                 })
                 ->where('user_id', '!=', '1')
                 ->orderBy('user_id', 'asc')
-                ->orderBy('start_year', 'asc')
+                ->orderBy('start_year', 'desc')
                 ->paginate(21)
                 ->withQueryString();
         } else {
             $organization_histories = OrganizationHistory::with('user')
                 ->where('user_id', '!=', '1')
                 ->orderBy('user_id', 'asc')
-                ->orderBy('start_year', 'asc')
+                ->orderBy('start_year', 'desc')
                 ->paginate(21);
         }
         // $organization_histories = OrganizationHistory::with('user')
