@@ -44,6 +44,7 @@
 
                     <div class="flex items-center justify-between mt-4">
                         <div class="">
+                            @if ($register->is_active)
                             <div>
                                 <a
                                     class="text-sm text-gray-600 rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
@@ -54,6 +55,7 @@
                                     {{ __('Register Now!') }}
                                 </a>
                             </div>
+                            @endif
                             <div>
                                 @if (Route::has('password.request'))
                                 <a class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
