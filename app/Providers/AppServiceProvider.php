@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('have_page', function (User $user) {
             return $user->username != null && $user->is_verified;
         });
+        // disable this before seeding and enable it again after seeding
         View::share('register', System::where('name', 'register')->first());
     }
 }

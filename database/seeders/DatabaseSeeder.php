@@ -121,6 +121,8 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Web Development',
             ]
         );
+        // Disable AppServiceProvider on method view::share 'register' before seeding
+        // After seeding, enable it again
         System::create(
             [
                 'name' => 'Register',
