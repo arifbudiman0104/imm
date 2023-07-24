@@ -40,6 +40,6 @@ class AppServiceProvider extends ServiceProvider
             return $user->username != null && $user->is_verified;
         });
         // disable this before seeding and enable it again after seeding
-        View::share('register', System::where('name', 'register')->first());
+        View::share('register', System::where('name', 'Register')->first());
     }
 }

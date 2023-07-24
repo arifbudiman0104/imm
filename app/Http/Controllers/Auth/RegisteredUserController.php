@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $system = System::where('name', 'register')->first();
+        $system = System::where('name', 'Register')->first();
         if ($system->is_active == 0) {
             return view('auth.register-closed');
         }
